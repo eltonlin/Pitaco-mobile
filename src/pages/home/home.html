@@ -1,14 +1,28 @@
 <ion-header>
+
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+   
+    <img src="..//..//assets/imgs/pitaco.jpg">
   </ion-navbar>
+
 </ion-header>
 
+
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Login</ion-label>
+      <ion-input type="text" [(ngModel)] = "usuario_final"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label floating>Senha</ion-label>
+        <ion-input type="text" [(ngModel)] = "senha"></ion-input>
+      </ion-item>
+  </ion-list>
+<div>
+  <button ion-button full (click)="logar">Logar</button>
+  <button ion-button full (click)="goToCadastro()">Cadastre-se</button>
+</div>
 </ion-content>
+

@@ -1,0 +1,59 @@
+<!--
+  Generated template for the CadastroPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Cadastre-se</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Login: </ion-label>
+      <ion-input text = "" [(ngModel)]= "usuario.login" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label stacked>Senha: </ion-label>
+        <ion-input text = "" [(ngModel)]= "usuario.senha"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label stacked>Nome: </ion-label>
+          <ion-input text = ""  [(ngModel)]= "usuario.nome"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>CPF: </ion-label>
+            <ion-input text = ""  [(ngModel)]= "usuario.cpf"></ion-input>
+          </ion-item>
+
+          <ion-item>
+              <ion-label stacked>Data Nascimento: </ion-label>
+              <ion-input datetime display-format="YYYY/MM/DD" value=""   [(ngModel)]= "usuario.data_nascimento"></ion-input>
+            </ion-item>
+
+            
+          <ion-item>
+              <ion-label stacked>Pontuação: </ion-label>
+              <ion-input type="number" value="1"  [(ngModel)]= "usuario.pontuacao"></ion-input>
+            </ion-item>
+
+          <ion-item>
+            <ion-label stacked>Faixa Salarial: </ion-label>
+            <ion-input type="number" value="" [(ngModel)]= "usuario.faixa_salarial"></ion-input>
+          </ion-item>
+
+
+  </ion-list>
+
+  <button ion-button full (click)="salvarUsuario()">Confirmar Cadastro</button>
+
+</ion-content>
