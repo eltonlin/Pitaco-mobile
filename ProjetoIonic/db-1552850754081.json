@@ -1,0 +1,14 @@
+{
+  "usuario_final": [
+    {
+      "login_usuario": "juju_login",
+      "nome": "ju",
+      "senha": "1234",
+      "confirma_senha": "1234",
+      "cpf": "1234",
+      "faixa_salarial": "ju",
+      "pontuacao": "10",
+      "data_nascimento": "10/12/1895"
+    }
+  ]
+}

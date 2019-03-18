@@ -1,3 +1,25 @@
-page-home {
+.logo {
+    width: auto;
+    margin: auto;
+    display: block;
+    max-width: 50%;
+    padding-top: 20px;
+  }
 
-}
+  .textos {
+    background: none;
+    text-align: center;
+  }
+
+  .botao {
+    border-radius: 10px !important;
+  }
+
+  ion-item {
+    padding: 5px !important;
+    margin-bottom: 10px;
+    color: #488aff;
+    background-color: #488aff;
+    opacity: 1;
+    font-size: 0.9em;
+  }

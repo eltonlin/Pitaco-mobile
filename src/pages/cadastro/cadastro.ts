@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { ServidorProvider } from '../../providers/servidor/servidor';
+import { UsuarioPage } from '../usuario/usuario';
 
 /**
  * Generated class for the CadastroPage page.
@@ -28,11 +29,11 @@ export class CadastroPage {
 
   salvarUsuario(){
     this.servidor.salvarUsuario(this.usuario).subscribe( item => {
-      this.navCtrl.pop();
+      this.navCtrl.push(UsuarioPage);
       this.toast.create({
         message: "Cadastro Realizado com Sucesso"
       }). present();
-    }, error =>{
+    } , error => {
         this.toast.create({
           message: "Erro ao realizar cadastro"
         }). present();

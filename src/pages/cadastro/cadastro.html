@@ -17,8 +17,13 @@
   <ion-list>
     <ion-item>
       <ion-label stacked>Login: </ion-label>
-      <ion-input text = "" [(ngModel)]= "usuario.login" ></ion-input>
+      <ion-input text = "" [(ngModel)]= "usuario.login_usuario" ></ion-input>
     </ion-item>
+
+    <ion-item>
+        <ion-label stacked>Nome: </ion-label>
+        <ion-input text = ""  [(ngModel)]= "usuario.nome"></ion-input>
+      </ion-item>
 
     <ion-item>
         <ion-label stacked>Senha: </ion-label>
@@ -26,8 +31,8 @@
       </ion-item>
 
       <ion-item>
-          <ion-label stacked>Nome: </ion-label>
-          <ion-input text = ""  [(ngModel)]= "usuario.nome"></ion-input>
+          <ion-label stacked>Confirma Senha: </ion-label>
+          <ion-input text = "" [(ngModel)]= "usuario.confirma_senha"></ion-input>
         </ion-item>
 
         <ion-item>
@@ -36,20 +41,22 @@
           </ion-item>
 
           <ion-item>
+              <ion-label stacked>Faixa Salarial: </ion-label>
+              <ion-select [(ngModel)]= "usuario.faixa_salarial">
+                  <ion-option>0 - 1000</ion-option>>
+                  <ion-option>1000 - 3000</ion-option>
+                  <ion-option>3000 - 7000</ion-option>
+                  <ion-option>7000 - 10000</ion-option>
+                  <ion-option>10000  ou mais</ion-option>
+              </ion-select>
+            </ion-item>
+
+
+          <ion-item>
               <ion-label stacked>Data Nascimento: </ion-label>
               <ion-input datetime display-format="YYYY/MM/DD" value=""   [(ngModel)]= "usuario.data_nascimento"></ion-input>
-            </ion-item>
-
-            
-          <ion-item>
-              <ion-label stacked>Pontuação: </ion-label>
-              <ion-input type="number" value="1"  [(ngModel)]= "usuario.pontuacao"></ion-input>
-            </ion-item>
-
-          <ion-item>
-            <ion-label stacked>Faixa Salarial: </ion-label>
-            <ion-input type="number" value="" [(ngModel)]= "usuario.faixa_salarial"></ion-input>
           </ion-item>
+         
 
 
   </ion-list>

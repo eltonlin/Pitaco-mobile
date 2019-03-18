@@ -15,7 +15,9 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class ServidorProvider {
 
-  url  = "http://localhost:3000/usuario_final"
+  url  =  "http://localhost:3000/usuario_final"
+
+  
 
   constructor(public http: Http) {
     console.log('Hello ServidorProvider Provider');
@@ -26,6 +28,6 @@ export class ServidorProvider {
   }
 
   salvarUsuario(obj){
-    return this.http.post(this.url, obj).map(res => res.json())
+    return this.http.post(this.url, obj).map(res => res.json());
   }
 }

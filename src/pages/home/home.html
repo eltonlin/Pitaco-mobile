@@ -1,28 +1,29 @@
-<ion-header>
-
-  <ion-navbar>
-   
-    <img src="..//..//assets/imgs/pitaco.jpg">
-  </ion-navbar>
-
-</ion-header>
-
-
 <ion-content padding>
-  <ion-list>
-    <ion-item>
-      <ion-label floating>Login</ion-label>
-      <ion-input type="text" [(ngModel)] = "usuario_final"></ion-input>
-    </ion-item>
 
-    <ion-item>
-        <ion-label floating>Senha</ion-label>
-        <ion-input type="text" [(ngModel)] = "senha"></ion-input>
+    <img src="assets/imgs/pitaco.jpg" class="logo">
+  
+    <ion-list>
+      <ion-item>
+        <ion-label>
+          <ion-icon ios="ios-person" md="md-person"></ion-icon>
+        </ion-label>
+        <ion-input placeholder="Email" type="text" [(ngModel)]="login_usuario"></ion-input>
       </ion-item>
-  </ion-list>
-<div>
-  <button ion-button full (click)="logar">Logar</button>
-  <button ion-button full (click)="goToCadastro()">Cadastre-se</button>
-</div>
-</ion-content>
+  
+      <ion-item>
+        <ion-label>
+          <ion-icon ios="ios-lock" md="md-lock"></ion-icon>
+        </ion-label>
+        <ion-input placeholder="Senha" type="text" [(ngModel)]="senha"></ion-input>
+      </ion-item>
+    </ion-list>
+    <div>
+      <button ion-button block class="botao" (click)="logar()">Logar</button>
+      <button ion-button block class="botao"icon-start>
+        <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>Login com Facebook
+      </button>
+      <p class="textos"><a (click)="goToCadastro()">Cadastre-se</a></p>
+    </div>
+  </ion-content>
+
 
