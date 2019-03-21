@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { UsuarioPage } from '../../pages/usuario/usuario';
 
 /*
   Generated class for the ServidorProvider provider.
@@ -15,7 +16,7 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class ServidorProvider {
 
-  url  =  "http://localhost:3000/usuario_final"
+  url  =  "http://localhost:3000"
 
   
 
@@ -24,10 +25,14 @@ export class ServidorProvider {
   }
 
   list(){
-    return this.http.get(this.url).pipe(map(res => res.json()))
+    return this.http.get(this.url + "/usuario_final/login").pipe(map(res => res.json()))
   }
 
   salvarUsuario(obj){
-    return this.http.post(this.url, obj).map(res => res.json());
+    return this.http.post(this.url + "/usuario_final/cadastrar_login", obj).map(res => res.json());
+  }
+
+  logar(data){
+    return this.http.post(this.url + "/usuario_final/login", data).map(res => res.json());
   }
 }

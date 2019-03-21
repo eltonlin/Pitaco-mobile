@@ -12,39 +12,42 @@ import { CadastroPage } from '../cadastro/cadastro';
   templateUrl: 'home.html'
 })
 export class HomePage {
+
   login_usuario: string;
   senha: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public alertCtrl: AlertController,public servidor:ServidorProvider, public http: Http, public toast: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public alertCtrl: AlertController, public servidor: ServidorProvider, public http: Http, public toast: ToastController) {
 
   }
 
-  goToCadastro(){
+  goToCadastro() {
     this.navCtrl.push(CadastroPage);
   }
 
-    logar(){
-      if(this.login_usuario == undefined || this.senha == undefined){
-          let alert = this.alertCtrl.create({
-            title: 'Atenção',
-            message: 'Preencha todos os campos!',
-            buttons: ['OK']
+  logar() {
+    if (this.login_usuario == undefined || this.senha == undefined) {
+      let alert = this.alertCtrl.create({
+        title: 'Atenção',
+        message: 'Preencha todos os campos!',
+        buttons: ['OK']
+      })
+      alert.present();
+    } else {
+      return new Promise((resolve, reject) => {
+        var data = {
+          login_usuario: this.login_usuario,
+          senha: this.senha
+        };
+        this.servidor.logar(data).subscribe((result: any) => {
+          resolve(result.json());
+          this.navCtrl.push(UsuarioPage);
+
+        },
+          (error) => {
+            reject(error.json());
           })
-          alert.present(); 
-      } else{
-        return new Promise ((resolve,reject) =>{
-        
-            this.servidor.salvarUsuario(this.login_usuario + this.senha).subscribe((result: any) =>{
-              resolve(result);
-              
-            },
-            (error) => {
-           reject;
-            }
-           
-            )}
-        )
-        }
+      });
+    }
   }
 }
