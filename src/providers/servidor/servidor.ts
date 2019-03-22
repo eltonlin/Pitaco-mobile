@@ -1,5 +1,6 @@
 
 import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
@@ -32,7 +33,7 @@ export class ServidorProvider {
     return this.http.post(this.url + "/usuario_final/cadastrar_login", obj).map(res => res.json());
   }
 
-  logar(data){
-    return this.http.post(this.url + "/usuario_final/login", data).map(res => res.json());
+  logar(obj){
+    return this.http.post(this.url + "/usuario_final/login", obj).map(res => res.json());
   }
 }
