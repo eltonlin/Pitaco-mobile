@@ -17,14 +17,21 @@ import { stringLiteral } from 'babel-types';
 export class HomePage {
 
   usuario: any;
-  login_usuario: string;
-  senha: string;
+  isTextFieldType: boolean;
+  //login_usuario: string;
+  //senha: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public alertCtrl: AlertController, public servidor: ServidorProvider, public http: Http, public toast: ToastController) {
-   
-    this.usuario = {};
 
+    this.usuario = {};
+    //this.servidor.salvarUsuario(this.usuario);
+    // this.usuario = this.navParams.data.usuario;
+
+  }
+
+  togglePasswordFieldType() {
+    this.isTextFieldType = !this.isTextFieldType;
   }
 
   goToCadastro() {
@@ -33,26 +40,31 @@ export class HomePage {
 
   logar() {
     if (this.usuario.login_usuario == undefined || this.usuario.senha == undefined) {
-       let alert = this.alertCtrl.create({
-         title: 'Atenção',
-         message: 'Preencha todos os campos!',
-         buttons: ['OK']
-       })
-       alert.present();
-     } else { 
-    return new Promise((resolve, reject) => {
-      this.servidor.logar(this.usuario).subscribe((result: any) => {
-        resolve(result);
-        //this.navCtrl.push(UsuarioPage);
-      },
-        (error) => {
-          reject(error.json());
-        })
-    });
+      let alert = this.alertCtrl.create({
+        title: 'Atenção',
+        message: 'Preencha todos os campos!',
+        buttons: ['OK']
+      })
+      alert.present();
+    } else {
+      return new Promise((resolve, reject) => {
+        this.servidor.logar(this.usuario).subscribe((result: any) => {
+          resolve(result);
+
+           this.navCtrl.push(UsuarioPage, { usuario: result.json });
+
+        },
+          (error) => {
+            reject(error.json());
+          })
+      });
 
     }
   }
 
 
+
 }
+
+
 

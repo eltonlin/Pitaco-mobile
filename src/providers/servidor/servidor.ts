@@ -36,4 +36,5 @@ export class ServidorProvider {
   logar(obj){
     return this.http.post(this.url + "/usuario_final/login", obj).map(res => res.json());
   }
+
 }

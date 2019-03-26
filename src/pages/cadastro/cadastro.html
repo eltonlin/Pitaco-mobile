@@ -13,104 +13,177 @@
 </ion-header>
 
 <!--https://www.youtube.com/watch?v=bPZ0ri_Yx4I-->
-<ion-content >
-  <form [formGroup] = "form">
-  <ion-list>
-    <ion-item>
-      <ion-label stacked>Email: </ion-label>
-      <ion-input type = "email" formControlName = "email" [(ngModel)]= "usuario.login_usuario" > </ion-input>
-    </ion-item>
-    <ion-item *ngIf = "email.invalid && (email.dirty || email.touched)" color ="danger">
-      <div *ngIf= "email.errors.email">
-        Informe um email válido.
-      </div>
-    
-    </ion-item>
-
-    <ion-item>
-        <ion-label stacked>Nome: </ion-label>
-        <ion-input type = "text" formControlName = "texto"  [(ngModel)]= "usuario.nome"></ion-input>
-      </ion-item> 
-      <ion-item *ngIf = "texto.invalid && (texto.dirty || texto.touched)" color ="danger">
-        <div *ngIf= "texto.errors.required">
-          Nome é obrigatório.
-        </div>
+<ion-content>
+  <form [formGroup]="form">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Email: </ion-label>
+        <ion-input type="email" formControlName="email" [(ngModel)]="usuario.login_usuario"> </ion-input>
       </ion-item>
-
-    <ion-item>
-        <ion-label stacked>Senha: </ion-label>
-        <ion-input type = "text"  formControlName = "senha" [(ngModel)]= "usuario.senha"></ion-input>
-      </ion-item>
-      <ion-item *ngIf = "senha.invalid && (senha.dirty || senha.touched)" color ="danger">
-        <div *ngIf= "senha.errors.required">
-          Informação é obrigatória
+      <ion-item *ngIf="email.invalid && (email.dirty || email.touched)">
+        <div *ngIf="email.errors.email">
+          <p>Informe um email válido.</p>
         </div>
-        <div *ngIf= "senha.errors.minlength">
-          Senha deve ser maior que 5 caracteres
-          </div>
+
       </ion-item>
 
       <ion-item>
-          <ion-label stacked>Confirma Senha: </ion-label>
-          <ion-input type = "text" formControlName = "senha" [(ngModel)]= "usuario.confirma_senha"></ion-input>
-        </ion-item>
-        <ion-item *ngIf = "senha.invalid && (senha.dirty || senha.touched)" color ="danger">
-          <div *ngIf= "senha.errors.required">
-            Informação é obrigatória
-          </div>
-          <div *ngIf= "senha.errors.minlength">
-            Senha deve ser maior que 5 caracteres
-            </div>
-        </ion-item>
+        <ion-label stacked>Nome: </ion-label>
+        <ion-input type="text" formControlName="texto" [(ngModel)]="usuario.nome"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="texto.invalid && (texto.dirty || texto.touched)">
+        <div *ngIf="texto.errors.required">
+          <p>Nome é obrigatório.</p>
+        </div>
+      </ion-item>
 
-        <ion-item>
-            <ion-label stacked>CPF: </ion-label>
-            <ion-input type = "text" formControlName = "cpf"  [(ngModel)]= "usuario.cpf"></ion-input>
-          </ion-item>
-          <ion-item *ngIf = "cpf.invalid && (cpf.dirty || cpf.touched)" color ="danger">
-            <div *ngIf= "cpf.errors.required">
-              Informação é obrigatória
-            </div>
-            <div *ngIf= "cpf.errors.maxlength">
-              CPF deve possuir 11 caracteres
-              </div>
-              <div *ngIf= "cpf.errors.minlength">
-                CPF deve possuir 11 caracteres
-              </div>
-          </ion-item>
+      <ion-item>
+        <ion-label stacked>Senha: </ion-label>
+        <ion-input [type]="isTextFieldType ? 'text' : 'password'" formControlName="senha" [(ngModel)]="usuario.senha">
+        </ion-input>
+      </ion-item>
+      <button (click)="togglePasswordFieldType()">
+        <ion-icon [name]="isTextFieldType ? 'eye-off' : 'eye'"></ion-icon>
+      </button>
+      <ion-item *ngIf="senha.invalid && (senha.dirty || senha.touched)">
+        <div *ngIf="senha.errors.required">
+          <p>Informação é obrigatória</p>
+        </div>
+        <div *ngIf="senha.errors.minlength">
+          <p>Senha deve ser maior que 5 caracteres</p>
+        </div>
+      </ion-item>
 
-          <ion-item>
-              <ion-label stacked>Faixa Salarial: </ion-label>
-              <ion-select formControlName = "opcao" [(ngModel)]= "usuario.faixa_salarial">
-                  <ion-option value="" > - Escolha - </ion-option>>
-                  <ion-option value="1" >0 - 1000</ion-option>>
-                  <ion-option value="2">1000 - 3000</ion-option>
-                  <ion-option value="3">3000 - 7000</ion-option>
-                  <ion-option value="4">7000 - 10000</ion-option>
-                  <ion-option value="5">10000  ou mais</ion-option>
-              </ion-select>
-            </ion-item>
-            <ion-item *ngIf = "opcao.invalid && (opcao.dirty || opcao.touched)" color ="danger">
-              <div *ngIf= "opcao.errors.required">
-                Opção é obrigatória
-              </div>
-            </ion-item>
+      <ion-item>
+        <ion-label stacked>Confirma Senha: </ion-label>
+        <ion-input [type]="isTextFieldType ? 'text' : 'password'" formControlName="senha"
+          [(ngModel)]="usuario.confirma_senha"></ion-input>
+      </ion-item>
+      <button (click)="togglePasswordFieldType()">
+        <ion-icon [name]="isTextFieldType ? 'eye-off' : 'eye'"></ion-icon>
+      </button>
+      <ion-item *ngIf="senha.invalid && (senha.dirty || senha.touched)">
+        <div *ngIf="senha.errors.required">
+          <p>Informação é obrigatória</p>
+        </div>
+        <div *ngIf="senha.errors.minlength">
+          <p>Senha deve ser maior que 5 caracteres</p>
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>CPF: </ion-label>
+        <ion-input type="text" formControlName="cpf" [(ngModel)]="usuario.cpf"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="cpf.invalid && (cpf.dirty || cpf.touched)">
+        <div *ngIf="cpf.errors.required">
+          <p>Informação é obrigatória</p>
+        </div>
+        <div *ngIf="cpf.errors.maxlength">
+          <p>Informe um CPF válido</p>
+        </div>
+        <div *ngIf="cpf.errors.minlength">
+          <p>CPF deve possuir 11 caracteres</p>
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Faixa Salarial: </ion-label>
+        <ion-select formControlName="opcao" [(ngModel)]="usuario.faixa_salarial">
+          <ion-option value=""> - Escolha - </ion-option>>
+          <ion-option value="1">0 - 1000</ion-option>>
+          <ion-option value="2">1000 - 3000</ion-option>
+          <ion-option value="3">3000 - 7000</ion-option>
+          <ion-option value="4">7000 - 10000</ion-option>
+          <ion-option value="5">10000 ou mais</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="opcao.invalid && (opcao.dirty || opcao.touched)">
+        <div *ngIf="opcao.errors.required">
+          <p>Opção é obrigatória</p>
+        </div>
+      </ion-item>
 
 
-          <ion-item>
-              <ion-label stacked>Data Nascimento: </ion-label>
-              <ion-input  type = "text"  formControlName = "texto" value=""   [(ngModel)]= "usuario.data_nascimento"></ion-input>
-          </ion-item>
-          <ion-item *ngIf = "texto.invalid && (texto.dirty || texto.touched)" color ="danger">
-            <div *ngIf= "texto.errors.required">
-              Informação é obrigatória
-            </div>
-          </ion-item>
-    
+      <ion-item>
+        <ion-label stacked>Data Nascimento: </ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY" displayFormat="MM DD YY" formControlName="texto" value=""
+          [(ngModel)]="usuario.data_nascimento"></ion-datetime>
+      </ion-item>
+      <ion-item *ngIf="texto.invalid && (texto.dirty || texto.touched)" color="danger">
+        <div *ngIf="texto.errors.required">
+          <p>Informação é obrigatória</p>
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Rua: </ion-label>
+        <ion-input type="text" formControlName="endereco" [(ngModel)]="usuario.rua"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="endereco.invalid && (endereco.dirty || endereco.touched)">
+        <div *ngIf="endereco.errors.required">
+          <p>Informação é obrigatória</p>
+        </div>
+      </ion-item>
+     
+
+      <ion-item>
+        <ion-label stacked>Complemento: </ion-label>
+        <ion-input type="text" formControlName="endereco" [(ngModel)]="usuario.complemento"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="endereco.invalid && (endereco.dirty || endereco.touched)">
+        <div *ngIf="endereco.errors.required">
+          <p>Informação é obrigatória</p>
+        </div>
+      </ion-item>
 
 
-  </ion-list>
+      <ion-item>
+        <ion-label stacked>Bairro: </ion-label>
+        <ion-input type="text" formControlName="endereco" [(ngModel)]="usuario.bairro"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="endereco.invalid && (endereco.dirty || endereco.touched)">
+        <div *ngIf="endereco.errors.required">
+          <p>Informação é obrigatória</p>
+        </div>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label stacked>Cidade: </ion-label>
+        <ion-input type="text" formControlName="endereco" [(ngModel)]="usuario.cidade"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="endereco.invalid && (endereco.dirty || endereco.touched)">
+        <div *ngIf="endereco.errors.required">
+          <p>Informação é obrigatória</p>
+        </div>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label stacked>CEP: </ion-label>
+        <ion-input type="text" formControlName="endereco" [(ngModel)]="usuario.cep"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="endereco.invalid && (endereco.dirty || endereco.touched)">
+        <div *ngIf="endereco.errors.required">
+          <p>Informação é obrigatória</p>
+        </div>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label stacked>Estado: </ion-label>
+        <ion-input type="text" formControlName="endereco" [(ngModel)]="usuario.estado"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="endereco.invalid && (endereco.dirty || endereco.touched)">
+        <div *ngIf="endereco.errors.required">
+          <p>Informação é obrigatória</p>
+        </div>
+      </ion-item>
+
+    </ion-list>
   </form>
-  <button ion-button full [disabled] ="!form.valid" (click) ="salvarUsuario()">Confirmar Cadastro</button>
+  <button ion-button full [disabled]="!form.valid" (click)="salvarUsuario()">Confirmar
+    Cadastro</button>
 
 </ion-content>
