@@ -118,72 +118,72 @@
 
       <ion-item>
         <ion-label stacked>Rua: </ion-label>
-        <ion-input type="text" formControlName="endereco" [(ngModel)]="usuario.rua"></ion-input>
+        <ion-input type="text" formControlName="rua" [(ngModel)]="usuario.rua"></ion-input>
       </ion-item>
-      <ion-item *ngIf="endereco.invalid && (endereco.dirty || endereco.touched)">
-        <div *ngIf="endereco.errors.required">
-          <p>Informação é obrigatória</p>
+      <ion-item *ngIf="rua.invalid && (rua.dirty || rua.touched)">
+        <div *ngIf="rua.errors.required">
+          <p>Preenchimento da rua é obrigatório</p>
         </div>
       </ion-item>
      
 
       <ion-item>
         <ion-label stacked>Complemento: </ion-label>
-        <ion-input type="text" formControlName="endereco" [(ngModel)]="usuario.complemento"></ion-input>
+        <ion-input type="text" formControlName="complemento" [(ngModel)]="usuario.complemento"></ion-input>
       </ion-item>
-      <ion-item *ngIf="endereco.invalid && (endereco.dirty || endereco.touched)">
-        <div *ngIf="endereco.errors.required">
-          <p>Informação é obrigatória</p>
+      <ion-item *ngIf="complemento.invalid && (complemento.dirty || complemento.touched)">
+        <div *ngIf="complemento.errors.required">
+          <p>Preenchimento do Complemento é obrigatório</p>
         </div>
       </ion-item>
 
 
       <ion-item>
         <ion-label stacked>Bairro: </ion-label>
-        <ion-input type="text" formControlName="endereco" [(ngModel)]="usuario.bairro"></ion-input>
+        <ion-input type="text" formControlName="bairro" [(ngModel)]="usuario.bairro"></ion-input>
       </ion-item>
-      <ion-item *ngIf="endereco.invalid && (endereco.dirty || endereco.touched)">
-        <div *ngIf="endereco.errors.required">
-          <p>Informação é obrigatória</p>
+      <ion-item *ngIf="bairro.invalid && (bairro.dirty || bairro.touched)">
+        <div *ngIf="bairro.errors.required">
+          <p>Preenchimento do bairro é obrigatório</p>
         </div>
       </ion-item>
 
 
       <ion-item>
         <ion-label stacked>Cidade: </ion-label>
-        <ion-input type="text" formControlName="endereco" [(ngModel)]="usuario.cidade"></ion-input>
+        <ion-input type="text" formControlName="cidade" [(ngModel)]="usuario.cidade"></ion-input>
       </ion-item>
-      <ion-item *ngIf="endereco.invalid && (endereco.dirty || endereco.touched)">
-        <div *ngIf="endereco.errors.required">
-          <p>Informação é obrigatória</p>
+      <ion-item *ngIf="cidade.invalid && (cidade.dirty || cidade.touched)">
+        <div *ngIf="cidade.errors.required">
+          <p>Preenchimento da cidade é obrigatória</p>
         </div>
       </ion-item>
 
 
       <ion-item>
         <ion-label stacked>CEP: </ion-label>
-        <ion-input type="text" formControlName="endereco" [(ngModel)]="usuario.cep"></ion-input>
+        <ion-input type="text" formControlName="cep" [(ngModel)]="usuario.cep"></ion-input>
       </ion-item>
-      <ion-item *ngIf="endereco.invalid && (endereco.dirty || endereco.touched)">
-        <div *ngIf="endereco.errors.required">
-          <p>Informação é obrigatória</p>
+      <ion-item *ngIf="cep.invalid && (cep.dirty || cep.touched)">
+        <div *ngIf="cep.errors.required">
+          <p>Preenchimento do CEP é obrigatória</p>
         </div>
       </ion-item>
 
 
       <ion-item>
         <ion-label stacked>Estado: </ion-label>
-        <ion-input type="text" formControlName="endereco" [(ngModel)]="usuario.estado"></ion-input>
+        <ion-input type="text" formControlName="estado" [(ngModel)]="usuario.estado"></ion-input>
       </ion-item>
-      <ion-item *ngIf="endereco.invalid && (endereco.dirty || endereco.touched)">
-        <div *ngIf="endereco.errors.required">
-          <p>Informação é obrigatória</p>
+      <ion-item *ngIf="estado.invalid && (estado.dirty || estado.touched)">
+        <div *ngIf="estado.errors.required">
+          <p>Preenchimento do Estado é obrigatório</p>
         </div>
       </ion-item>
 
     </ion-list>
   </form>
-  <button ion-button full [disabled]="!form.valid" (click)="salvarUsuario()">Confirmar
+  <button ion-button full [disabled]="!form.valid" (click)="createAccount()">Confirmar
     Cadastro</button>
 
 </ion-content>

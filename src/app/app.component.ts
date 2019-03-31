@@ -5,11 +5,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { UsuarioPage } from '../pages/usuario/usuario';
+
 @Component({
   templateUrl: 'app.html'
 })
+
 export class MyApp {
   rootPage:any = HomePage;
+
+  pages: Array<{title: string, component: string}>;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -18,6 +22,8 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+
+    this.pages = [ {title: 'Usuario', component: 'UsuarioPage' }];
   }
 }
 

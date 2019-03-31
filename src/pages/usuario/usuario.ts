@@ -1,34 +1,47 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ServidorProvider } from '../../providers/servidor/servidor';
+import { StorageService } from '../../providers/servidor/storage.service';
+import { throwStatement } from 'babel-types';
 
-/**
- * Generated class for the UsuarioPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Storage } from "@ionic/storage";
+import { PreferenciasPage } from '../preferencias/preferencias';
+import { LocalUser } from "../models/local_user";
+
+
 
 @Component({
   selector: 'page-usuario',
   templateUrl: 'usuario.html',
 })
 export class UsuarioPage {
+  login_usuario: string;
+ 
 
-  usuarios = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public servidor: ServidorProvider) {
 
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: StorageService, public servidor: ServidorProvider) {
+
+  }
+
+  preferencias() {
+    this.navCtrl.push(PreferenciasPage);
   }
 
   ionViewWillEnter() {
-    console.log('ionViewWillEnter UsuarioPage');
+    let localUser = this.storage.getLocalUser();
+    if (localUser && localUser.login_usuario) {
+      this.login_usuario = localUser.login_usuario;
+    }
 
-    this.servidor.list().subscribe(
-      dados  => {
-        this.usuarios = dados,
-        err => console.log(err)
-    });
+
+    //console.log('ionViewWillEnter');
   }
-
 }
+
+
+
+
+
+

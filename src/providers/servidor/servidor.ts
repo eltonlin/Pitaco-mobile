@@ -6,7 +6,13 @@ import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { UsuarioPage } from '../../pages/usuario/usuario';
+import { CredenciaisDTO } from '../../pages/models/credenciais';
+import { LocalUser } from '../../pages/models/local_user';
+import { StorageService } from './storage.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { throwStatement, stringLiteral } from 'babel-types';
+import { JwtHelper } from 'angular2-jwt';
+
 
 /*
   Generated class for the ServidorProvider provider.
@@ -17,24 +23,48 @@ import { UsuarioPage } from '../../pages/usuario/usuario';
 @Injectable()
 export class ServidorProvider {
 
-  url  =  "http://localhost:3000"
+  jwtHelper: JwtHelper = new JwtHelper();
 
-  
+  url = "http://localhost:3000"
 
-  constructor(public http: Http) {
+
+
+  constructor(public http: HttpClient, public storage: StorageService) {
     console.log('Hello ServidorProvider Provider');
   }
 
-  list(){
-    return this.http.get(this.url + "/usuario_final/login").pipe(map(res => res.json()))
+  list() {
+    return this.http.get(this.url + "/usuario_final/login").map(res => res);
   }
 
-  salvarUsuario(obj){
-    return this.http.post(this.url + "/usuario_final/cadastrar_login", obj).map(res => res.json());
+  salvarUsuario(obj) {
+    return this.http.post(this.url + "/usuario_final/cadastrar_login", obj).map(res => res);
   }
 
-  logar(obj){
-    return this.http.post(this.url + "/usuario_final/login", obj).map(res => res.json());
+  definirPreferencias(obj){
+    return this.http.post(this.url + "/interesses", obj).map(res => res);
+  }
+  
+
+  logar(usuario: CredenciaisDTO) {
+    return this.http.post(this.url + "/usuario_final/login", usuario, {
+      observe: 'response',
+      responseType: 'text'
+    })
+
+  }
+
+  sucessoLogin(authorizationValue: string) {
+    let tok = authorizationValue.substring(7); 
+    let user: LocalUser = {
+     token: tok,
+     login_usuario: this.jwtHelper.decodeToken(tok).sub
+    };
+    this.storage.setLocalUser(user);
+  } 
+
+  logout() {
+    this.storage.setLocalUser(null);
   }
 
 }

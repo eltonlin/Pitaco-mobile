@@ -4,6 +4,7 @@ import { ServidorProvider } from '../../providers/servidor/servidor';
 import { UsuarioPage } from '../usuario/usuario';
 import { isTrueProperty } from 'ionic-angular/umd/util/util';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { registerModuleFactory } from '@angular/core/src/linker/ng_module_factory_loader';
 
 
 /**
@@ -21,12 +22,16 @@ export class CadastroPage {
   form: FormGroup;
   usuario: any;
   isTextFieldType: boolean;
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public servidor: ServidorProvider,
     public alertCtrl: AlertController, public toast: ToastController, public formBuilder: FormBuilder) {
     this.usuario = {};
 
     this.createForm();
+
+
+
   }
 
   ionViewDidLoad() {
@@ -36,7 +41,12 @@ export class CadastroPage {
   createForm() {
     this.form = this.formBuilder.group({
       email: ['', [Validators.email]],
-      endereco: ['', [Validators.required]],
+      rua: ['', [Validators.required]],
+      complemento: ['', [Validators.required]],
+      bairro: ['', [Validators.required]],
+      cidade: ['', [Validators.required]],
+      estado: ['', [Validators.required]],
+      cep: ['', [Validators.required]],
       opcao: ['', [Validators.required]],
       texto: ['', [Validators.required]],
       senha: ['', [Validators.required, Validators.minLength(5)]],
@@ -45,7 +55,12 @@ export class CadastroPage {
   }
 
   get email() { return this.form.get('email'); }
-  get endereco() { return this.form.get('endereco'); }
+  get rua() { return this.form.get('rua'); }
+  get complemento() { return this.form.get('complemento'); }
+  get bairro() { return this.form.get('bairro'); }
+  get cidade() { return this.form.get('cidade'); }
+  get estado() { return this.form.get('estado'); }
+  get cep() { return this.form.get('cep'); }
   get texto() { return this.form.get('texto'); }
   get senha() { return this.form.get('senha'); }
   get opcao() { return this.form.get('opcao'); }
@@ -54,24 +69,25 @@ export class CadastroPage {
   togglePasswordFieldType() {
     this.isTextFieldType = !this.isTextFieldType;
   }
+  
   salvarUsuario() {
     if (this.form.valid) {
       this.servidor.salvarUsuario(this.usuario).subscribe(item => {
         this.navCtrl.setRoot(UsuarioPage);
         this.toast.create({
-          message: "Cadastro Realizado com Sucesso"
+          message: 'Cadastro Realizado com Sucesso ', position: 'botton', duration: 3000
         }).present();
       }, error => {
         this.toast.create({
-          message: "Erro ao realizar cadastro"
+          message: "Erro ao realizar cadastro. Erro: " + error.error, position: 'botton', duration: 3000
         }).present();
       })
 
     }
   }
 
-
-
-
 }
+
+
+
 

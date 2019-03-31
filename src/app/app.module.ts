@@ -10,17 +10,27 @@ import { UsuarioPage } from '../pages/usuario/usuario';
 import { HttpModule } from '@angular/http';
 import { ServidorProvider } from '../providers/servidor/servidor';
 import { CadastroPage } from '../pages/cadastro/cadastro';
+import { ErrorInceptorProvider } from '../interceptors/error.interceptor';
+import { HttpClientModule } from '@angular/common/http';
+import { StorageService } from '../providers/servidor/storage.service';
+
+import { IonicStorageModule } from '@ionic/storage';
+import { PreferenciasPage } from '../pages/preferencias/preferencias';
+
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     UsuarioPage,
-    CadastroPage
+    CadastroPage,
+    PreferenciasPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
+    HttpClientModule,
     HttpModule
   ],
   bootstrap: [IonicApp],
@@ -28,13 +38,17 @@ import { CadastroPage } from '../pages/cadastro/cadastro';
     MyApp,
     HomePage,
     UsuarioPage,
-    CadastroPage
+    CadastroPage,
+    PreferenciasPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ServidorProvider
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    ServidorProvider,
+    ErrorInceptorProvider,
+    StorageService,
+
   ]
 })
-export class AppModule {}
+export class AppModule { }

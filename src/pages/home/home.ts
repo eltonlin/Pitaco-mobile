@@ -4,9 +4,18 @@ import { map } from 'rxjs/operators';
 import { Http } from '@angular/http';
 import { ServidorProvider } from '../../providers/servidor/servidor';
 import { Subscriber } from 'rxjs/Subscriber';
-import { UsuarioPage } from '../usuario/usuario';
 import { CadastroPage } from '../cadastro/cadastro';
 import { stringLiteral } from 'babel-types';
+import { UsuarioPage } from '../usuario/usuario'
+
+
+import { SelectorContext } from '@angular/compiler';
+import { CredenciaisDTO } from '../models/credenciais';
+import { StorageService } from '../../providers/servidor/storage.service';
+import { PreferenciasPage } from '../preferencias/preferencias';
+
+
+
 
 
 
@@ -16,17 +25,23 @@ import { stringLiteral } from 'babel-types';
 })
 export class HomePage {
 
-  usuario: any;
+  //usuario: any;
   isTextFieldType: boolean;
-  //login_usuario: string;
+ // login_usuario: string;
   //senha: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+
+  usuario: CredenciaisDTO = {
+    login_usuario: "",
+    senha: ""
+  };
+
+ 
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
     public alertCtrl: AlertController, public servidor: ServidorProvider, public http: Http, public toast: ToastController) {
 
-    this.usuario = {};
-    //this.servidor.salvarUsuario(this.usuario);
-    // this.usuario = this.navParams.data.usuario;
+    //this.usuario = {};
+
 
   }
 
@@ -38,6 +53,8 @@ export class HomePage {
     this.navCtrl.push(CadastroPage);
   }
 
+
+
   logar() {
     if (this.usuario.login_usuario == undefined || this.usuario.senha == undefined) {
       let alert = this.alertCtrl.create({
@@ -47,18 +64,16 @@ export class HomePage {
       })
       alert.present();
     } else {
-      return new Promise((resolve, reject) => {
-        this.servidor.logar(this.usuario).subscribe((result: any) => {
-          resolve(result);
-
-           this.navCtrl.push(UsuarioPage, { usuario: result.json });
-
-        },
-          (error) => {
-            reject(error.json());
-          })
+      // return new Promise((resolve, reject) => {
+      this.servidor.logar(this.usuario).subscribe(response => { 
+       //this.servidor.sucessoLogin (response.headers.get('Authorization'));
+        this.navCtrl.setRoot(UsuarioPage);
+      }, error => {
+        if (error.status == 400) {
+          this.navCtrl.setRoot('HomePage');
+        }
       });
-
+      //});
     }
   }
 

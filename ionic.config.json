@@ -1,6 +1,6 @@
 {
   "name": "ProjetoPitaco",
-  "app_id": "",
+  "app_id": "7bd1a72f",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
@@ -11,4 +11,4 @@
       "proxyUrl": "http://localhost:3000"
     }
   ]
-} 
+}
