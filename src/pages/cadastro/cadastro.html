@@ -56,20 +56,16 @@
 
       <ion-item>
         <ion-label stacked>Confirma Senha: </ion-label>
-        <ion-input [type]="isTextFieldType ? 'text' : 'password'" formControlName="senha"
+        <ion-input [type]="isTextFieldType ? 'text' : 'password'" formControlName="confirma_senha" 
           [(ngModel)]="usuario.confirma_senha"></ion-input>
       </ion-item>
       <button (click)="togglePasswordFieldType()">
         <ion-icon [name]="isTextFieldType ? 'eye-off' : 'eye'"></ion-icon>
       </button>
-      <ion-item *ngIf="senha.invalid && (senha.dirty || senha.touched)">
-        <div *ngIf="senha.errors.required">
-          <p>Informação é obrigatória</p>
-        </div>
-        <div *ngIf="senha.errors.minlength">
-          <p>Senha deve ser maior que 5 caracteres</p>
-        </div>
+      <ion-item class='form-text error' *ngIf="senha.valid && form.hasError('validarSenhas') && (confirma_senha.dirty || confirma_senha.touched)">
+        <p no-margin stacked>Senha e confirma senha devem ser iguais</p>
       </ion-item>
+   
 
       <ion-item>
         <ion-label stacked>CPF: </ion-label>
@@ -183,7 +179,7 @@
 
     </ion-list>
   </form>
-  <button ion-button full [disabled]="!form.valid" (click)="createAccount()">Confirmar
+  <button ion-button full [disabled]="!form.valid" (click)="salvarUsuario()">Confirmar
     Cadastro</button>
 
 </ion-content>

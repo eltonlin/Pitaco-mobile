@@ -7,6 +7,7 @@ import { throwStatement } from 'babel-types';
 import { Storage } from "@ionic/storage";
 import { PreferenciasPage } from '../preferencias/preferencias';
 import { LocalUser } from "../models/local_user";
+import { HomePage } from '../home/home';
 
 
 
@@ -35,8 +36,11 @@ export class UsuarioPage {
       this.login_usuario = localUser.login_usuario;
     }
 
-
     //console.log('ionViewWillEnter');
+  }
+
+  sair() {
+    this.navCtrl.setRoot(HomePage);
   }
 }
 

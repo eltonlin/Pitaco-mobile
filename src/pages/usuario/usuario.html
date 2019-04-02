@@ -28,23 +28,16 @@
       <ion-content padding>
         <ion-list>
 
-          <ion-item>
-            <ion-icon ios="ios-create" md="md-create"></ion-icon>
-            <ion-label>
-              <button ion-button full class="botao">
-                <ion-icon ios="ios-create" md="md-create"></ion-icon> Editar perfil
-              </button>
-            </ion-label>
-          </ion-item>
+          <button ion-item>
+            <ion-icon ios="ios-create" md="md-create"></ion-icon> Editar perfil
+          </button>
 
-          <ion-item>
-            <ion-label>
-              <button ion-button full class="botao">
-                <ion-icon ios="ios-thumbs-up" md="md-thumbs-up" (click)="preferencias()"></ion-icon> Definir
-                preferências
-              </button>
-            </ion-label>
-          </ion-item>
+          <button ion-item (click)="preferencias()">
+            <ion-icon ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon> Definir preferencias
+          </button>
+
+          <button ion-item (click)="sair()"> Sair
+          </button>
         </ion-list>
       </ion-content>
     </ion-menu>
