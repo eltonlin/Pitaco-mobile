@@ -10,7 +10,6 @@ import { UsuarioPage } from '../pages/usuario/usuario';
 import { HttpModule } from '@angular/http';
 import { ServidorProvider } from '../providers/servidor/servidor';
 import { CadastroPage } from '../pages/cadastro/cadastro';
-import { ErrorInceptorProvider } from '../interceptors/error.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { StorageService } from '../providers/servidor/storage.service';
 
@@ -46,7 +45,6 @@ import { PreferenciasPage } from '../pages/preferencias/preferencias';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ServidorProvider,
-    ErrorInceptorProvider,
     StorageService,
 
   ]

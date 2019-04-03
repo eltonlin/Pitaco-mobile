@@ -5,7 +5,6 @@ import { Http } from '@angular/http';
 import { ServidorProvider } from '../../providers/servidor/servidor';
 import { Subscriber } from 'rxjs/Subscriber';
 import { CadastroPage } from '../cadastro/cadastro';
-import { stringLiteral } from 'babel-types';
 import { UsuarioPage } from '../usuario/usuario'
 
 
@@ -66,12 +65,12 @@ export class HomePage {
     } else {
       // return new Promise((resolve, reject) => {
       this.servidor.logar(this.usuario).subscribe(response => { 
-       //this.servidor.sucessoLogin (response.headers.get('Authorization'));
+        window.localStorage.setItem("usuario", response.usuario.login_usuario);
         this.navCtrl.setRoot(UsuarioPage);
-      }, error => {
-        if (error.status == 400) {
-          this.navCtrl.setRoot('HomePage');
-        }
+      }, err => {
+        this.toast.create({
+          message: err.error.message, position: 'botton', duration: 3000
+        }).present();
       });
       //});
     }

@@ -10,8 +10,8 @@ import { CredenciaisDTO } from '../../pages/models/credenciais';
 import { LocalUser } from '../../pages/models/local_user';
 import { StorageService } from './storage.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { throwStatement, stringLiteral } from 'babel-types';
 import { JwtHelper } from 'angular2-jwt';
+
 
 
 /*
@@ -37,8 +37,8 @@ export class ServidorProvider {
     return this.http.get(this.url + "/usuario_final/login").map(res => res);
   }
 
-  salvarUsuario(obj) {
-    return this.http.post(this.url + "/usuario_final/cadastrar_login", obj).map(res => res);
+  salvarUsuario(obj): Observable<any> {
+    return this.http.post(this.url + "/usuario_final/cadastrar_login", obj);
   }
 
   definirPreferencias(obj){
@@ -46,11 +46,8 @@ export class ServidorProvider {
   }
   
 
-  logar(usuario: CredenciaisDTO) {
-    return this.http.post(this.url + "/usuario_final/login", usuario, {
-      observe: 'response',
-      responseType: 'text'
-    })
+  logar(usuario: CredenciaisDTO): Observable<any> {
+    return this.http.post(this.url + "/usuario_final/login", usuario);
 
   }
 
