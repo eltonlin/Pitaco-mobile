@@ -49,9 +49,10 @@ export class CadastroPage {
       cep: ['', [Validators.required]],
       opcao: ['', [Validators.required]],
       texto: ['', [Validators.required]],
+      cpf: ['', [Validators.required, Validators.maxLength(11), Validators.minLength(11)]],
       senha: ['', [Validators.required, Validators.minLength(5)]],
-      cpf: ['', [Validators.required, Validators.maxLength(11), Validators.minLength(11)]]
-    });
+      confirma_senha: ['', [Validators.required]],      
+    }, {validator: this.validarSenhas('senha', 'confirma_senha')}); 
   }
 
   get email() { return this.form.get('email'); }
@@ -63,12 +64,28 @@ export class CadastroPage {
   get cep() { return this.form.get('cep'); }
   get texto() { return this.form.get('texto'); }
   get senha() { return this.form.get('senha'); }
+  get confirma_senha() { return this.form.get('confirma_senha'); }
   get opcao() { return this.form.get('opcao'); }
   get cpf() { return this.form.get('cpf'); }
+
+
+  validarSenhas(senhaKey: string, confirma_senhaKey: string) {
+    return (group: FormGroup): {[key: string]: any} => {
+      let senha = group.controls[senhaKey];
+      let confirma_senha = group.controls[confirma_senhaKey];
+
+      if (senha.value !== confirma_senha.value) {
+        return {
+          validarSenhas: true
+        };
+      }
+    }
+  }
 
   togglePasswordFieldType() {
     this.isTextFieldType = !this.isTextFieldType;
   }
+
   
   salvarUsuario() {
       this.servidor.salvarUsuario(this.usuario).subscribe(
