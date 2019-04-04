@@ -43,11 +43,7 @@ import { PreferenciasPage } from '../pages/preferencias/preferencias';
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-<<<<<<< HEAD
     ServidorProvider
-=======
-    ServidorProvider,
->>>>>>> 1f215fcfad9536f85178cead8d7393bd4cf8c56d
 
   ]
 })
