@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { UsuarioPage } from '../usuario/usuario';
+import { ServidorProvider } from '../../providers/servidor/servidor';
+import { PreferenciasDTO } from '../models/preferencias';
 
 /**
  * Generated class for the PreferenciasPage page.
@@ -15,11 +18,75 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PreferenciasPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  usuario: PreferenciasDTO = {
+    usuario_final: "",
+    interesses: ""
+  };
+
+  constructor(public navCtrl: NavController, public toast: ToastController, public servidor: ServidorProvider, public navParams: NavParams) {
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PreferenciasPage');
   }
 
+ 
+
+  salvarPreferencias() {
+
+    const localData = localStorage.getItem('usuario');
+      this.servidor.salvarPreferencias(this.usuario).subscribe(item => {
+        this.navCtrl.setRoot(UsuarioPage);
+        this.toast.create({
+          message: 'Cadastro de Preferências Realizado com Sucesso ', position: 'botton', duration: 3000
+        }).present();
+      }, error => {
+        this.toast.create({
+          message: "Erro ao realizar cadastro de preferências. Erro: " + error.error.message, position: 'botton', duration: 3000
+        }).present();
+      })
+
+  }
+
+  
+  /*public form = [
+    { val: 'Comida' },
+    { val: 'Bebida'},
+    { val: 'Jogos' },
+    { val: 'Música' },
+    { val: 'Esporte'},
+    { val: 'Carros' },
+    { val: 'Livros'},
+    { val: 'Filmes' },
+    { val: 'Política'},
+    { val: 'Eletronicos' },
+    { val: 'Viagens'},
+    { val: 'Educação' },
+    { val: 'Fofoca'},
+    { val: 'Internet' },
+    { val: 'Economia'}
+  ];*/
+
+ public descricao = [
+    { descricaoId: 1, descricaoNome: 'Comida', checked: false },
+    { descricaoId: 2, descricaoNome: 'Bebida', checked: false },
+    { descricaoId: 3, descricaoNome: 'Jogos', checked: false },
+    { descricaoId: 4, descricaoNome: 'Música', checked: false },
+    { descricaoId: 5, descricaoNome: 'Esporte', checked: false },
+    { descricaoId: 6, descricaoNome: 'Carros', checked: false },
+    { descricaoId: 3, descricaoNome: 'Livros', checked: false },
+    { descricaoId: 4, descricaoNome: 'Filmes', checked: false },
+    { descricaoId: 5, descricaoNome: 'Política', checked: false },
+    { descricaoId: 6, descricaoNome: 'Eletronicos', checked: false },
+    { descricaoId: 3, descricaoNome: 'Viagens', checked: false },
+    { descricaoId: 4, descricaoNome: 'Educação', checked: false },
+    { descricaoId: 5, descricaoNome: 'Fofoca', checked: false },
+    { descricaoId: 6, descricaoNome: 'Internet', checked: false },
+    { descricaoId: 6, descricaoNome: 'Economia', checked: false }
+  ];
+
+
+ 
 }

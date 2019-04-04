@@ -1,55 +1,118 @@
 <ion-header>
-    <ion-navbar>
-      <ion-title>
-        Preferências de Questionário
-      </ion-title>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content>
-  
-    <ion-list>
-      <ion-list-header>
-        Escolha aqui quais temas de questionário você deseja responder
-      </ion-list-header>
-  
-      <ion-item>
-        <ion-label>Comida</ion-label>
-        <ion-checkbox  color = "danger"></ion-checkbox>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label>Bebida</ion-label>
-        <ion-checkbox color="dark" ></ion-checkbox>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label>Jogos</ion-label>
-        <ion-checkbox color="red"></ion-checkbox>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label>Música</ion-label>
-        <ion-checkbox color="secondary"></ion-checkbox>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label>Esporte</ion-label>
-        <ion-checkbox color="danger" ></ion-checkbox>
-      </ion-item>
-  
-  
-      <ion-item>
-        <ion-label>Carros</ion-label>
-        <ion-checkbox color="dark"></ion-checkbox>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label>Livros</ion-label>
-        <ion-checkbox color="yellow"></ion-checkbox>
-      </ion-item>
+  <ion-navbar>
+    <ion-title>
+      Preferências de Questionário
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+
+
+  <ion-list-header>
+    Escolha aqui quais temas de questionário você deseja responder
+  </ion-list-header>
+
+  <!--Só pra lembrar que tem que passar o usuario<ion-item>
+    <ion-input type="text"  [(ngModel)]="usuario.usuario_final"></ion-input>
+  </ion-item>--> 
 
   
-    </ion-list>
+  <ion-list>
+    
+    
+<!--
+      <ion-list>
+          <ion-item *ngFor="let descricaoId of descricao">
+            <ion-label>{{descricao.descricaoNome}}</ion-label>
+            <ion-checkbox [(ngModel)]= "usuario.interesses" ></ion-checkbox>
+          </ion-item>
+        </ion-list>
+        -->
   
-  </ion-content>
+ <!--<ion-item>
+      <ion-label>Comida</ion-label>
+      <ion-checkbox value="1" color="danger" [(ngModel)]="usuario.interesses"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Bebida</ion-label>
+      <ion-checkbox value="2" color="dark" [(ngModel)]="usuario.interesses"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Jogos</ion-label>
+      <ion-checkbox color="red"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Música</ion-label>
+      <ion-checkbox color="secondary"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Esporte</ion-label>
+      <ion-checkbox color="danger"></ion-checkbox>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>Carros</ion-label>
+      <ion-checkbox color="dark"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Livros</ion-label>
+      <ion-checkbox color="yellow"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Filmes</ion-label>
+      <ion-checkbox color="danger"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Política</ion-label>
+      <ion-checkbox color="dark"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Eletronicos</ion-label>
+      <ion-checkbox color="red"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Viagens</ion-label>
+      <ion-checkbox color="secondary"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Educação</ion-label>
+      <ion-checkbox color="danger"></ion-checkbox>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>Fofoca</ion-label>
+      <ion-checkbox color="dark"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Internet</ion-label>
+      <ion-checkbox color="danger"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Economia</ion-label>
+      <ion-checkbox color="dark"></ion-checkbox>
+    </ion-item>
+--> 
+  </ion-list>
+
+
+
+  <button ion-button full (click)="salvarPreferencias()"> Salvar </button>
+
+
+</ion-content>

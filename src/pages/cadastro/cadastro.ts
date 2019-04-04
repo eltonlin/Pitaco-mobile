@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, AlertController, Item } from 'ionic-angular';
 import { ServidorProvider } from '../../providers/servidor/servidor';
 import { UsuarioPage } from '../usuario/usuario';
 import { isTrueProperty } from 'ionic-angular/umd/util/util';
@@ -95,11 +95,11 @@ export class CadastroPage {
           message: 'Cadastro Realizado com Sucesso ', position: 'botton', duration: 3000
         }).present();
       }, error => {
+        console.log(error);
         this.toast.create({
-          message: "Erro ao realizar cadastro. Erro: " + error.error, position: 'botton', duration: 3000
+          message: "Erro ao realizar cadastro. Erro: " + error.error.message, position: 'botton', duration: 3000
         }).present();
       })
-
     }
   }
 

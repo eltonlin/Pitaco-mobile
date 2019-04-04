@@ -5,14 +5,15 @@ import { Http } from '@angular/http';
 import { ServidorProvider } from '../../providers/servidor/servidor';
 import { Subscriber } from 'rxjs/Subscriber';
 import { CadastroPage } from '../cadastro/cadastro';
-import { stringLiteral } from 'babel-types';
+import { stringLiteral, throwStatement } from 'babel-types';
 import { UsuarioPage } from '../usuario/usuario'
 
 
 import { SelectorContext } from '@angular/compiler';
 import { CredenciaisDTO } from '../models/credenciais';
-import { StorageService } from '../../providers/servidor/storage.service';
 import { PreferenciasPage } from '../preferencias/preferencias';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import {Storage} from '@ionic/storage';
 
 
 
@@ -27,17 +28,16 @@ export class HomePage {
 
   //usuario: any;
   isTextFieldType: boolean;
- // login_usuario: string;
-  //senha: string;
-
+  //login_usuario: string;
+  // senha: string;
 
   usuario: CredenciaisDTO = {
     login_usuario: "",
     senha: ""
   };
 
- 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage,
     public alertCtrl: AlertController, public servidor: ServidorProvider, public http: Http, public toast: ToastController) {
 
     //this.usuario = {};
@@ -65,20 +65,20 @@ export class HomePage {
       alert.present();
     } else {
       // return new Promise((resolve, reject) => {
-      this.servidor.logar(this.usuario).subscribe(response => { 
-       //this.servidor.sucessoLogin (response.headers.get('Authorization'));
+      this.servidor.logar(this.usuario).subscribe(response => {
+        //window.localStorage.setItem("usuario", this.usuario.login_usuario);
+        localStorage.setItem("usuario", JSON.stringify(this.usuario.login_usuario));
+
         this.navCtrl.setRoot(UsuarioPage);
       }, error => {
-        if (error.status == 400) {
-          this.navCtrl.setRoot('HomePage');
-        }
+        this.toast.create({
+          message: "Erro ao realizar cadastro. Erro: " + error.error.message, position: 'botton', duration: 3000
+        }).present();
       });
       //});
+      }
     }
-  }
-
-
-
+  
 }
 
 

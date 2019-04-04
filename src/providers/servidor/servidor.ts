@@ -7,11 +7,8 @@ import { map } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { CredenciaisDTO } from '../../pages/models/credenciais';
-import { LocalUser } from '../../pages/models/local_user';
-import { StorageService } from './storage.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { throwStatement, stringLiteral } from 'babel-types';
-import { JwtHelper } from 'angular2-jwt';
+
+
 
 
 /*
@@ -23,48 +20,31 @@ import { JwtHelper } from 'angular2-jwt';
 @Injectable()
 export class ServidorProvider {
 
-  jwtHelper: JwtHelper = new JwtHelper();
 
   url = "http://localhost:3000"
 
 
 
-  constructor(public http: HttpClient, public storage: StorageService) {
+  constructor(public http: HttpClient) {
     console.log('Hello ServidorProvider Provider');
   }
 
-  list() {
-    return this.http.get(this.url + "/usuario_final/login").map(res => res);
-  }
 
-  salvarUsuario(obj) {
+  salvarUsuario(obj): Observable<any> {
     return this.http.post(this.url + "/usuario_final/cadastrar_login", obj).map(res => res);
   }
 
-  definirPreferencias(obj){
-    return this.http.post(this.url + "/interesses", obj).map(res => res);
+  salvarPreferencias(obj): Observable<any> {
+    return this.http.post(this.url + "/usuario_final_interesses/cadastrar", obj).map(res => res);
   }
   
-
-  logar(usuario: CredenciaisDTO) {
-    return this.http.post(this.url + "/usuario_final/login", usuario, {
-      observe: 'response',
-      responseType: 'text'
-    })
-
+  obterPreferencias(){
+    return this.http.get(this.url + "/interesses").map(res => res);
   }
 
-  sucessoLogin(authorizationValue: string) {
-    let tok = authorizationValue.substring(7); 
-    let user: LocalUser = {
-     token: tok,
-     login_usuario: this.jwtHelper.decodeToken(tok).sub
-    };
-    this.storage.setLocalUser(user);
-  } 
+  logar(usuario: CredenciaisDTO): Observable<any> {
+    return this.http.post(this.url + "/usuario_final/login", usuario).map(res => res);
 
-  logout() {
-    this.storage.setLocalUser(null);
   }
 
 }

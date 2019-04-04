@@ -3,18 +3,14 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title style="text-align: center">Bem Vindo!</ion-title>
+    <ion-title style="text-align: center">Bem Vindo, {{usuario}}!
+  </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+
   <ion-list>
-
-    <ion-item *ngFor="let usuario of usuarios">
-      <h2>{{usuario.login_usuario}}</h2>
-    </ion-item>
-    {{login_usuario}}
-
 
     <ion-menu [content]="content">
       <ion-header>

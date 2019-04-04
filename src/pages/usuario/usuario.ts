@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ServidorProvider } from '../../providers/servidor/servidor';
-import { StorageService } from '../../providers/servidor/storage.service';
 import { throwStatement } from 'babel-types';
 
 import { Storage } from "@ionic/storage";
 import { PreferenciasPage } from '../preferencias/preferencias';
-import { LocalUser } from "../models/local_user";
 import { HomePage } from '../home/home';
+import { CredenciaisDTO } from '../models/credenciais';
+
 
 
 
@@ -16,13 +16,14 @@ import { HomePage } from '../home/home';
   templateUrl: 'usuario.html',
 })
 export class UsuarioPage {
-  login_usuario: string;
- 
 
 
+  usuario: CredenciaisDTO = {
+    login_usuario: "",
+    senha: ""
+  };
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: StorageService, public servidor: ServidorProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public servidor: ServidorProvider) {
 
   }
 
@@ -30,17 +31,23 @@ export class UsuarioPage {
     this.navCtrl.push(PreferenciasPage);
   }
 
-  ionViewWillEnter() {
-    let localUser = this.storage.getLocalUser();
-    if (localUser && localUser.login_usuario) {
-      this.login_usuario = localUser.login_usuario;
-    }
 
-    //console.log('ionViewWillEnter');
+  ionViewDidLoad() {
+
+    const localData = localStorage.getItem('usuario');
+    try {
+      if (localData) {
+        this.usuario = JSON.parse(localData);
+        console.log('Data loaded', localData);
+      }
+    } catch (error) { }
+
+  
   }
-
   sair() {
+    window.localStorage.removeItem('usuario');
     this.navCtrl.setRoot(HomePage);
+
   }
 }
 
