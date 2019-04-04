@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ServidorProvider } from '../../providers/servidor/servidor';
-import { throwStatement } from 'babel-types';
 
 import { Storage } from "@ionic/storage";
 import { PreferenciasPage } from '../preferencias/preferencias';
