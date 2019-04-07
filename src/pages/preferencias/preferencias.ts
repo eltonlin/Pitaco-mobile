@@ -22,9 +22,9 @@ import { PreferenciasDTO } from "../models/preferencias";
   templateUrl: "preferencias.html"
 })
 export class PreferenciasPage {
-  usuario: PreferenciasDTO = {
+  usuario_interesse: PreferenciasDTO = {
     usuario_final: "",
-    interesses: ""
+    interesses: []
   };
 
   constructor(
@@ -39,8 +39,12 @@ export class PreferenciasPage {
   }
 
   salvarPreferencias() {
-    const localData = localStorage.getItem("usuario");
-    this.servidor.salvarPreferencias(this.usuario).subscribe(
+    this.usuario_interesse.usuario_final = localStorage.getItem("usuario");
+    localStorage.setItem(
+      "interesses",
+      JSON.stringify(this.usuario_interesse.interesses)
+    );
+    this.servidor.salvarPreferencias(this.usuario_interesse).subscribe(
       item => {
         this.navCtrl.setRoot(UsuarioPage);
         this.toast
