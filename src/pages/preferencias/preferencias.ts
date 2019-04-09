@@ -45,7 +45,7 @@ export class PreferenciasPage {
     console.log(this.usuario_interesse.interesses[0]);
     console.log(this.interesses[0].id_interesse);
     for(let i=0; i < this.interesses.length; i ++){
-      console.log(this.usuario_interesse.interesses);
+      console.log(this.usuario_interesse.interesses); 
       console.log('Checked ' + this.interesses[i].checked);
       if(this.interesses[i].checked){
         if(this.usuario_interesse.interesses[0] == undefined){
