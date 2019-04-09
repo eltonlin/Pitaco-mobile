@@ -66,7 +66,7 @@ export class HomePage {
     } else {
       // return new Promise((resolve, reject) => {
       this.servidor.logar(this.usuario).subscribe(response => {
-        //window.localStorage.setItem("usuario", this.usuario.login_usuario);
+        //localStorage.setItem("usuario", this.usuario.login_usuario);
         localStorage.setItem("usuario", JSON.stringify(this.usuario.login_usuario));
 
         this.navCtrl.setRoot(UsuarioPage);
