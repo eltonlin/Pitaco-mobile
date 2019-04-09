@@ -39,7 +39,7 @@
 
       <ion-item>
         <ion-label stacked>Senha: </ion-label>
-        <ion-input [type]="isTextFieldType ? 'text' : 'password'" formControlName="senha" [(ngModel)]="usuario.senha">
+        <ion-input [brmasker]="{len:11}" [type]="isTextFieldType ? 'text' : 'password'" formControlName="senha" [(ngModel)]="usuario.senha">
         </ion-input>
       </ion-item>
       <button (click)="togglePasswordFieldType()">
@@ -56,7 +56,7 @@
 
       <ion-item>
         <ion-label stacked>Confirma Senha: </ion-label>
-        <ion-input [type]="isTextFieldType ? 'text' : 'password'" formControlName="confirma_senha" 
+        <ion-input [brmasker]="{len:11}" [type]="isTextFieldType ? 'text' : 'password'" formControlName="confirma_senha" 
           [(ngModel)]="usuario.confirma_senha"></ion-input>
       </ion-item>
       <button (click)="togglePasswordFieldType()">
@@ -69,7 +69,7 @@
 
       <ion-item>
         <ion-label stacked>CPF: </ion-label>
-        <ion-input type="text" formControlName="cpf" [(ngModel)]="usuario.cpf"></ion-input>
+        <ion-input [brmasker]="{len:11}" type="text" formControlName="cpf" [(ngModel)]="usuario.cpf"></ion-input>
       </ion-item>
       <ion-item *ngIf="cpf.invalid && (cpf.dirty || cpf.touched)">
         <div *ngIf="cpf.errors.required">

@@ -21,19 +21,17 @@
   
   <ion-list>
     
-    
-<!--
+    {{interesse | json}}
       <ion-list>
-          <ion-item *ngFor="let descricaoId of descricao">
-            <ion-label>{{descricao.descricaoNome}}</ion-label>
-            <ion-checkbox [(ngModel)]= "usuario.interesses" ></ion-checkbox>
+          <ion-item *ngFor="let interesse of interesses">
+            <ion-label>{{interesse.descricao}}</ion-label>
+            <ion-checkbox value="interesse.id_interesse"  [(ngModel)]= "interesse.checked" ></ion-checkbox>
           </ion-item>
         </ion-list>
-        -->
   
  <ion-item>
       <ion-label>Comida</ion-label>
-      <ion-checkbox value="1" color="danger" [(ngModel)]="usuario_interesse.interesses"></ion-checkbox>
+      <ion-checkbox value="1" [(ngModel)]="usuario_interesse.interesses" color="danger"></ion-checkbox>
     </ion-item>
 
  <!--   <ion-item>
@@ -109,8 +107,6 @@
     </ion-item>
 --> 
   </ion-list>
-
-
 
   <button ion-button full (click)="salvarPreferencias()"> Salvar </button>
 

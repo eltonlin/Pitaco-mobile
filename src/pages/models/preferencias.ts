@@ -1,4 +1,4 @@
-export interface PreferenciasDTO{
-    usuario_final: string;
-    interesses: [];
+export interface PreferenciasDTO {
+  usuario_final: string;
+  interesses: any[];
 }

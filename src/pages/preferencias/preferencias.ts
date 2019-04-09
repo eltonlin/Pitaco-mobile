@@ -5,7 +5,6 @@ import {
   NavParams,
   ToastController
 } from "ionic-angular";
-import { UsuarioPage } from "../usuario/usuario";
 import { ServidorProvider } from "../../providers/servidor/servidor";
 import { PreferenciasDTO } from "../models/preferencias";
 
@@ -24,8 +23,10 @@ import { PreferenciasDTO } from "../models/preferencias";
 export class PreferenciasPage {
   usuario_interesse: PreferenciasDTO = {
     usuario_final: "",
-    interesses: []
+    interesses: new Array()
   };
+
+  interesses: any = [];
 
   constructor(
     public navCtrl: NavController,
@@ -36,37 +37,75 @@ export class PreferenciasPage {
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad PreferenciasPage");
+    this.obterPreferencias();
   }
 
   salvarPreferencias() {
-    this.usuario_interesse.usuario_final = localStorage.getItem("usuario");
-    localStorage.setItem(
-      "interesses",
-      JSON.stringify(this.usuario_interesse.interesses)
-    );
-    this.servidor.salvarPreferencias(this.usuario_interesse).subscribe(
-      item => {
-        this.navCtrl.setRoot(UsuarioPage);
-        this.toast
-          .create({
-            message: "Cadastro de Preferências Realizado com Sucesso ",
-            position: "botton",
-            duration: 3000
-          })
-          .present();
-      },
-      error => {
-        this.toast
-          .create({
-            message:
-              "Erro ao realizar cadastro de preferências. Erro: " +
-              error.error.message,
-            position: "botton",
-            duration: 3000
-          })
-          .present();
+    console.log(this.interesses);
+    console.log(this.usuario_interesse.interesses[0]);
+    console.log(this.interesses[0].id_interesse);
+    for(let i=0; i < this.interesses.length; i ++){
+      console.log(this.usuario_interesse.interesses);
+      console.log('Checked ' + this.interesses[i].checked);
+      if(this.interesses[i].checked){
+        if(this.usuario_interesse.interesses[0] == undefined){
+          this.usuario_interesse.interesses =  new Array(this.interesses[i].id_interesse); 
+        }
+        else {
+          this.usuario_interesse.interesses.push(this.interesses[i].id_interesse);
+        }
       }
-    );
+    }
+    this.usuario_interesse.usuario_final = localStorage.getItem("usuario");
+
+    this.servidor.salvarPreferencias(this.usuario_interesse).subscribe(
+      sucess => {console.log(sucess)},
+      error => {console.log(error);}
+    )
+    // console.log(this.usuario_interesse);
+
+    // this.usuario_interesse.usuario_final = localStorage.getItem("usuario");
+    // localStorage.setItem(
+    //   "interesses",
+    //   JSON.stringify(this.usuario_interesse.interesses)
+    // );
+    // console.log(this.usuario_interesse);
+    // this.servidor.salvarPreferencias(this.usuario_interesse).subscribe(
+    //   item => {
+    //     this.navCtrl.setRoot(UsuarioPage);
+    //     this.toast
+    //       .create({
+    //         message: "Cadastro de Preferências Realizado com Sucesso ",
+    //         position: "botton",
+    //         duration: 3000
+    //       })
+    //       .present();
+    //   },
+    //   error => {
+    //     this.toast
+    //       .create({
+    //         message:
+    //           "Erro ao realizar cadastro de preferências. Erro: " +
+    //           error.error.message,
+    //         position: "botton",
+    //         duration: 3000
+    //       })
+    //       .present();
+    //   }
+    //);
+  }
+
+  obterPreferencias(){
+    this.servidor.obterPreferencias().subscribe(sucess => {
+      this.interesses = sucess;
+      for(let i=0; i < this.interesses.length; i++){
+        this.interesses[i].checked = false;
+      }
+      console.log(this.interesses);
+    },
+    erro => {
+      
+    });
   }
 
   /*public form = [
@@ -87,21 +126,21 @@ export class PreferenciasPage {
     { val: 'Economia'}
   ];*/
 
-  public descricao = [
-    { descricaoId: 1, descricaoNome: "Comida", checked: false },
-    { descricaoId: 2, descricaoNome: "Bebida", checked: false },
-    { descricaoId: 3, descricaoNome: "Jogos", checked: false },
-    { descricaoId: 4, descricaoNome: "Música", checked: false },
-    { descricaoId: 5, descricaoNome: "Esporte", checked: false },
-    { descricaoId: 6, descricaoNome: "Carros", checked: false },
-    { descricaoId: 3, descricaoNome: "Livros", checked: false },
-    { descricaoId: 4, descricaoNome: "Filmes", checked: false },
-    { descricaoId: 5, descricaoNome: "Política", checked: false },
-    { descricaoId: 6, descricaoNome: "Eletronicos", checked: false },
-    { descricaoId: 3, descricaoNome: "Viagens", checked: false },
-    { descricaoId: 4, descricaoNome: "Educação", checked: false },
-    { descricaoId: 5, descricaoNome: "Fofoca", checked: false },
-    { descricaoId: 6, descricaoNome: "Internet", checked: false },
-    { descricaoId: 6, descricaoNome: "Economia", checked: false }
-  ];
+  // public interesses = [
+  //   { descricaoId: 1, descricaoNome: "Comida", checked: false },
+  //   { descricaoId: 2, descricaoNome: "Bebida", checked: false },
+  //   { descricaoId: 3, descricaoNome: "Jogos", checked: false },
+  //   { descricaoId: 4, descricaoNome: "Música", checked: false },
+  //   { descricaoId: 5, descricaoNome: "Esporte", checked: false },
+  //   { descricaoId: 6, descricaoNome: "Carros", checked: false },
+  //   { descricaoId: 3, descricaoNome: "Livros", checked: false },
+  //   { descricaoId: 4, descricaoNome: "Filmes", checked: false },
+  //   { descricaoId: 5, descricaoNome: "Política", checked: false },
+  //   { descricaoId: 6, descricaoNome: "Eletronicos", checked: false },
+  //   { descricaoId: 3, descricaoNome: "Viagens", checked: false },
+  //   { descricaoId: 4, descricaoNome: "Educação", checked: false },
+  //   { descricaoId: 5, descricaoNome: "Fofoca", checked: false },
+  //   { descricaoId: 6, descricaoNome: "Internet", checked: false },
+  //   { descricaoId: 6, descricaoNome: "Economia", checked: false }
+  // ];
 }
