@@ -1,18 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Alert, AlertController, ToastController } from 'ionic-angular';
-import { map } from 'rxjs/operators';
+import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { ServidorProvider } from '../../providers/servidor/servidor';
-import { Subscriber } from 'rxjs/Subscriber';
-import { CadastroPage } from '../cadastro/cadastro';
-import { stringLiteral, throwStatement } from 'babel-types';
 import { UsuarioPage } from '../usuario/usuario'
 
 
-import { SelectorContext } from '@angular/compiler';
 import { CredenciaisDTO } from '../models/credenciais';
-import { PreferenciasPage } from '../preferencias/preferencias';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import {Storage} from '@ionic/storage';
 
 
@@ -50,7 +43,7 @@ export class HomePage {
   }
 
   goToCadastro() {
-    this.navCtrl.push(CadastroPage);
+    this.navCtrl.setRoot(UsuarioPage);
   }
 
 

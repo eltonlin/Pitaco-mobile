@@ -10,7 +10,7 @@
 
 
 
-  <ion-list-header>
+  <ion-list-header style="text-align: center">
     Escolha aqui quais temas de questionário você deseja responder
   </ion-list-header>
 
@@ -22,16 +22,14 @@
   <ion-list>
     
     
-<!--
-      <ion-list>
+      <!-- <ion-list>
           <ion-item *ngFor="let descricaoId of descricao">
-            <ion-label>{{descricao.descricaoNome}}</ion-label>
+            <ion-label>{{descricaoId.descricaoNome}}</ion-label>
             <ion-checkbox [(ngModel)]= "usuario.interesses" ></ion-checkbox>
           </ion-item>
-        </ion-list>
-        -->
+        </ion-list> -->
   
- <!--<ion-item>
+ <ion-item>
       <ion-label>Comida</ion-label>
       <ion-checkbox value="1" color="danger" [(ngModel)]="usuario.interesses"></ion-checkbox>
     </ion-item>
@@ -107,7 +105,6 @@
       <ion-label>Economia</ion-label>
       <ion-checkbox color="dark"></ion-checkbox>
     </ion-item>
---> 
   </ion-list>
 
 
