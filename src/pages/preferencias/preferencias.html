@@ -14,13 +14,10 @@
     Escolha aqui qual tema de questionário você prefere responder
   </ion-list-header>
 
- <!-- Só pra lembrar que tem que passar o usuario<ion-item>
-    <ion-input type="text"  [(ngModel)]="usuario.usuario_final"></ion-input>
-  </ion-item>--> 
 
 <!--<ion-input type="text" [(ngModel)]="usuario.usuario_final"></ion-input>-->
  
-      <ion-item>
+   <!--  <ion-item>
           <ion-label>Selecione</ion-label>
           <ion-select [(ngModel)]="usuario.interesses" multiple="true">
             <ion-option value="1">Música</ion-option>
@@ -39,119 +36,20 @@
             <ion-option value="14">Livros</ion-option>
           </ion-select>
         </ion-item>
-       <!--
+    -->
 
-        
-   <ion-list >
-    
-     <form action="">
-      <input type="radio" name="gender" value="1" [(ngModel)]= "usuario.interesses"> Música<br>
-      <input type="radio" name="gender" value="2" [(ngModel)]= "usuario.interesses"> Esporte<br>
-      <input type="radio" name="gender" value="3" [(ngModel)]= "usuario.interesses"> Carros<br>
-      <input type="radio" name="gender" value="4" [(ngModel)]= "usuario.interesses"> Filmes<br>
-      <input type="radio" name="gender" value="5" [(ngModel)]= "usuario.interesses"> Comida<br>
-      <input type="radio" name="gender" value="6" [(ngModel)]= "usuario.interesses"> Bebida<br>
-      <input type="radio" name="gender" value="7" [(ngModel)]= "usuario.interesses"> Política<br>
-      <input type="radio" name="gender" value="8" [(ngModel)]= "usuario.interesses"> Eletronicos<br>
-      <input type="radio" name="gender" value="9" [(ngModel)]= "usuario.interesses"> Viagens<br>
-      <input type="radio" name="gender" value="10" [(ngModel)]= "usuario.interesses"> Educação<br>
-      <input type="radio" name="gender" value="11" [(ngModel)]= "usuario.interesses"> Fofoca<br>
-      <input type="radio" name="gender" value="12" [(ngModel)]= "usuario.interesses"> Internet<br>
-      <input type="radio" name="gender" value="13" [(ngModel)]= "usuario.interesses"> Economia<br>
-      <input type="radio" name="gender" value="14" [(ngModel)]= "usuario.interesses"> Livros
-    </form>
-
-
-     <ion-list>
-          <ion-item *ngFor="let entry of descricao">
-            <ion-label>{{entry.descricaoNome}}</ion-label>
-            <ion-checkbox [(ngModel)]= "usuario.interesses" ></ion-checkbox>
+       <ion-list>
+        {{interesse | json}}
+      <ion-list>
+          <ion-item *ngFor="let interesse of interesses">
+            <ion-label>{{interesse.descricao}}</ion-label>
+            <ion-checkbox value="interesse.id_interesse"  [(ngModel)]= "interesse.checked" ></ion-checkbox>
           </ion-item>
         </ion-list>
-      
-
- <ion-item>
-      <ion-label>Comida</ion-label>
-      <ion-checkbox value="1" color="danger" [(ngModel)]="usuario.interesses"></ion-checkbox>
-    </ion-item>
-
-   <ion-item>
-      <ion-label>Bebida</ion-label>
-      <ion-radio value="2" color="dark" [(ngModel)]="usuario.interesses"></ion-radio>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Jogos</ion-label>
-      <ion-radio color="red"></ion-radio>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Música</ion-label>
-      <ion-radio color="secondary"></ion-radio>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Esporte</ion-label>
-      <ion-radio color="danger"></ion-radio>
-    </ion-item>
-
-
-    <ion-item>
-      <ion-label>Carros</ion-label>
-      <ion-radio color="dark"></ion-radio>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Livros</ion-label>
-      <ion-radio color="yellow"></ion-radio>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Filmes</ion-label>
-      <ion-radio color="danger"></ion-radio>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Política</ion-label>
-      <ion-radio color="dark"></ion-radio>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Eletronicos</ion-label>
-      <ion-radio color="red"></ion-radio>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Viagens</ion-label>
-      <ion-radio color="secondary"></ion-radio>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Educação</ion-label>
-      <ion-radio color="danger"></ion-radio>
-    </ion-item>
-
-
-    <ion-item>
-      <ion-label>Fofoca</ion-label>
-      <ion-radio color="dark"></ion-radio>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Internet</ion-label>
-      <ion-radio color="danger"></ion-radio>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Economia</ion-label>
-      <ion-radio color="dark"></ion-radio>
-    </ion-item>
-
+      </ion-list>
+     
     
-</ion-list>
---> 
-
- 
+      
 
 
 
