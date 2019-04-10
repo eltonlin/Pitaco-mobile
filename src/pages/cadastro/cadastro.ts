@@ -97,10 +97,11 @@ export class CadastroPage {
         this.toast.create({
           message: "Erro ao realizar cadastro. Erro: " + error.error.message, position: 'botton', duration: 3000
         }).present();
-      });    
+      })
+    }
   }
 
-}
+
 
 
 

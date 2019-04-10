@@ -1,3 +1,4 @@
+import { CadastroPage } from './../cadastro/cadastro';
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { Http } from '@angular/http';
@@ -35,7 +36,6 @@ export class HomePage {
 
     //this.usuario = {};
 
-
   }
 
   togglePasswordFieldType() {
@@ -43,7 +43,7 @@ export class HomePage {
   }
 
   goToCadastro() {
-    this.navCtrl.setRoot(UsuarioPage);
+    this.navCtrl.push(CadastroPage);
   }
 
 
@@ -59,7 +59,7 @@ export class HomePage {
     } else {
       // return new Promise((resolve, reject) => {
       this.servidor.logar(this.usuario).subscribe(response => {
-        //window.localStorage.setItem("usuario", this.usuario.login_usuario);
+        //localStorage.setItem("usuario", this.usuario.login_usuario);
         localStorage.setItem("usuario", JSON.stringify(this.usuario.login_usuario));
 
         this.navCtrl.setRoot(UsuarioPage);

@@ -37,8 +37,13 @@ export class ServidorProvider {
     return this.http.post(this.url + "/usuario_final_interesses/cadastrar", obj).map(res => res);
   }
   
-  obterPreferencias(){
+  obterPreferencias(): Observable<any> {
     return this.http.get(this.url + "/interesses").map(res => res);
+    
+  }
+
+  obterPreferenciasPorUsuario(usuario: String): Observable<any>{
+    return this.http.get(this.url + `/usuario_final_interesses/${usuario}`);
   }
 
   logar(usuario: CredenciaisDTO): Observable<any> {

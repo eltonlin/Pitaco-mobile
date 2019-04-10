@@ -41,8 +41,8 @@ export class UsuarioPage {
       }
     } catch (error) { }
 
-  
   }
+  
   sair() {
     window.localStorage.removeItem('usuario');
     this.navCtrl.setRoot(HomePage);

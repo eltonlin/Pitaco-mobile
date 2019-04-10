@@ -4,6 +4,7 @@ import { UsuarioPage } from '../usuario/usuario';
 import { ServidorProvider } from '../../providers/servidor/servidor';
 import { PreferenciasDTO } from '../models/preferencias';
 
+
 /**
  * Generated class for the PreferenciasPage page.
  *
@@ -20,23 +21,78 @@ export class PreferenciasPage {
 
 
   usuario: PreferenciasDTO = {
-    usuario_final: "",
-    interesses: ""
+    usuario_final: JSON.parse(localStorage.getItem('usuario')),//localStorage.getItem('usuario'),
+    interesses: new Array() //"" 
   };
+
+  interesses: any = [];
 
   constructor(public navCtrl: NavController, public toast: ToastController, public servidor: ServidorProvider, public navParams: NavParams) {
 
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PreferenciasPage');
+    this.obterPreferencias();
+    console.log("ionViewDidLoad PreferenciasPage");
+  
+
+  }
+  obterPreferencias() {
+    this.servidor.obterPreferencias().subscribe(sucess => {
+      this.interesses = sucess;
+      for (let i = 0; i < this.interesses.length; i++) {
+        this.interesses[i].checked = false;
+      }
+      this.servidor.obterPreferenciasPorUsuario(this.usuario.usuario_final).subscribe(
+        interessePorUsuario => {
+          for (let i = 0; i < interessePorUsuario.length; i++) {
+            for (let x = 0; x < this.interesses.lenght; x++) {
+              console.log(interessePorUsuario[i].id_interesse);
+              console.log(this.interesses[x].id_interesse);
+              // console.log(this.interesses);
+              if (interessePorUsuario[i].id_interesse == this.interesses[x].id_interesse) {
+                this.interesses[x].checked = true;
+                console.log(this.interesses);
+                break;
+              }
+            }
+          }
+        }
+      )
+
+    },
+      erro => {
+
+      });
   }
 
- 
 
   salvarPreferencias() {
+    this.usuario.interesses = new Array();
+    for (let i = 0; i < this.interesses.length; i++) {
+      //  console.log(this.usuario.interesses); 
+      //  console.log('Checked ' + this.interesses[i].checked);
+      if (this.interesses[i].checked) {
+        this.usuario.interesses.push(this.interesses[i].id_interesse);
+      }
+    }
+    console.log(this.usuario.interesses);
 
-    const localData = localStorage.getItem('usuario');
+    this.servidor.salvarPreferencias(this.usuario).subscribe(
+      sucess => {
+        console.log(sucess)
+        this.navCtrl.setRoot(UsuarioPage);
+        this.toast.create({
+          message: 'Cadastro de Preferências Realizado com Sucesso ', position: 'botton', duration: 3000
+        }).present();
+      }, error => {
+        this.toast.create({
+          message: "Erro ao realizar cadastro de preferências. Erro: " + error.error.message, position: 'botton', duration: 3000
+        }).present();
+
+      })
+  }
+  /* salvarPreferencias() {
       this.servidor.salvarPreferencias(this.usuario).subscribe(item => {
         this.navCtrl.setRoot(UsuarioPage);
         this.toast.create({
@@ -47,46 +103,8 @@ export class PreferenciasPage {
           message: "Erro ao realizar cadastro de preferências. Erro: " + error.error.message, position: 'botton', duration: 3000
         }).present();
       })
-
-  }
-
   
-  /*public form = [
-    { val: 'Comida' },
-    { val: 'Bebida'},
-    { val: 'Jogos' },
-    { val: 'Música' },
-    { val: 'Esporte'},
-    { val: 'Carros' },
-    { val: 'Livros'},
-    { val: 'Filmes' },
-    { val: 'Política'},
-    { val: 'Eletronicos' },
-    { val: 'Viagens'},
-    { val: 'Educação' },
-    { val: 'Fofoca'},
-    { val: 'Internet' },
-    { val: 'Economia'}
-  ];*/
-
- public descricao = [
-    { descricaoId: 1, descricaoNome: 'Comida', checked: false },
-    { descricaoId: 2, descricaoNome: 'Bebida', checked: false },
-    { descricaoId: 3, descricaoNome: 'Jogos', checked: false },
-    { descricaoId: 4, descricaoNome: 'Música', checked: false },
-    { descricaoId: 5, descricaoNome: 'Esporte', checked: false },
-    { descricaoId: 6, descricaoNome: 'Carros', checked: false },
-    { descricaoId: 3, descricaoNome: 'Livros', checked: false },
-    { descricaoId: 4, descricaoNome: 'Filmes', checked: false },
-    { descricaoId: 5, descricaoNome: 'Política', checked: false },
-    { descricaoId: 6, descricaoNome: 'Eletronicos', checked: false },
-    { descricaoId: 3, descricaoNome: 'Viagens', checked: false },
-    { descricaoId: 4, descricaoNome: 'Educação', checked: false },
-    { descricaoId: 5, descricaoNome: 'Fofoca', checked: false },
-    { descricaoId: 6, descricaoNome: 'Internet', checked: false },
-    { descricaoId: 6, descricaoNome: 'Economia', checked: false }
-  ];
+   } */
 
 
- 
 }
