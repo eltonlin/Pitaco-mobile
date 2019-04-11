@@ -32,11 +32,16 @@ export class PreferenciasPage {
   }
 
   ionViewDidLoad() {
-    this.obterPreferencias();
+    
     console.log("ionViewDidLoad PreferenciasPage");
   
 
   }
+
+  ionViewWillEnter(){
+    this.obterPreferencias();
+  }
+
   obterPreferencias() {
     this.servidor.obterPreferencias().subscribe(sucess => {
       this.interesses = sucess;
@@ -45,10 +50,11 @@ export class PreferenciasPage {
       }
       this.servidor.obterPreferenciasPorUsuario(this.usuario.usuario_final).subscribe(
         interessePorUsuario => {
+          console.log(interessePorUsuario);
           for (let i = 0; i < interessePorUsuario.length; i++) {
-            for (let x = 0; x < this.interesses.lenght; x++) {
-              console.log(interessePorUsuario[i].id_interesse);
-              console.log(this.interesses[x].id_interesse);
+            for (let x = 0; x < this.interesses.length; x++) {
+              console.log('Interesse do usuário' + interessePorUsuario);
+              // console.log(this.interesses[x].id_interesse);
               // console.log(this.interesses);
               if (interessePorUsuario[i].id_interesse == this.interesses[x].id_interesse) {
                 this.interesses[x].checked = true;
@@ -57,6 +63,7 @@ export class PreferenciasPage {
               }
             }
           }
+          console.log(this.interesses);
         }
       )
 
@@ -69,6 +76,7 @@ export class PreferenciasPage {
 
   salvarPreferencias() {
     this.usuario.interesses = new Array();
+    
     for (let i = 0; i < this.interesses.length; i++) {
       //  console.log(this.usuario.interesses); 
       //  console.log('Checked ' + this.interesses[i].checked);
@@ -76,21 +84,36 @@ export class PreferenciasPage {
         this.usuario.interesses.push(this.interesses[i].id_interesse);
       }
     }
-    console.log(this.usuario.interesses);
+    if(this.usuario.interesses.length == 0){
+      return this.toast.create({
+        message: "É necessário ter ao menos um interesse marcado ", position: 'botton', duration: 3000
+      }).present();
+      
+    }
 
-    this.servidor.salvarPreferencias(this.usuario).subscribe(
+    this.servidor.deletarInteressePorUsuario(this.usuario).subscribe(
       sucess => {
-        console.log(sucess)
-        this.navCtrl.setRoot(UsuarioPage);
-        this.toast.create({
-          message: 'Cadastro de Preferências Realizado com Sucesso ', position: 'botton', duration: 3000
-        }).present();
-      }, error => {
-        this.toast.create({
-          message: "Erro ao realizar cadastro de preferências. Erro: " + error.error.message, position: 'botton', duration: 3000
-        }).present();
+        this.servidor.salvarPreferencias(this.usuario).subscribe(
+          sucess => {
+            console.log(sucess)
+            this.navCtrl.setRoot(UsuarioPage);
+            this.toast.create({
+              message: 'Cadastro de Preferências Realizado com Sucesso ', position: 'botton', duration: 3000
+            }).present();
+          }, error => {
+            this.toast.create({
+              message: "Erro ao realizar cadastro de preferências. Erro: " + error.error.message, position: 'botton', duration: 3000
+            }).present();
+    
+          })
+        },
+        error => {
+          this.toast.create({
+            message: "Erro ao realizar cadastro de preferências. Erro: " + error.error.message, position: 'botton', duration: 3000
+          }).present();
+        }  
+    )
 
-      })
   }
   /* salvarPreferencias() {
       this.servidor.salvarPreferencias(this.usuario).subscribe(item => {

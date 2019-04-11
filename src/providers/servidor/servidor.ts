@@ -51,4 +51,8 @@ export class ServidorProvider {
 
   }
 
+  deletarInteressePorUsuario(obj): Observable<any> {
+    return this.http.post(this.url + "/usuario_final_interesses/deletar", obj);
+  } 
+
 }
