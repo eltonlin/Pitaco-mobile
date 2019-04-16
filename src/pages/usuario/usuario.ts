@@ -24,7 +24,7 @@ export class UsuarioPage {
   };
 
 
-  pontuacao: any = [];;
+  pontuacao: any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public servidor: ServidorProvider) {
 
