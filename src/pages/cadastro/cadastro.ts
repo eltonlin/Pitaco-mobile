@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController, AlertController, Item } from 'ionic-angular';
 import { ServidorProvider } from '../../providers/servidor/servidor';
 import { UsuarioPage } from '../usuario/usuario';
-import { isTrueProperty } from 'ionic-angular/umd/util/util';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { registerModuleFactory } from '@angular/core/src/linker/ng_module_factory_loader';
 import { PreferenciasPage } from '../preferencias/preferencias';

@@ -8,8 +8,6 @@
 
 <ion-content>
 
-
-
   <ion-list-header>
     Escolha aqui qual tema de questionário você prefere responder
   </ion-list-header>
@@ -39,7 +37,6 @@
     -->
 
        <ion-list>
-        {{interesse | json}}
       <ion-list>
           <ion-item *ngFor="let interesse of interesses">
             <ion-label>{{interesse.descricao}}</ion-label>
@@ -48,9 +45,12 @@
         </ion-list>
       </ion-list>
      
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> de27b1897157ff18439c2e6747df6f9124a58130
   <button ion-button full (click)="salvarPreferencias()"> Salvar </button>
 
 

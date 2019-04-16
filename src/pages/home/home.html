@@ -4,17 +4,17 @@
 
   <ion-list>
     <ion-item>
-      <ion-label>
-        <ion-icon ios="ios-person" md="md-person"></ion-icon>
+      <ion-label floating>
+        <ion-icon ios="ios-person" md="md-person"></ion-icon> Email
       </ion-label>
-      <ion-input placeholder="Email" type="text" [(ngModel)]="usuario.login_usuario"></ion-input>
+      <ion-input  type="text" [(ngModel)]="usuario.login_usuario"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>
-        <ion-icon ios="ios-lock" md="md-lock"></ion-icon>
+      <ion-label floating>
+        <ion-icon ios="ios-lock" md="md-lock"></ion-icon> Senha
       </ion-label>
-      <ion-input placeholder="Senha" [type]="isTextFieldType ? 'text' : 'password'" [(ngModel)]="usuario.senha"></ion-input>
+      <ion-input [type]="isTextFieldType ? 'text' : 'password'" [(ngModel)]="usuario.senha"></ion-input>
     </ion-item>
     <button (click)="togglePasswordFieldType()">
       <ion-icon [name]="isTextFieldType ? 'eye-off' : 'eye'"></ion-icon>

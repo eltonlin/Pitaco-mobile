@@ -31,7 +31,7 @@ export class UsuarioPage {
   }
 
   preferencias() {
-    this.navCtrl.push(PreferenciasPage);
+    this.navCtrl.setRoot(PreferenciasPage);
   }
 
   editar() {
