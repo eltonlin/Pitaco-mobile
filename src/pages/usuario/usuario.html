@@ -3,8 +3,8 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title style="text-align: center;">
-      Bem vindo, {{ usuario }}!
+    <ion-title style="text-align: center"
+      >Bem Vindo, {{ usuario.login_usuario }}!
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -16,14 +16,16 @@
         <ion-toolbar color="primary">
           <ion-title>
             <ion-icon ios="ios-contact" md="md-contact"></ion-icon>
-            {{ usuario }}
+            {{ usuario.login_usuario }}
+            <p></p>
+            {{ pontuacao | json }}
           </ion-title>
         </ion-toolbar>
       </ion-header>
 
       <ion-content padding>
         <ion-list>
-          <button ion-item>
+          <button ion-item (click)="editar()">
             <ion-icon ios="ios-create" md="md-create"></ion-icon> Editar perfil
           </button>
 

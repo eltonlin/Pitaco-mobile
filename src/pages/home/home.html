@@ -7,7 +7,6 @@
         <ion-icon ios="ios-person" md="md-person"></ion-icon> Email
       </ion-label>
       <ion-input
-        [brmasker]="{ len: 30 }"
         type="text"
         [(ngModel)]="usuario.login_usuario"
       ></ion-input>
@@ -18,7 +17,7 @@
         <ion-icon ios="ios-lock" md="md-lock"></ion-icon> Senha
       </ion-label>
       <ion-input
-        [brmasker]="{ len: 30 }"
+        [brmasker]="{ len: 30, userCaracters: true }"
         [type]="isTextFieldType ? 'text' : 'password'"
         [(ngModel)]="usuario.senha"
       ></ion-input>

@@ -42,6 +42,10 @@ export class ServidorProvider {
     
   }
 
+  obterPontuacaoPorUsuario(usuario: String): Observable<any> {
+    return this.http.get(this.url + `/usuario_final/` + `${usuario}` + `/pontuacao`);  
+  }
+
   obterPreferenciasPorUsuario(usuario: String): Observable<any>{
     return this.http.get(this.url + `/usuario_final_interesses/${usuario}`);
   }

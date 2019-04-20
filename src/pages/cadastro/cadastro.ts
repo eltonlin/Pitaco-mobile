@@ -3,6 +3,8 @@ import { NavController, NavParams, ToastController, AlertController, Item } from
 import { ServidorProvider } from '../../providers/servidor/servidor';
 import { UsuarioPage } from '../usuario/usuario';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { registerModuleFactory } from '@angular/core/src/linker/ng_module_factory_loader';
+import { PreferenciasPage } from '../preferencias/preferencias';
 
 
 /**
@@ -27,8 +29,6 @@ export class CadastroPage {
     this.usuario = {};
 
     this.createForm();
-
-
 
   }
 
@@ -88,7 +88,8 @@ export class CadastroPage {
   salvarUsuario() {
       this.servidor.salvarUsuario(this.usuario).subscribe(
       data => {        
-        this.navCtrl.setRoot(UsuarioPage);
+        localStorage.setItem("usuario", JSON.stringify(this.usuario.login_usuario));
+        this.navCtrl.setRoot(PreferenciasPage);
         this.toast.create({
           message: 'Cadastro Realizado com Sucesso ', position: 'botton', duration: 3000
         }).present();     

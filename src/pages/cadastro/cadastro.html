@@ -10,7 +10,6 @@
       <ion-item>
         <ion-label floating>Email </ion-label>
         <ion-input
-          [brmasker]="{ len: 30 }"
           type="email"
           formControlName="email"
           [(ngModel)]="usuario.login_usuario"
@@ -41,7 +40,7 @@
       <ion-item>
         <ion-label floating>Senha </ion-label>
         <ion-input
-          [brmasker]="{ len: 30 }"
+          [brmasker]="{ len: 30, userCaracters: true }"
           [type]="isTextFieldType ? 'text' : 'password'"
           formControlName="senha"
           [(ngModel)]="usuario.senha"
@@ -63,7 +62,7 @@
       <ion-item>
         <ion-label floating>Confirma Senha </ion-label>
         <ion-input
-          [brmasker]="{ len: 30 }"
+          [brmasker]="{ len: 30, userCaracters: true }"
           [type]="isTextFieldType ? 'text' : 'password'"
           formControlName="confirma_senha"
           [(ngModel)]="usuario.confirma_senha"
@@ -86,7 +85,7 @@
       <ion-item>
         <ion-label floating>CPF </ion-label>
         <ion-input
-          [brmasker]="{ len: 11 }"
+          [brmasker]="{ len: 11, type: 'all' }"
           type="text"
           formControlName="cpf"
           [(ngModel)]="usuario.cpf"
