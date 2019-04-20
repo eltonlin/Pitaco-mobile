@@ -10,15 +10,15 @@
 </ion-header>
 
 <ion-content padding>
-  
-    <ion-list>
+  <ion-list>
         {{pontuacao | json}}
       <ion-list>
           <ion-item *ngFor="let login_usuario of pontuacao">
-            <ion-label>{{pontuacao.login_usuario}}</ion-label>
+          
           </ion-item>
         </ion-list>
       </ion-list>
+
     <ion-list>
     <ion-menu [content]="content">
       <ion-header>
@@ -34,13 +34,14 @@
 
           <button ion-item (click)="editar()">
             <ion-icon ios="ios-create" md="md-create"></ion-icon> Editar perfil
+          
           </button>
 
           <button ion-item (click)="preferencias()">
             <ion-icon ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon> Definir preferencias
           </button>
 
-            
+
           <button ion-item (click)="sair()"> Sair
           </button>
           

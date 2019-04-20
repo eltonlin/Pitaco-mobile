@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { ServidorProvider } from '../../providers/servidor/servidor';
 
 import { Storage } from "@ionic/storage";
@@ -7,6 +7,7 @@ import { PreferenciasPage } from '../preferencias/preferencias';
 import { HomePage } from '../home/home';
 import { CredenciaisDTO } from '../models/credenciais';
 import { CadastroPage } from '../cadastro/cadastro';
+import { PontuacaoDTO } from '../models/pontos';
 
 
 
@@ -23,8 +24,9 @@ export class UsuarioPage {
     senha: ""
   };
 
+  
 
-  pontuacao: any = [];
+  pontuacao: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public servidor: ServidorProvider) {
 
@@ -52,7 +54,11 @@ export class UsuarioPage {
     this.servidor.obterPontuacaoPorUsuario(this.usuario.login_usuario).subscribe(
       pontuacaoPorUsuario => {
         console.log(pontuacaoPorUsuario);
+       
        this.pontuacao = pontuacaoPorUsuario;
+      
+      
+       //this.pontuacao = JSON.parse(localStorage.getItem('pontuacao'))
        console.log('Data loo', this.usuario.login_usuario);
        console.log('Data loo', this.pontuacao);
       })    

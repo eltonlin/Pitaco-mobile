@@ -12,9 +12,20 @@
 
 </ion-header>
 
-<!--https://www.youtube.com/watch?v=bPZ0ri_Yx4I-->
+
 <ion-content padding>
+
+   
+         
+     
+
+  
   <form [formGroup]="form">
+    
+      <ion-list>
+     
+      {{usuario_dados | json}}
+        
     <ion-list>
       <ion-item>
         <ion-label floating>Email: </ion-label>
@@ -29,17 +40,17 @@
 
       <ion-item>
         <ion-label floating>Nome: </ion-label>
-        <ion-input type="text" formControlName="texto" [(ngModel)]="usuario.nome"></ion-input>
+        <ion-input type="text" formControlName="nome" [(ngModel)]="usuario.nome"></ion-input>
       </ion-item>
-      <div *ngIf="texto.invalid && (texto.dirty || texto.touched)">
-        <div *ngIf="texto.errors.required">
+      <div *ngIf="nome.invalid && (texto.dirty || nome.touched)">
+        <div *ngIf="nome.errors.required">
           <p>Nome é obrigatório.</p>
         </div>
       </div>
 
       <ion-item>
         <ion-label floating>Senha: </ion-label>
-        <ion-input [type]="isTextFieldType ? 'text' : 'password'" formControlName="senha" [(ngModel)]="usuario.senha">
+        <ion-input  [type]="isTextFieldType ? 'text' : 'password'" formControlName="senha" [(ngModel)]="usuario.senha">
         </ion-input>
       </ion-item>
       <button (click)="togglePasswordFieldType()">
@@ -114,7 +125,7 @@
 
       <ion-item>
         <ion-label floating>Rua: </ion-label>
-        <ion-input type="text" formControlName="rua" [(ngModel)]="usuario.rua"></ion-input>
+        <ion-input  type="text" formControlName="rua" [(ngModel)]="usuario.rua">{{usuario.rua}}</ion-input>
       </ion-item>
       <div *ngIf="rua.invalid && (rua.dirty || rua.touched)">
         <div *ngIf="rua.errors.required">
@@ -178,6 +189,7 @@
       </div>
 
     </ion-list>
+  </ion-list>
   </form>
   <button ion-button full  [disabled]="!form.valid" class="botao" (click)="salvarUsuario()">Confirmar
     Cadastro</button>

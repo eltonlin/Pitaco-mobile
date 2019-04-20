@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, AlertController, Item } from 'ionic-angular';
+import { Component, ɵConsole } from '@angular/core';
+import { NavController, NavParams, ToastController, AlertController, Item, ModalController } from 'ionic-angular';
 import { ServidorProvider } from '../../providers/servidor/servidor';
 import { UsuarioPage } from '../usuario/usuario';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
 import { registerModuleFactory } from '@angular/core/src/linker/ng_module_factory_loader';
 import { PreferenciasPage } from '../preferencias/preferencias';
+import { CredenciaisDTO } from '../models/credenciais';
+import { CadastroDTO } from '../models/dadosUsuario';
+import { Body } from '@angular/http/src/body';
 
 
 /**
@@ -20,38 +23,99 @@ import { PreferenciasPage } from '../preferencias/preferencias';
 })
 export class CadastroPage {
   form: FormGroup;
-  usuario: any;
+  // usuario_dados: any = [];
   isTextFieldType: boolean;
-  
+
+  usuario: CredenciaisDTO = {
+    login_usuario: JSON.parse(localStorage.getItem('usuario')),
+    senha: ""
+  };
+
+  // usuario  = JSON.parse(localStorage.getItem('usuario'))
+  usuario_dados: CadastroDTO = {
+    login_usuario: "",
+    nome: "",
+    senha: "",
+    confirma_senha: "",
+    cpf: "",
+    faixa_salarial: "",
+    data_nascimento: "",
+    rua:  "",
+    complemento: "",
+    bairro: "",
+    cidade: "",
+    cep: "",
+    estado: ""
+  };
+
+
+
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public servidor: ServidorProvider,
     public alertCtrl: AlertController, public toast: ToastController, public formBuilder: FormBuilder) {
-    this.usuario = {};
+    //this.usuario_dados = {};
+
 
     this.createForm();
 
+
+    let dadosParam = this.navParams.get("usuario_dados")
+      if (dadosParam != null) {
+        this.usuario = dadosParam;
+      }
+
+
   }
+
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CadastroPage');
+
+    this.servidor.obterDadosUsuario(this.usuario.login_usuario).subscribe(
+      dadosPorUsuario => {
+        console.log(dadosPorUsuario);
+        this.usuario_dados = dadosPorUsuario;
+        localStorage.setItem("usuario_dados", JSON.stringify(this.usuario_dados));
+        dadosPorUsuario = localStorage.getItem('usuario_dados');
+        let arr = JSON.parse(dadosPorUsuario);
+        console.log('ddd', arr);
+
+        //this.form.controls['senha'].setValue(dadosPorUsuario, [3])
+        //this.form.get('senha').patchValue(dadosPorUsuario, );
+        this.usuario.senha = dadosPorUsuario.senha
+      })
+
+
+    console.log('Data loo', this.usuario_dados.login_usuario);
+    console.log('agr2', this.usuario_dados.nome);
+    console.log('agr3', this.usuario_dados);
+
   }
+       
+
 
   createForm() {
+
+
     this.form = this.formBuilder.group({
       email: ['', [Validators.email]],
-      rua: ['', [Validators.required]],
+      rua: [, Validators.required],
+      nome: ['', [Validators.required]],
+      texto: ['', [Validators.required]],
       complemento: ['', [Validators.required]],
       bairro: ['', [Validators.required]],
       cidade: ['', [Validators.required]],
       estado: ['', [Validators.required]],
       cep: ['', [Validators.required]],
       opcao: ['', [Validators.required]],
-      texto: ['', [Validators.required]],
       cpf: ['', [Validators.required, Validators.maxLength(11), Validators.minLength(11)]],
       senha: ['', [Validators.required, Validators.minLength(5)]],
-      confirma_senha: ['', [Validators.required]],      
-    }, {validator: this.validarSenhas('senha', 'confirma_senha')}); 
+      confirma_senha: ['', [Validators.required]],
+    }, { validator: this.validarSenhas('senha', 'confirma_senha') });
+
   }
+
+
 
   get email() { return this.form.get('email'); }
   get rua() { return this.form.get('rua'); }
@@ -60,6 +124,7 @@ export class CadastroPage {
   get cidade() { return this.form.get('cidade'); }
   get estado() { return this.form.get('estado'); }
   get cep() { return this.form.get('cep'); }
+  get nome() { return this.form.get('nome'); }
   get texto() { return this.form.get('texto'); }
   get senha() { return this.form.get('senha'); }
   get confirma_senha() { return this.form.get('confirma_senha'); }
@@ -67,8 +132,10 @@ export class CadastroPage {
   get cpf() { return this.form.get('cpf'); }
 
 
+
+
   validarSenhas(senhaKey: string, confirma_senhaKey: string) {
-    return (group: FormGroup): {[key: string]: any} => {
+    return (group: FormGroup): { [key: string]: any } => {
       let senha = group.controls[senhaKey];
       let confirma_senha = group.controls[confirma_senhaKey];
 
@@ -84,23 +151,42 @@ export class CadastroPage {
     this.isTextFieldType = !this.isTextFieldType;
   }
 
-  
+
   salvarUsuario() {
+    //Se tem login é um update
+    if (this.usuario.login_usuario) {
+      this.servidor.atualizarUsuario(this.usuario).subscribe(
+        data => {
+          localStorage.setItem("usuario", JSON.stringify(this.usuario));
+          this.navCtrl.setRoot(UsuarioPage);
+          this.toast.create({
+            message: 'Usuário atualizado com Sucesso ', position: 'botton', duration: 3000
+          }).present();
+        }, error => {
+          console.log(error);
+          this.toast.create({
+            message: "Erro ao realizar atualização cadastral. Erro: " + error.error.message, position: 'botton', duration: 3000
+          }).present();
+        })
+    } else {
       this.servidor.salvarUsuario(this.usuario).subscribe(
-      data => {        
-        localStorage.setItem("usuario", JSON.stringify(this.usuario.login_usuario));
-        this.navCtrl.setRoot(PreferenciasPage);
-        this.toast.create({
-          message: 'Cadastro Realizado com Sucesso ', position: 'botton', duration: 3000
-        }).present();     
-      }, error => {
-        console.log(error);
-        this.toast.create({
-          message: "Erro ao realizar cadastro. Erro: " + error.error.message, position: 'botton', duration: 3000
-        }).present();
-      })
+        data => {
+          localStorage.setItem("usuario", JSON.stringify(this.usuario.login_usuario));
+          // localStorage.setItem("usuario", JSON.stringify(this.usuario));
+          this.navCtrl.setRoot(PreferenciasPage);
+          this.toast.create({
+            message: 'Cadastro Realizado com Sucesso ', position: 'botton', duration: 3000
+          }).present();
+        }, error => {
+          console.log(error);
+          this.toast.create({
+            message: "Erro ao realizar cadastro. Erro: " + error.error.message, position: 'botton', duration: 3000
+          }).present();
+        })
     }
+
   }
+}
 
 
 

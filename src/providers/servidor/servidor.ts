@@ -33,6 +33,10 @@ export class ServidorProvider {
     return this.http.post(this.url + "/usuario_final/cadastrar_login", obj).map(res => res);
   }
 
+  atualizarUsuario(obj): Observable<any> {
+    return this.http.put(this.url + "/usuario_final/atualizar", obj).map(res => res);
+  }
+
   salvarPreferencias(obj): Observable<any> {
     return this.http.post(this.url + "/usuario_final_interesses/cadastrar", obj).map(res => res);
   }
@@ -40,6 +44,9 @@ export class ServidorProvider {
   obterPreferencias(): Observable<any> {
     return this.http.get(this.url + "/interesses").map(res => res);
     
+  }
+  obterDadosUsuario(usuario: String): Observable<any> {
+    return this.http.get(this.url + `/usuario_final/${usuario}`).map(res => res);
   }
 
   obterPontuacaoPorUsuario(usuario: String): Observable<any> {

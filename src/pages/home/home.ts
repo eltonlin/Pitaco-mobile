@@ -7,7 +7,9 @@ import { UsuarioPage } from '../usuario/usuario'
 
 
 import { CredenciaisDTO } from '../models/credenciais';
+
 import {Storage} from '@ionic/storage';
+
 
 
 
@@ -30,7 +32,8 @@ export class HomePage {
     senha: ""
   };
 
-
+ 
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage,
     public alertCtrl: AlertController, public servidor: ServidorProvider, public http: Http, public toast: ToastController) {
 
@@ -46,6 +49,7 @@ export class HomePage {
     this.navCtrl.push(CadastroPage);
   }
 
+ 
 
 
   logar() {
@@ -61,7 +65,6 @@ export class HomePage {
       this.servidor.logar(this.usuario).subscribe(response => {
         //localStorage.setItem("usuario", this.usuario.login_usuario);
         localStorage.setItem("usuario", JSON.stringify(this.usuario.login_usuario));
-
         this.navCtrl.setRoot(UsuarioPage);
       }, error => {
         this.toast.create({
