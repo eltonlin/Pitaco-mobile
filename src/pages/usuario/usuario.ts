@@ -18,7 +18,8 @@ export class UsuarioPage {
     senha: ""
   };
 
-  pontuacao: any = [];
+  pontuacao: any;
+  novaPontuacao: any;
 
   constructor(
     public navCtrl: NavController,
@@ -50,8 +51,10 @@ export class UsuarioPage {
       .subscribe(pontuacaoPorUsuario => {
         console.log(pontuacaoPorUsuario);
         this.pontuacao = JSON.stringify(pontuacaoPorUsuario);
+        this.novaPontuacao = this.pontuacao.replace(/[\[\]PONTUACAO":{}]/g, "");
         console.log("Data loo", this.usuario.login_usuario);
         console.log("Data loo", this.pontuacao);
+        console.log("Replace", this.novaPontuacao);
       });
   }
 
