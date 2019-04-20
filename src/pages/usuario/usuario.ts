@@ -1,12 +1,13 @@
 import { Component, OnInit } from "@angular/core";
-import { NavController, NavParams } from "ionic-angular";
+import { NavController, NavParams, ModalController } from "ionic-angular";
 import { ServidorProvider } from "../../providers/servidor/servidor";
 
 import { Storage } from "@ionic/storage";
 import { PreferenciasPage } from "../preferencias/preferencias";
-import { HomePage } from "../home/home";
 import { CredenciaisDTO } from "../models/credenciais";
 import { CadastroPage } from "../cadastro/cadastro";
+import { PontuacaoDTO } from "../models/pontos";
+import { EditarPage } from "../editar/editar";
 
 @Component({
   selector: "page-usuario",
@@ -18,8 +19,8 @@ export class UsuarioPage {
     senha: ""
   };
 
-  pontuacao: any;
-  novaPontuacao: any;
+  pontuacao: string;
+  novaPontuacao: string;
 
   constructor(
     public navCtrl: NavController,
@@ -33,7 +34,7 @@ export class UsuarioPage {
   }
 
   editar() {
-    this.navCtrl.push(CadastroPage);
+    this.navCtrl.push(EditarPage);
   }
 
   ionViewDidLoad() {
@@ -50,11 +51,13 @@ export class UsuarioPage {
       .obterPontuacaoPorUsuario(this.usuario.login_usuario)
       .subscribe(pontuacaoPorUsuario => {
         console.log(pontuacaoPorUsuario);
+
         this.pontuacao = JSON.stringify(pontuacaoPorUsuario);
         this.novaPontuacao = this.pontuacao.replace(/[\[\]PONTUACAO":{}]/g, "");
+
+        //this.pontuacao = JSON.parse(localStorage.getItem('pontuacao'))
         console.log("Data loo", this.usuario.login_usuario);
-        console.log("Data loo", this.pontuacao);
-        console.log("Replace", this.novaPontuacao);
+        console.log("Data loo", this.novaPontuacao);
       });
   }
 
