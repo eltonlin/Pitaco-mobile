@@ -8,6 +8,7 @@ import { HomePage } from '../home/home';
 import { CredenciaisDTO } from '../models/credenciais';
 import { CadastroPage } from '../cadastro/cadastro';
 import { PontuacaoDTO } from '../models/pontos';
+import { EditarPage } from '../editar/editar';
 
 
 
@@ -37,7 +38,7 @@ export class UsuarioPage {
   }
 
   editar() {
-    this.navCtrl.push(CadastroPage);
+    this.navCtrl.push(EditarPage);
   }
 
   ionViewDidLoad() {

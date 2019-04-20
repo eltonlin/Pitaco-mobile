@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { IonicStorageModule } from '@ionic/storage';
 import { PreferenciasPage } from '../pages/preferencias/preferencias';
+import { EditarPage } from '../pages/editar/editar';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { PreferenciasPage } from '../pages/preferencias/preferencias';
     HomePage,
     UsuarioPage,
     CadastroPage,
-    PreferenciasPage
+    PreferenciasPage,
+    EditarPage
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import { PreferenciasPage } from '../pages/preferencias/preferencias';
     HomePage,
     UsuarioPage,
     CadastroPage,
-    PreferenciasPage
+    PreferenciasPage,
+    EditarPage
   ],
   providers: [
     StatusBar,

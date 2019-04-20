@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Cadastre-se</ion-title>
+    <ion-title>Perfil</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,9 +15,7 @@
 
 <ion-content padding>
 
-   
-         
-     
+  
 
   
   <form [formGroup]="form">
@@ -40,40 +38,11 @@
         <ion-label floating>Nome: </ion-label>
         <ion-input type="text" formControlName="nome" [(ngModel)]="usuario.nome"></ion-input>
       </ion-item>
-      <div *ngIf="nome.invalid && (texto.dirty || nome.touched)">
+      <div *ngIf="nome.invalid && (nome.dirty || nome.touched)">
         <div *ngIf="nome.errors.required">
           <p>Nome é obrigatório.</p>
         </div>
       </div>
-
-      <ion-item>
-        <ion-label floating>Senha: </ion-label>
-        <ion-input  [type]="isTextFieldType ? 'text' : 'password'" formControlName="senha" [(ngModel)]="usuario.senha">
-        </ion-input>
-      </ion-item>
-      <button (click)="togglePasswordFieldType()">
-        <ion-icon [name]="isTextFieldType ? 'eye-off' : 'eye'"></ion-icon>
-      </button>
-      <div *ngIf="senha.invalid && (senha.dirty || senha.touched)">
-        <div *ngIf="senha.errors.required">
-          <p>Informação é obrigatória</p>
-        </div>
-        <div *ngIf="senha.errors.minlength">
-          <p>Senha deve ser maior que 5 caracteres</p>
-        </div>
-      </div>
-
-      <ion-item>
-        <ion-label floating>Confirma Senha: </ion-label>
-        <ion-input [type]="isTextFieldType ? 'text' : 'password'" formControlName="confirma_senha" 
-          [(ngModel)]="usuario.confirma_senha"></ion-input>
-      </ion-item>
-      <button (click)="togglePasswordFieldType()">
-        <ion-icon [name]="isTextFieldType ? 'eye-off' : 'eye'"></ion-icon>
-      </button>
-      <ion-item class='form-text error' *ngIf="senha.valid && form.hasError('validarSenhas') && (confirma_senha.dirty || confirma_senha.touched)">
-        <p no-margin floating>Senha e confirma senha devem ser iguais</p>
-      </ion-item>
    
 
       <ion-item>
@@ -123,7 +92,7 @@
 
       <ion-item>
         <ion-label floating>Rua: </ion-label>
-        <ion-input  type="text" formControlName="rua" [(ngModel)]="usuario.rua"></ion-input>
+        <ion-input  type="text" formControlName="rua" [(ngModel)]="usuario.endereco.rua"></ion-input>
       </ion-item>
       <div *ngIf="rua.invalid && (rua.dirty || rua.touched)">
         <div *ngIf="rua.errors.required">
@@ -134,7 +103,7 @@
 
       <ion-item>
         <ion-label floating>Complemento: </ion-label>
-        <ion-input type="text" formControlName="complemento" [(ngModel)]="usuario.complemento"></ion-input>
+        <ion-input type="text" formControlName="complemento" [(ngModel)]="usuario.endereco.complemento"></ion-input>
       </ion-item>
       <div *ngIf="complemento.invalid && (complemento.dirty || complemento.touched)">
         <div *ngIf="complemento.errors.required">
@@ -145,7 +114,7 @@
 
       <ion-item>
         <ion-label floating>Bairro: </ion-label>
-        <ion-input type="text" formControlName="bairro" [(ngModel)]="usuario.bairro"></ion-input>
+        <ion-input type="text" formControlName="bairro" [(ngModel)]="usuario.endereco.bairro"></ion-input>
       </ion-item>
       <div *ngIf="bairro.invalid && (bairro.dirty || bairro.touched)">
         <div *ngIf="bairro.errors.required">
@@ -156,7 +125,7 @@
 
       <ion-item>
         <ion-label floating>Cidade: </ion-label>
-        <ion-input type="text" formControlName="cidade" [(ngModel)]="usuario.cidade"></ion-input>
+        <ion-input type="text" formControlName="cidade" [(ngModel)]="usuario.endereco.cidade"></ion-input>
       </ion-item>
       <div *ngIf="cidade.invalid && (cidade.dirty || cidade.touched)">
         <div *ngIf="cidade.errors.required">
@@ -167,7 +136,7 @@
 
       <ion-item>
         <ion-label floating>CEP: </ion-label>
-        <ion-input type="text" formControlName="cep" [(ngModel)]="usuario.cep"></ion-input>
+        <ion-input type="text" formControlName="cep" [(ngModel)]="usuario.endereco.cep"></ion-input>
       </ion-item>
       <div *ngIf="cep.invalid && (cep.dirty || cep.touched)">
         <div *ngIf="cep.errors.required">
@@ -178,7 +147,7 @@
 
       <ion-item>
         <ion-label floating>Estado: </ion-label>
-        <ion-input type="text" formControlName="estado" [(ngModel)]="usuario.estado"></ion-input>
+        <ion-input type="text" formControlName="estado" [(ngModel)]="usuario.endereco.estado"></ion-input>
       </ion-item>
       <div *ngIf="estado.invalid && (estado.dirty || estado.touched)">
         <div *ngIf="estado.errors.required">
@@ -188,7 +157,7 @@
 
     </ion-list>
   </form>
-  <button ion-button full  [disabled]="!form.valid" class="botao" (click)="salvarUsuario()">Confirmar
+  <button ion-button full  [disabled]="!form.valid" class="botao" (click)="editarUsuario()">Atualizar
     Cadastro</button>
 
 </ion-content>

@@ -60,35 +60,16 @@ export class CadastroPage {
     this.createForm();
 
 
-    let dadosParam = this.navParams.get("usuario_dados")
+    /*let dadosParam = this.navParams.get("usuario_dados")
       if (dadosParam != null) {
         this.usuario = dadosParam;
-      }
+      }*/
 
 
   }
 
 
   ionViewDidLoad() {
-
-    this.servidor.obterDadosUsuario(this.usuario.login_usuario).subscribe(
-      dadosPorUsuario => {
-        console.log(dadosPorUsuario);
-        this.usuario_dados = dadosPorUsuario;
-        localStorage.setItem("usuario_dados", JSON.stringify(this.usuario_dados));
-        dadosPorUsuario = localStorage.getItem('usuario_dados');
-        let arr = JSON.parse(dadosPorUsuario);
-        console.log('ddd', arr);
-
-        //this.form.controls['senha'].setValue(dadosPorUsuario, [3])
-        //this.form.get('senha').patchValue(dadosPorUsuario, );
-        this.usuario.senha = dadosPorUsuario.senha
-      })
-
-
-    console.log('Data loo', this.usuario_dados.login_usuario);
-    console.log('agr2', this.usuario_dados.nome);
-    console.log('agr3', this.usuario_dados);
 
   }
        
@@ -153,22 +134,6 @@ export class CadastroPage {
 
 
   salvarUsuario() {
-    //Se tem login é um update
-    if (this.usuario.login_usuario) {
-      this.servidor.atualizarUsuario(this.usuario).subscribe(
-        data => {
-          localStorage.setItem("usuario", JSON.stringify(this.usuario));
-          this.navCtrl.setRoot(UsuarioPage);
-          this.toast.create({
-            message: 'Usuário atualizado com Sucesso ', position: 'botton', duration: 3000
-          }).present();
-        }, error => {
-          console.log(error);
-          this.toast.create({
-            message: "Erro ao realizar atualização cadastral. Erro: " + error.error.message, position: 'botton', duration: 3000
-          }).present();
-        })
-    } else {
       this.servidor.salvarUsuario(this.usuario).subscribe(
         data => {
           localStorage.setItem("usuario", JSON.stringify(this.usuario.login_usuario));
@@ -185,7 +150,7 @@ export class CadastroPage {
         })
     }
 
-  }
+  
 }
 
 
