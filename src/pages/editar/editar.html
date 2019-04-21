@@ -6,22 +6,7 @@
 
 <ion-content padding>
   <form [formGroup]="form">
-    <ion-list>
-      <ion-item>
-        <ion-label floating>Email: </ion-label>
-        <ion-input
-          type="email"
-          formControlName="email"
-          [(ngModel)]="usuario.login_usuario"
-        >
-        </ion-input>
-      </ion-item>
-      <div *ngIf="email.invalid && (email.dirty || email.touched)">
-        <div *ngIf="email.errors.email">
-          <p>Informe um email válido.</p>
-        </div>
-      </div>
-
+    <ion-list>    
       <ion-item>
         <ion-label floating>Nome: </ion-label>
         <ion-input
@@ -59,7 +44,7 @@
       <ion-item>
         <ion-label stacked>Faixa Salarial: </ion-label>
         <ion-select
-          formControlName="opcao"
+          formControlName="faixa_salarial"
           [(ngModel)]="usuario.faixa_salarial"
         >
           <ion-option value=""> - Escolha - </ion-option>>
@@ -70,28 +55,26 @@
           <ion-option value="5">10000 ou mais</ion-option>
         </ion-select>
       </ion-item>
-      <div *ngIf="opcao.invalid && (opcao.dirty || opcao.touched)">
-        <div *ngIf="opcao.errors.required">
-          <p>Opção é obrigatória</p>
+      <div *ngIf="faixa_salarial.invalid && (faixa_salarial.dirty || faixa_salarial.touched)">
+        <div *ngIf="faixa_salarial.errors.required">
+          <p>Faixa salárial é obrigatória</p>
         </div>
       </div>
 
       <ion-item>
         <ion-label floating>Data Nascimento: </ion-label>
         <ion-datetime
-          displayFormat="MM/DD/YYYY"
-          displayFormat="MM DD YY"
-          formControlName="texto"
-          value=""
+          displayFormat="DD-MM-YYYY"
+          formControlName="data_nascimento"
           [(ngModel)]="usuario.data_nascimento"
         ></ion-datetime>
       </ion-item>
       <div
-        *ngIf="texto.invalid && (texto.dirty || texto.touched)"
+        *ngIf="data_nascimento.invalid && (data_nascimento.dirty || data_nascimento.touched)"
         color="danger"
       >
-        <div *ngIf="texto.errors.required">
-          <p>Informação é obrigatória</p>
+        <div *ngIf="data_nascimento.errors.required">
+          <p>Data de nascimento é obrigatória</p>
         </div>
       </div>
 

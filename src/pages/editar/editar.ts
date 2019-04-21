@@ -64,10 +64,8 @@ export class EditarPage {
       .subscribe(dadosPorUsuario => {
         console.log(dadosPorUsuario);
 
-        this.form.get("email").setValue(dadosPorUsuario.login_usuario);
         this.form.get("nome").setValue(dadosPorUsuario.nome);
         this.form.get("cpf").setValue(dadosPorUsuario.cpf);
-        this.form.get("texto").setValue(dadosPorUsuario.data_nascimento);
         this.form.get("rua").setValue(dadosPorUsuario.endereco[0].rua);
         this.form
           .get("complemento")
@@ -77,24 +75,24 @@ export class EditarPage {
         this.form.get("estado").setValue(dadosPorUsuario.endereco[0].estado);
         this.form.get("cep").setValue(dadosPorUsuario.endereco[0].cep);
         this.form.get("opcao").setValue(dadosPorUsuario.faixa_salarial);
-
-        console.log("oiii", dadosPorUsuario.texto);
-        console.log("oiii", dadosPorUsuario.opcao);
+        this.form.get("faixa_salarial").setValue(dadosPorUsuario.faixa_salarial);
+        this.form.get("data_nascimento").setValue(dadosPorUsuario.data_nascimento);
+        this.usuario.data_nascimento = dadosPorUsuario.data_nascimento;
       });
   }
 
   createForm() {
     this.form = this.formBuilder.group({
-      email: ["", [Validators.email]],
       rua: [, Validators.required],
       nome: ["", [Validators.required]],
-      texto: ["", [Validators.required]],
       complemento: ["", [Validators.required]],
       bairro: ["", [Validators.required]],
       cidade: ["", [Validators.required]],
       estado: ["", [Validators.required]],
       cep: ["", [Validators.required]],
       opcao: ["", [Validators.required]],
+      faixa_salarial : ["", [Validators.required] ] ,
+      data_nascimento : ["", [Validators.required]],
       cpf: [
         "",
         [
@@ -106,9 +104,6 @@ export class EditarPage {
     });
   }
 
-  get email() {
-    return this.form.get("email");
-  }
   get rua() {
     return this.form.get("rua");
   }
@@ -130,19 +125,20 @@ export class EditarPage {
   get nome() {
     return this.form.get("nome");
   }
-  get texto() {
-    return this.form.get("texto");
+  get faixa_salarial() {
+    return this.form.get("faixa_salarial");
   }
-  get opcao() {
-    return this.form.get("opcao");
+  get data_nascimento() {
+    return this.form.get("data_nascimento");
   }
   get cpf() {
     return this.form.get("cpf");
   }
 
   editarUsuario() {
-    this.servidor.atualizarUsuario(this.usuario).subscribe(
-      data => {
+    let user = {usuario : this.usuario} 
+    this.servidor.atualizarUsuario(user).subscribe(
+      () => {
         this.navCtrl.setRoot(UsuarioPage);
         this.toast
           .create({
