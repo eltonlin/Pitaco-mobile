@@ -45,7 +45,6 @@ export class EditarPage {
       estado: ""
     }
   };
-<<<<<<< HEAD
 
   /*endereco: EnderecoDTO = {
     login_usuario:  JSON.parse(localStorage.getItem('usuario')),
@@ -58,16 +57,6 @@ export class EditarPage {
   }*/
   constructor(public navCtrl: NavController, public navParams: NavParams, public servidor: ServidorProvider,
     public alertCtrl: AlertController, public toast: ToastController, public formBuilder: FormBuilder) {
-=======
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public servidor: ServidorProvider,
-    public alertCtrl: AlertController,
-    public toast: ToastController,
-    public formBuilder: FormBuilder
-  ) {
->>>>>>> 5a8891b054990d7d4b0832a2faa7b748dc1123f3
     this.createForm();
   }
 
@@ -77,7 +66,6 @@ export class EditarPage {
       .subscribe(dadosPorUsuario => {
         console.log(dadosPorUsuario);
 
-<<<<<<< HEAD
         this.form.get('email').setValue(dadosPorUsuario.login_usuario);
         this.form.get('nome').setValue(dadosPorUsuario.nome);
         this.form.get('cpf').setValue(dadosPorUsuario.cpf);
@@ -87,32 +75,13 @@ export class EditarPage {
         this.form.get('bairro').setValue(dadosPorUsuario.endereco[0].bairro);
         this.form.get('cidade').setValue(dadosPorUsuario.endereco[0].cidade);
         this.form.get('estado').setValue(dadosPorUsuario.endereco[0].estado);
-        this.form.get('cep').setValue(dadosPorUsuario.endereco[0].cep); 
+        this.form.get('cep').setValue(dadosPorUsuario.endereco[0].cep);
         this.form.get('opcao').setValue(dadosPorUsuario.faixa_salarial);
 
 
         console.log('oiii', dadosPorUsuario.texto);
         console.log('oiii', dadosPorUsuario.opcao);
       })
-=======
-        this.form.get("email").setValue(dadosPorUsuario.login_usuario);
-        this.form.get("nome").setValue(dadosPorUsuario.nome);
-        this.form.get("cpf").setValue(dadosPorUsuario.cpf);
-        this.form.get("texto").setValue(dadosPorUsuario.data_nascimento);
-        this.form.get("rua").setValue(dadosPorUsuario.endereco[0].rua);
-        this.form
-          .get("complemento")
-          .setValue(dadosPorUsuario.endereco[0].complemento);
-        this.form.get("bairro").setValue(dadosPorUsuario.endereco[0].bairro);
-        this.form.get("cidade").setValue(dadosPorUsuario.endereco[0].cidade);
-        this.form.get("estado").setValue(dadosPorUsuario.endereco[0].estado);
-        this.form.get("cep").setValue(dadosPorUsuario.endereco[0].cep);
-        this.form.get("opcao").setValue(dadosPorUsuario.faixa_salarial);
-
-        console.log("oiii", dadosPorUsuario.texto);
-        console.log("oiii", dadosPorUsuario.opcao);
-      });
->>>>>>> 5a8891b054990d7d4b0832a2faa7b748dc1123f3
   }
 
   createForm() {
@@ -173,7 +142,7 @@ export class EditarPage {
   }
 
   editarUsuario() {
-    console.log("ip",this.usuario);
+    console.log("ip", this.usuario);
     this.servidor.atualizarUsuario(this.usuario).subscribe(
       data => {
         this.navCtrl.setRoot(UsuarioPage);
