@@ -14,13 +14,14 @@
     <ion-menu [content]="content">
       <ion-header>
         <ion-toolbar color="primary">
-          <ion-title>
-            <ion-icon ios="ios-contact" md="md-contact"></ion-icon>
-            {{ usuario.login_usuario }}
-            <p></p>
-            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+          <ion-avatar>
+            <img class="circle" [src]="'assets/imgs/blank-avatar.png'" />
+          </ion-avatar>
+          <h2 class="login_usuario" text-center>{{ usuario.login_usuario }}</h2>
+          <p class="login_usuario" text-center>
+            <ion-icon id="icone" ios="ios-star" md="md-star"></ion-icon>
             {{ pontuacao }}
-          </ion-title>
+          </p>
         </ion-toolbar>
       </ion-header>
 
