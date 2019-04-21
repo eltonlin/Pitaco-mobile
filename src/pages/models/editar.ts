@@ -5,6 +5,7 @@ export interface EditarDTO {
     faixa_salarial: string;
     data_nascimento: string;
     endereco: {
+       login_usuario: string;
         rua: string;
         complemento: string;
         bairro: string;

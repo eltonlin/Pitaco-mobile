@@ -7,6 +7,7 @@ import { UsuarioPage } from '../usuario/usuario';
 import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
 import { CredenciaisDTO } from '../models/credenciais';
 import { EditarDTO } from '../models/editar';
+import { EnderecoDTO } from '../models/local';
 
 /**
  * Generated class for the EditarPage page.
@@ -36,6 +37,7 @@ export class EditarPage {
     faixa_salarial: "",
     data_nascimento: "",
     endereco: {
+      login_usuario: "",
       rua: "",
       complemento: "",
       bairro: "",
@@ -44,6 +46,16 @@ export class EditarPage {
       estado: ""
     }
   };
+
+  /*endereco: EnderecoDTO = {
+    login_usuario:  JSON.parse(localStorage.getItem('usuario')),
+    rua: "",
+    complemento: "",
+    bairro: "",
+    cidade: "",
+    cep: "",
+    estado: ""
+  }*/
   constructor(public navCtrl: NavController, public navParams: NavParams, public servidor: ServidorProvider,
     public alertCtrl: AlertController, public toast: ToastController, public formBuilder: FormBuilder) {
     this.createForm();
@@ -63,7 +75,7 @@ export class EditarPage {
         this.form.get('bairro').setValue(dadosPorUsuario.endereco[0].bairro);
         this.form.get('cidade').setValue(dadosPorUsuario.endereco[0].cidade);
         this.form.get('estado').setValue(dadosPorUsuario.endereco[0].estado);
-        this.form.get('cep').setValue(dadosPorUsuario.endereco[0].cep);
+        this.form.get('cep').setValue(dadosPorUsuario.endereco[0].cep); 
         this.form.get('opcao').setValue(dadosPorUsuario.faixa_salarial);
 
 
@@ -108,6 +120,7 @@ export class EditarPage {
 
 
   editarUsuario() {
+    console.log("ip",this.usuario);
     this.servidor.atualizarUsuario(this.usuario).subscribe(
       data => {
         this.navCtrl.setRoot(UsuarioPage);
