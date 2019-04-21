@@ -23,24 +23,22 @@
       </div>
 
       <ion-item>
-        <ion-label floating>Nome </ion-label>
+        <ion-label floating>Nome: </ion-label>
         <ion-input
-          [brmasker]="{ len: 100 }"
           type="text"
-          formControlName="texto"
+          formControlName="nome"
           [(ngModel)]="usuario.nome"
         ></ion-input>
       </ion-item>
-      <div *ngIf="texto.invalid && (texto.dirty || texto.touched)">
-        <div *ngIf="texto.errors.required">
+      <div *ngIf="nome.invalid && (texto.dirty || nome.touched)">
+        <div *ngIf="nome.errors.required">
           <p>Nome é obrigatório.</p>
         </div>
       </div>
 
       <ion-item>
-        <ion-label floating>Senha </ion-label>
+        <ion-label floating>Senha: </ion-label>
         <ion-input
-          [brmasker]="{ len: 30, userCaracters: true }"
           [type]="isTextFieldType ? 'text' : 'password'"
           formControlName="senha"
           [(ngModel)]="usuario.senha"
@@ -62,7 +60,6 @@
       <ion-item>
         <ion-label floating>Confirma Senha </ion-label>
         <ion-input
-          [brmasker]="{ len: 30, userCaracters: true }"
           [type]="isTextFieldType ? 'text' : 'password'"
           formControlName="confirma_senha"
           [(ngModel)]="usuario.confirma_senha"
@@ -85,7 +82,6 @@
       <ion-item>
         <ion-label floating>CPF </ion-label>
         <ion-input
-          [brmasker]="{ len: 11, type: 'all' }"
           type="text"
           formControlName="cpf"
           [(ngModel)]="usuario.cpf"
@@ -143,9 +139,8 @@
       </div>
 
       <ion-item>
-        <ion-label floating>Rua </ion-label>
+        <ion-label floating>Rua: </ion-label>
         <ion-input
-          [brmasker]="{ len: 30 }"
           type="text"
           formControlName="rua"
           [(ngModel)]="usuario.rua"
@@ -160,7 +155,6 @@
       <ion-item>
         <ion-label floating>Complemento </ion-label>
         <ion-input
-          [brmasker]="{ len: 255 }"
           type="text"
           formControlName="complemento"
           [(ngModel)]="usuario.complemento"
@@ -179,7 +173,6 @@
       <ion-item>
         <ion-label floating>Bairro </ion-label>
         <ion-input
-          [brmasker]="{ len: 30 }"
           type="text"
           formControlName="bairro"
           [(ngModel)]="usuario.bairro"
@@ -194,7 +187,6 @@
       <ion-item>
         <ion-label floating>Cidade </ion-label>
         <ion-input
-          [brmasker]="{ len: 50 }"
           type="text"
           formControlName="cidade"
           [(ngModel)]="usuario.cidade"
@@ -209,7 +201,6 @@
       <ion-item>
         <ion-label floating>CEP </ion-label>
         <ion-input
-          [brmasker]="{ len: 8 }"
           type="text"
           formControlName="cep"
           [(ngModel)]="usuario.cep"

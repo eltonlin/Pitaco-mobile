@@ -21,13 +21,6 @@ import { CredenciaisDTO } from "../models/credenciais";
 import { CadastroDTO } from "../models/dadosUsuario";
 import { Body } from "@angular/http/src/body";
 
-/**
- * Generated class for the CadastroPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @Component({
   selector: "page-cadastro",
   templateUrl: "cadastro.html"

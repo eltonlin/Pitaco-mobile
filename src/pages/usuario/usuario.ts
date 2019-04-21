@@ -1,3 +1,4 @@
+import { HomePage } from "./../home/home";
 import { Component, OnInit } from "@angular/core";
 import { NavController, NavParams, ModalController } from "ionic-angular";
 import { ServidorProvider } from "../../providers/servidor/servidor";
@@ -20,7 +21,6 @@ export class UsuarioPage {
   };
 
   pontuacao: string;
-  novaPontuacao: string;
 
   constructor(
     public navCtrl: NavController,
@@ -53,11 +53,11 @@ export class UsuarioPage {
         console.log(pontuacaoPorUsuario);
 
         this.pontuacao = JSON.stringify(pontuacaoPorUsuario);
-        this.novaPontuacao = this.pontuacao.replace(/[\[\]PONTUACAO":{}]/g, "");
+        this.pontuacao = this.pontuacao.replace(/[\[\]PONTUACAO":{}]/g, "");
 
         //this.pontuacao = JSON.parse(localStorage.getItem('pontuacao'))
         console.log("Data loo", this.usuario.login_usuario);
-        console.log("Data loo", this.novaPontuacao);
+        console.log("Data loo", this.pontuacao);
       });
   }
 
