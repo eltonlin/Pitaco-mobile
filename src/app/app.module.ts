@@ -13,7 +13,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { IonicStorageModule } from "@ionic/storage";
 import { PreferenciasPage } from "../pages/preferencias/preferencias";
 import { EditarPage } from "../pages/editar/editar";
-import { BrMaskerModule } from "brmasker-ionic-3";
+
 
 @NgModule({
   declarations: [
@@ -29,8 +29,7 @@ import { BrMaskerModule } from "brmasker-ionic-3";
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     HttpClientModule,
-    HttpModule,
-    BrMaskerModule
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

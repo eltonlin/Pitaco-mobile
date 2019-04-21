@@ -1,23 +1,20 @@
-import { CadastroDTO } from "../models/dadosUsuario";
-import { Component, ɵConsole } from "@angular/core";
-import {
-  NavController,
-  NavParams,
-  ToastController,
-  AlertController,
-  Item,
-  ModalController
-} from "ionic-angular";
-import { ServidorProvider } from "../../providers/servidor/servidor";
-import { UsuarioPage } from "../usuario/usuario";
-import {
-  FormBuilder,
-  Validators,
-  FormGroup,
-  AbstractControl
-} from "@angular/forms";
-import { CredenciaisDTO } from "../models/credenciais";
-import { EditarDTO } from "../models/editar";
+
+import { CadastroDTO } from '../models/dadosUsuario';
+import { Component, ɵConsole } from '@angular/core';
+import { NavController, NavParams, ToastController, AlertController, Item, ModalController } from 'ionic-angular';
+import { ServidorProvider } from '../../providers/servidor/servidor';
+import { UsuarioPage } from '../usuario/usuario';
+import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
+import { CredenciaisDTO } from '../models/credenciais';
+import { EditarDTO } from '../models/editar';
+import { EnderecoDTO } from '../models/local';
+
+/**
+ * Generated class for the EditarPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @Component({
   selector: "page-editar",
@@ -39,6 +36,7 @@ export class EditarPage {
     faixa_salarial: "",
     data_nascimento: "",
     endereco: {
+      login_usuario: "",
       rua: "",
       complemento: "",
       bairro: "",
@@ -47,14 +45,18 @@ export class EditarPage {
       estado: ""
     }
   };
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public servidor: ServidorProvider,
-    public alertCtrl: AlertController,
-    public toast: ToastController,
-    public formBuilder: FormBuilder
-  ) {
+
+  /*endereco: EnderecoDTO = {
+    login_usuario:  JSON.parse(localStorage.getItem('usuario')),
+    rua: "",
+    complemento: "",
+    bairro: "",
+    cidade: "",
+    cep: "",
+    estado: ""
+  }*/
+  constructor(public navCtrl: NavController, public navParams: NavParams, public servidor: ServidorProvider,
+    public alertCtrl: AlertController, public toast: ToastController, public formBuilder: FormBuilder) {
     this.createForm();
   }
 
