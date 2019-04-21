@@ -1,27 +1,11 @@
-<!--
-  Generated template for the CadastroPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar color="primary">
     <ion-title>Perfil</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-
-  
-
-  
   <form [formGroup]="form">
-    
-     
-        
     <ion-list>
       <ion-item>
         <ion-label floating>Email: </ion-label>
@@ -35,18 +19,25 @@
 
       <ion-item>
         <ion-label floating>Nome: </ion-label>
-        <ion-input type="text" formControlName="nome" [(ngModel)]="usuario.nome"></ion-input>
+        <ion-input
+          type="text"
+          formControlName="nome"
+          [(ngModel)]="usuario.nome"
+        ></ion-input>
       </ion-item>
       <div *ngIf="nome.invalid && (nome.dirty || nome.touched)">
         <div *ngIf="nome.errors.required">
           <p>Nome é obrigatório.</p>
         </div>
       </div>
-   
 
       <ion-item>
         <ion-label floating>CPF: </ion-label>
-        <ion-input type="text" formControlName="cpf" [(ngModel)]="usuario.cpf"></ion-input>
+        <ion-input
+          type="text"
+          formControlName="cpf"
+          [(ngModel)]="usuario.cpf"
+        ></ion-input>
       </ion-item>
       <div *ngIf="cpf.invalid && (cpf.dirty || cpf.touched)">
         <div *ngIf="cpf.errors.required">
@@ -62,7 +53,10 @@
 
       <ion-item>
         <ion-label stacked>Faixa Salarial: </ion-label>
-        <ion-select formControlName="opcao" [(ngModel)]="usuario.faixa_salarial">
+        <ion-select
+          formControlName="opcao"
+          [(ngModel)]="usuario.faixa_salarial"
+        >
           <ion-option value=""> - Escolha - </ion-option>>
           <ion-option value="1">0 - 1000</ion-option>>
           <ion-option value="2">1000 - 3000</ion-option>
@@ -77,13 +71,20 @@
         </div>
       </div>
 
-
       <ion-item>
         <ion-label floating>Data Nascimento: </ion-label>
-        <ion-datetime displayFormat="MM/DD/YYYY" displayFormat="MM DD YY" formControlName="texto" value=""
-          [(ngModel)]="usuario.data_nascimento"></ion-datetime>
+        <ion-datetime
+          displayFormat="MM/DD/YYYY"
+          displayFormat="MM DD YY"
+          formControlName="texto"
+          value=""
+          [(ngModel)]="usuario.data_nascimento"
+        ></ion-datetime>
       </ion-item>
-      <div *ngIf="texto.invalid && (texto.dirty || texto.touched)" color="danger">
+      <div
+        *ngIf="texto.invalid && (texto.dirty || texto.touched)"
+        color="danger"
+      >
         <div *ngIf="texto.errors.required">
           <p>Informação é obrigatória</p>
         </div>
@@ -91,29 +92,55 @@
 
       <ion-item>
         <ion-label floating>Rua: </ion-label>
+<<<<<<< HEAD
         <ion-input  type="text" formControlName="rua"  [(ngModel)]="usuario.endereco.rua"></ion-input>
+=======
+        <ion-input
+          type="text"
+          formControlName="rua"
+          [(ngModel)]="usuario.endereco.rua"
+        ></ion-input>
+>>>>>>> 5a8891b054990d7d4b0832a2faa7b748dc1123f3
       </ion-item>
       <div *ngIf="rua.invalid && (rua.dirty || rua.touched)">
         <div *ngIf="rua.errors.required">
           <p>Preenchimento da rua é obrigatório</p>
         </div>
       </div>
-     
 
       <ion-item>
         <ion-label floating>Complemento: </ion-label>
+<<<<<<< HEAD
         <ion-input type="text" formControlName="complemento"  [(ngModel)]="usuario.endereco.complemento"></ion-input>
+=======
+        <ion-input
+          type="text"
+          formControlName="complemento"
+          [(ngModel)]="usuario.endereco.complemento"
+        ></ion-input>
+>>>>>>> 5a8891b054990d7d4b0832a2faa7b748dc1123f3
       </ion-item>
-      <div *ngIf="complemento.invalid && (complemento.dirty || complemento.touched)">
+      <div
+        *ngIf="
+          complemento.invalid && (complemento.dirty || complemento.touched)
+        "
+      >
         <div *ngIf="complemento.errors.required">
           <p>Preenchimento do Complemento é obrigatório</p>
         </div>
       </div>
 
-
       <ion-item>
         <ion-label floating>Bairro: </ion-label>
+<<<<<<< HEAD
         <ion-input type="text" formControlName="bairro"  [(ngModel)]="usuario.endereco.bairro"></ion-input>
+=======
+        <ion-input
+          type="text"
+          formControlName="bairro"
+          [(ngModel)]="usuario.endereco.bairro"
+        ></ion-input>
+>>>>>>> 5a8891b054990d7d4b0832a2faa7b748dc1123f3
       </ion-item>
       <div *ngIf="bairro.invalid && (bairro.dirty || bairro.touched)">
         <div *ngIf="bairro.errors.required">
@@ -121,10 +148,17 @@
         </div>
       </div>
 
-
       <ion-item>
         <ion-label floating>Cidade: </ion-label>
+<<<<<<< HEAD
         <ion-input type="text" formControlName="cidade"[(ngModel)]="usuario.endereco.cidade"></ion-input>
+=======
+        <ion-input
+          type="text"
+          formControlName="cidade"
+          [(ngModel)]="usuario.endereco.cidade"
+        ></ion-input>
+>>>>>>> 5a8891b054990d7d4b0832a2faa7b748dc1123f3
       </ion-item>
       <div *ngIf="cidade.invalid && (cidade.dirty || cidade.touched)">
         <div *ngIf="cidade.errors.required">
@@ -132,10 +166,13 @@
         </div>
       </div>
 
-
       <ion-item>
         <ion-label floating>CEP: </ion-label>
-        <ion-input type="text" formControlName="cep" [(ngModel)]="usuario.endereco.cep"></ion-input>
+        <ion-input
+          type="text"
+          formControlName="cep"
+          [(ngModel)]="usuario.endereco.cep"
+        ></ion-input>
       </ion-item>
       <div *ngIf="cep.invalid && (cep.dirty || cep.touched)">
         <div *ngIf="cep.errors.required">
@@ -143,20 +180,28 @@
         </div>
       </div>
 
-
       <ion-item>
         <ion-label floating>Estado: </ion-label>
-        <ion-input type="text" formControlName="estado" [(ngModel)]="usuario.endereco.estado"></ion-input>
+        <ion-input
+          type="text"
+          formControlName="estado"
+          [(ngModel)]="usuario.endereco.estado"
+        ></ion-input>
       </ion-item>
       <div *ngIf="estado.invalid && (estado.dirty || estado.touched)">
         <div *ngIf="estado.errors.required">
           <p>Preenchimento do Estado é obrigatório</p>
         </div>
       </div>
-
     </ion-list>
   </form>
-  <button ion-button full  [disabled]="!form.valid" class="botao" (click)="editarUsuario()">Atualizar
-    Cadastro</button>
-
+  <button
+    ion-button
+    full
+    [disabled]="!form.valid"
+    class="botao"
+    (click)="editarUsuario()"
+  >
+    Atualizar Cadastro
+  </button>
 </ion-content>

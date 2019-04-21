@@ -3,52 +3,44 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title style="text-align: center">Bem Vindo, {{usuario.login_usuario}}!
+    <ion-title style="text-align: center"
+      >Bem Vindo, {{ usuario.login_usuario }}!
     </ion-title>
- 
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-list>
-        {{pontuacao | json}}
-      <ion-list>
-          <ion-item *ngFor="let login_usuario of pontuacao">
-          
-          </ion-item>
-        </ion-list>
-      </ion-list>
-
-    <ion-list>
     <ion-menu [content]="content">
       <ion-header>
         <ion-toolbar color="primary">
-          <ion-title>
-            <ion-icon ios="ios-contact" md="md-contact"></ion-icon> Perfil do Usuário
-          </ion-title>
+          <ion-avatar>
+            <img class="circle" [src]="'assets/imgs/blank-avatar.png'" />
+          </ion-avatar>
+          <h2 class="login_usuario" text-center>{{ usuario.login_usuario }}</h2>
+          <p class="login_usuario" text-center>
+            <ion-icon id="icone" ios="ios-star" md="md-star"></ion-icon>
+            {{ pontuacao }}
+          </p>
         </ion-toolbar>
       </ion-header>
 
       <ion-content padding>
         <ion-list>
-
           <button ion-item (click)="editar()">
             <ion-icon ios="ios-create" md="md-create"></ion-icon> Editar perfil
-          
           </button>
 
           <button ion-item (click)="preferencias()">
-            <ion-icon ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon> Definir preferencias
+            <ion-icon ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon> Definir
+            preferencias
           </button>
 
-
-          <button ion-item (click)="sair()"> Sair
-          </button>
-          
+          <button ion-item (click)="sair()">Sair</button>
         </ion-list>
       </ion-content>
     </ion-menu>
-
   </ion-list>
 </ion-content>
+
 <ion-nav [root]="rootPage" #content></ion-nav>
