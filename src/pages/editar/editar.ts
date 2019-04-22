@@ -1,13 +1,24 @@
-
-import { CadastroDTO } from '../models/dadosUsuario';
-import { Component, ɵConsole } from '@angular/core';
-import { NavController, NavParams, ToastController, AlertController, Item, ModalController } from 'ionic-angular';
-import { ServidorProvider } from '../../providers/servidor/servidor';
-import { UsuarioPage } from '../usuario/usuario';
-import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
-import { CredenciaisDTO } from '../models/credenciais';
-import { EditarDTO } from '../models/editar';
-import { EnderecoDTO } from '../models/local';
+import { CadastroDTO } from "../models/dadosUsuario";
+import { Component, ɵConsole } from "@angular/core";
+import {
+  NavController,
+  NavParams,
+  ToastController,
+  AlertController,
+  Item,
+  ModalController
+} from "ionic-angular";
+import { ServidorProvider } from "../../providers/servidor/servidor";
+import { UsuarioPage } from "../usuario/usuario";
+import {
+  FormBuilder,
+  Validators,
+  FormGroup,
+  AbstractControl
+} from "@angular/forms";
+import { CredenciaisDTO } from "../models/credenciais";
+import { EditarDTO } from "../models/editar";
+import { EnderecoDTO } from "../models/local";
 
 /**
  * Generated class for the EditarPage page.
@@ -55,8 +66,14 @@ export class EditarPage {
     cep: "",
     estado: ""
   }*/
-  constructor(public navCtrl: NavController, public navParams: NavParams, public servidor: ServidorProvider,
-    public alertCtrl: AlertController, public toast: ToastController, public formBuilder: FormBuilder) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public servidor: ServidorProvider,
+    public alertCtrl: AlertController,
+    public toast: ToastController,
+    public formBuilder: FormBuilder
+  ) {
     this.createForm();
   }
 
@@ -69,17 +86,23 @@ export class EditarPage {
         this.form.get("nome").setValue(dadosPorUsuario.nome);
         this.form.get("cpf").setValue(dadosPorUsuario.cpf);
         this.form.get("rua").setValue(dadosPorUsuario.endereco[0].rua);
-        this.form.get("complemento").setValue(dadosPorUsuario.endereco[0].complemento);
+        this.form
+          .get("complemento")
+          .setValue(dadosPorUsuario.endereco[0].complemento);
         this.form.get("bairro").setValue(dadosPorUsuario.endereco[0].bairro);
         this.form.get("cidade").setValue(dadosPorUsuario.endereco[0].cidade);
         this.form.get("estado").setValue(dadosPorUsuario.endereco[0].estado);
         this.form.get("cep").setValue(dadosPorUsuario.endereco[0].cep);
         this.form.get("opcao").setValue(dadosPorUsuario.faixa_salarial);
-        this.form.get("faixa_salarial").setValue(dadosPorUsuario.faixa_salarial);
-        this.form.get("data_nascimento").setValue(dadosPorUsuario.data_nascimento);
+        this.form
+          .get("faixa_salarial")
+          .setValue(dadosPorUsuario.faixa_salarial);
+        this.form
+          .get("data_nascimento")
+          .setValue(dadosPorUsuario.data_nascimento);
         this.usuario.data_nascimento = dadosPorUsuario.data_nascimento;
       });
-  }
+  }F
 
   createForm() {
     this.form = this.formBuilder.group({
@@ -91,8 +114,8 @@ export class EditarPage {
       estado: ["", [Validators.required]],
       cep: ["", [Validators.required]],
       opcao: ["", [Validators.required]],
-      faixa_salarial : ["", [Validators.required] ] ,
-      data_nascimento : ["", [Validators.required]],
+      faixa_salarial: ["", [Validators.required]],
+      data_nascimento: ["", [Validators.required]],
       cpf: [
         "",
         [
@@ -136,7 +159,7 @@ export class EditarPage {
   }
 
   editarUsuario() {
-    let user = {usuario : this.usuario} 
+    let user = { usuario: this.usuario };
     this.servidor.atualizarUsuario(user).subscribe(
       () => {
         this.navCtrl.setRoot(UsuarioPage);

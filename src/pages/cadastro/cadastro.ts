@@ -31,7 +31,7 @@ export class CadastroPage {
   isTextFieldType: boolean;
 
   usuario: CredenciaisDTO = {
-    login_usuario: JSON.parse(localStorage.getItem("usuario")),
+    login_usuario: "", //JSON.parse(localStorage.getItem("usuario"));
     senha: ""
   };
 
