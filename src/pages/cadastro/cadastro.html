@@ -8,7 +8,7 @@
   <form [formGroup]="form">
     <ion-list>
       <ion-item>
-        <ion-label floating>Email </ion-label>
+        <ion-label floating>Email: </ion-label>
         <ion-input
           type="email"
           formControlName="email"
@@ -45,7 +45,10 @@
         >
         </ion-input>
       </ion-item>
-      <button (click)="togglePasswordFieldType()">
+      <button
+        style="background: none; margin-left: 10px;float: right;"
+        (click)="togglePasswordFieldType()"
+      >
         <ion-icon [name]="isTextFieldType ? 'eye-off' : 'eye'"></ion-icon>
       </button>
       <div *ngIf="senha.invalid && (senha.dirty || senha.touched)">
@@ -58,17 +61,20 @@
       </div>
 
       <ion-item>
-        <ion-label floating>Confirma Senha </ion-label>
+        <ion-label floating>Confirma Senha: </ion-label>
         <ion-input
           [type]="isTextFieldType ? 'text' : 'password'"
           formControlName="confirma_senha"
           [(ngModel)]="usuario.confirma_senha"
         ></ion-input>
       </ion-item>
-      <button (click)="togglePasswordFieldType()">
+      <button
+        style="background: none; margin-left: 10px; float: right;"
+        (click)="togglePasswordFieldType()"
+      >
         <ion-icon [name]="isTextFieldType ? 'eye-off' : 'eye'"></ion-icon>
       </button>
-      <ion-item
+      <div
         class="form-text error"
         *ngIf="
           senha.valid &&
@@ -76,11 +82,11 @@
           (confirma_senha.dirty || confirma_senha.touched)
         "
       >
-        <p no-margin floating>Senha e confirma senha devem ser iguais</p>
-      </ion-item>
+        <p>Senha e confirma senha devem ser iguais</p>
+      </div>
 
       <ion-item>
-        <ion-label floating>CPF </ion-label>
+        <ion-label floating>CPF: </ion-label>
         <ion-input
           type="text"
           formControlName="cpf"
@@ -100,7 +106,7 @@
       </div>
 
       <ion-item>
-        <ion-label stacked>Faixa Salarial </ion-label>
+        <ion-label stacked>Faixa Salarial: </ion-label>
         <ion-select
           formControlName="opcao"
           [(ngModel)]="usuario.faixa_salarial"
@@ -120,7 +126,7 @@
       </div>
 
       <ion-item>
-        <ion-label floating>Data Nascimento </ion-label>
+        <ion-label floating>Data Nascimento: </ion-label>
         <ion-datetime
           displayFormat="MM/DD/YYYY"
           displayFormat="MM DD YY"
@@ -153,7 +159,7 @@
       </div>
 
       <ion-item>
-        <ion-label floating>Complemento </ion-label>
+        <ion-label floating>Complemento: </ion-label>
         <ion-input
           type="text"
           formControlName="complemento"
@@ -171,7 +177,7 @@
       </div>
 
       <ion-item>
-        <ion-label floating>Bairro </ion-label>
+        <ion-label floating>Bairro: </ion-label>
         <ion-input
           type="text"
           formControlName="bairro"
@@ -185,7 +191,7 @@
       </div>
 
       <ion-item>
-        <ion-label floating>Cidade </ion-label>
+        <ion-label floating>Cidade: </ion-label>
         <ion-input
           type="text"
           formControlName="cidade"
@@ -199,7 +205,7 @@
       </div>
 
       <ion-item>
-        <ion-label floating>CEP </ion-label>
+        <ion-label floating>CEP: </ion-label>
         <ion-input
           type="text"
           formControlName="cep"
@@ -213,7 +219,7 @@
       </div>
 
       <ion-item>
-        <ion-label floating>Estado </ion-label>
+        <ion-label floating>Estado: </ion-label>
         <ion-input
           type="text"
           formControlName="estado"

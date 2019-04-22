@@ -69,9 +69,7 @@ export class EditarPage {
         this.form.get("cpf").setValue(dadosPorUsuario.cpf);
         this.form.get("texto").setValue(dadosPorUsuario.data_nascimento);
         this.form.get("rua").setValue(dadosPorUsuario.endereco[0].rua);
-        this.form
-          .get("complemento")
-          .setValue(dadosPorUsuario.endereco[0].complemento);
+        this.form.get("complemento").setValue(dadosPorUsuario.endereco[0].complemento);
         this.form.get("bairro").setValue(dadosPorUsuario.endereco[0].bairro);
         this.form.get("cidade").setValue(dadosPorUsuario.endereco[0].cidade);
         this.form.get("estado").setValue(dadosPorUsuario.endereco[0].estado);

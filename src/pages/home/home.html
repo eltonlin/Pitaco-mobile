@@ -6,10 +6,7 @@
       <ion-label floating>
         <ion-icon ios="ios-person" md="md-person"></ion-icon> Email
       </ion-label>
-      <ion-input
-        type="text"
-        [(ngModel)]="usuario.login_usuario"
-      ></ion-input>
+      <ion-input type="text" [(ngModel)]="usuario.login_usuario"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -21,7 +18,10 @@
         [(ngModel)]="usuario.senha"
       ></ion-input>
     </ion-item>
-    <button (click)="togglePasswordFieldType()">
+    <button
+      style="background: none;float: right;"
+      (click)="togglePasswordFieldType()"
+    >
       <ion-icon [name]="isTextFieldType ? 'eye-off' : 'eye'"></ion-icon>
     </button>
   </ion-list>
