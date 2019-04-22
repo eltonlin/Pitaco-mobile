@@ -1,31 +1,36 @@
 <ion-content padding>
-
-  <img src="assets/imgs/pitaco.jpg" class="logo">
+  <img src="assets/imgs/pitaco.jpg" class="logo" />
 
   <ion-list>
     <ion-item>
       <ion-label floating>
         <ion-icon ios="ios-person" md="md-person"></ion-icon> Email
       </ion-label>
-      <ion-input  type="text" [(ngModel)]="usuario.login_usuario"></ion-input>
+      <ion-input type="text" [(ngModel)]="usuario.login_usuario"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>
         <ion-icon ios="ios-lock" md="md-lock"></ion-icon> Senha
       </ion-label>
-      <ion-input [type]="isTextFieldType ? 'text' : 'password'" [(ngModel)]="usuario.senha"></ion-input>
+      <ion-input
+        [type]="isTextFieldType ? 'text' : 'password'"
+        [(ngModel)]="usuario.senha"
+      ></ion-input>
     </ion-item>
-    <button (click)="togglePasswordFieldType()">
+    <button
+      style="background: none;float: right;"
+      (click)="togglePasswordFieldType()"
+    >
       <ion-icon [name]="isTextFieldType ? 'eye-off' : 'eye'"></ion-icon>
     </button>
   </ion-list>
 
-
   <div>
     <button ion-button block class="botao" (click)="logar()">Logar</button>
     <button ion-button block class="botao" icon-start>
-      <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>Login com Facebook
+      <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>Login com
+      Facebook
     </button>
     <p class="textos"><a (click)="goToCadastro()">Cadastre-se</a></p>
   </div>
