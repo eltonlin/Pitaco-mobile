@@ -6,10 +6,14 @@
 
 <ion-content padding>
   <form [formGroup]="form">
-    <ion-list>    
+    <ion-list>
       <ion-item>
         <ion-label floating>Nome: </ion-label>
-        <ion-input type="text" formControlName="nome" [(ngModel)]="usuario.nome"></ion-input>
+        <ion-input
+          type="text"
+          formControlName="nome"
+          [(ngModel)]="usuario.nome"
+        ></ion-input>
       </ion-item>
       <div *ngIf="nome.invalid && (nome.dirty || nome.touched)">
         <div *ngIf="nome.errors.required">
@@ -19,7 +23,11 @@
 
       <ion-item>
         <ion-label floating>CPF: </ion-label>
-        <ion-input type="text" formControlName="cpf" [(ngModel)]="usuario.cpf"></ion-input>
+        <ion-input
+          type="text"
+          formControlName="cpf"
+          [(ngModel)]="usuario.cpf"
+        ></ion-input>
       </ion-item>
       <div *ngIf="cpf.invalid && (cpf.dirty || cpf.touched)">
         <div *ngIf="cpf.errors.required">
@@ -47,7 +55,12 @@
           <ion-option value="5">10000 ou mais</ion-option>
         </ion-select>
       </ion-item>
-      <div *ngIf="faixa_salarial.invalid && (faixa_salarial.dirty || faixa_salarial.touched)">
+      <div
+        *ngIf="
+          faixa_salarial.invalid &&
+          (faixa_salarial.dirty || faixa_salarial.touched)
+        "
+      >
         <div *ngIf="faixa_salarial.errors.required">
           <p>Faixa salárial é obrigatória</p>
         </div>
@@ -55,14 +68,22 @@
 
       <ion-item>
         <ion-label floating>Data Nascimento: </ion-label>
-        <ion-datetime
-          displayFormat="DD-MM-YYYY"
+        <!--<ion-datetime
+          displayFormat="YYYY-MM-DD"
           formControlName="data_nascimento"
           [(ngModel)]="usuario.data_nascimento"
+        ></ion-datetime>-->
+        <ion-datetime
+          [dayShortNames]="customDayShortNames"
+          displayFormat="DD MMM YY"
+          monthShortNames="jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez"
         ></ion-datetime>
       </ion-item>
       <div
-        *ngIf="data_nascimento.invalid && (data_nascimento.dirty || data_nascimento.touched)"
+        *ngIf="
+          data_nascimento.invalid &&
+          (data_nascimento.dirty || data_nascimento.touched)
+        "
         color="danger"
       >
         <div *ngIf="data_nascimento.errors.required">
@@ -72,7 +93,11 @@
 
       <ion-item>
         <ion-label floating>Rua: </ion-label>
-        <ion-input type="text" formControlName="rua" [(ngModel)]="usuario.endereco.rua"></ion-input>
+        <ion-input
+          type="text"
+          formControlName="rua"
+          [(ngModel)]="usuario.endereco.rua"
+        ></ion-input>
       </ion-item>
       <div *ngIf="rua.invalid && (rua.dirty || rua.touched)">
         <div *ngIf="rua.errors.required">
@@ -82,11 +107,17 @@
 
       <ion-item>
         <ion-label floating>Complemento: </ion-label>
-        <ion-input type="text" formControlName="complemento" [(ngModel)]="usuario.endereco.complemento"></ion-input>
+        <ion-input
+          type="text"
+          formControlName="complemento"
+          [(ngModel)]="usuario.endereco.complemento"
+        ></ion-input>
       </ion-item>
-      <div *ngIf="
+      <div
+        *ngIf="
           complemento.invalid && (complemento.dirty || complemento.touched)
-        ">
+        "
+      >
         <div *ngIf="complemento.errors.required">
           <p>Preenchimento do Complemento é obrigatório</p>
         </div>
@@ -94,7 +125,11 @@
 
       <ion-item>
         <ion-label floating>Bairro: </ion-label>
-        <ion-input type="text" formControlName="bairro" [(ngModel)]="usuario.endereco.bairro"></ion-input>
+        <ion-input
+          type="text"
+          formControlName="bairro"
+          [(ngModel)]="usuario.endereco.bairro"
+        ></ion-input>
       </ion-item>
       <div *ngIf="bairro.invalid && (bairro.dirty || bairro.touched)">
         <div *ngIf="bairro.errors.required">
@@ -104,7 +139,11 @@
 
       <ion-item>
         <ion-label floating>Cidade: </ion-label>
-        <ion-input type="text" formControlName="cidade" [(ngModel)]="usuario.endereco.cidade"></ion-input>
+        <ion-input
+          type="text"
+          formControlName="cidade"
+          [(ngModel)]="usuario.endereco.cidade"
+        ></ion-input>
       </ion-item>
       <div *ngIf="cidade.invalid && (cidade.dirty || cidade.touched)">
         <div *ngIf="cidade.errors.required">
@@ -114,7 +153,11 @@
 
       <ion-item>
         <ion-label floating>CEP: </ion-label>
-        <ion-input type="text" formControlName="cep" [(ngModel)]="usuario.endereco.cep"></ion-input>
+        <ion-input
+          type="text"
+          formControlName="cep"
+          [(ngModel)]="usuario.endereco.cep"
+        ></ion-input>
       </ion-item>
       <div *ngIf="cep.invalid && (cep.dirty || cep.touched)">
         <div *ngIf="cep.errors.required">
@@ -124,7 +167,11 @@
 
       <ion-item>
         <ion-label floating>Estado: </ion-label>
-        <ion-input type="text" formControlName="estado" [(ngModel)]="usuario.endereco.estado"></ion-input>
+        <ion-input
+          type="text"
+          formControlName="estado"
+          [(ngModel)]="usuario.endereco.estado"
+        ></ion-input>
       </ion-item>
       <div *ngIf="estado.invalid && (estado.dirty || estado.touched)">
         <div *ngIf="estado.errors.required">
@@ -133,7 +180,13 @@
       </div>
     </ion-list>
   </form>
-  <button ion-button full [disabled]="!form.valid" class="botao" (click)="editarUsuario()">
+  <button
+    ion-button
+    full
+    [disabled]="!form.valid"
+    class="botao"
+    (click)="editarUsuario()"
+  >
     Atualizar Cadastro
   </button>
 </ion-content>
