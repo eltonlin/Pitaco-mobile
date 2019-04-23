@@ -209,6 +209,7 @@
         <ion-input
           type="text"
           formControlName="cep"
+          (ionBlur)="buscaCep()"
           [(ngModel)]="usuario.cep"
         ></ion-input>
       </ion-item>

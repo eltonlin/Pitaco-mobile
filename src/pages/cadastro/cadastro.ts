@@ -20,6 +20,9 @@ import { PreferenciasPage } from "../preferencias/preferencias";
 import { CredenciaisDTO } from "../models/credenciais";
 import { CadastroDTO } from "../models/dadosUsuario";
 import { Body } from "@angular/http/src/body";
+import "rxjs/add/operator/map";
+import { HttpClient } from "@angular/common/http";
+import { Http } from "@angular/http";
 
 @Component({
   selector: "page-cadastro",
@@ -58,7 +61,8 @@ export class CadastroPage {
     public servidor: ServidorProvider,
     public alertCtrl: AlertController,
     public toast: ToastController,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    public http: Http
   ) {
     //this.usuario_dados = {};
 
@@ -155,6 +159,22 @@ export class CadastroPage {
 
   togglePasswordFieldType() {
     this.isTextFieldType = !this.isTextFieldType;
+  }
+
+  buscaCep() {
+    const cepValue = this.form.controls["cep"].value;
+    const isValid = this.form.controls["cep"].valid;
+    if (isValid) {
+      this.http
+        .get(`https://viacep.com.br/ws/${cepValue}/json/`)
+        .map(res => res.json())
+        .subscribe(
+          data => {
+            console.log(data);
+          },
+          error => {}
+        );
+    }
   }
 
   salvarUsuario() {
