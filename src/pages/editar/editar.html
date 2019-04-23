@@ -74,9 +74,11 @@
           [(ngModel)]="usuario.data_nascimento"
         ></ion-datetime>-->
         <ion-datetime
+          formControlName="data_nascimento"
           [dayShortNames]="customDayShortNames"
           displayFormat="DD MMM YY"
           monthShortNames="jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez"
+          [(ngModel)]="usuario.data_nascimento"
         ></ion-datetime>
       </ion-item>
       <div
@@ -92,8 +94,25 @@
       </div>
 
       <ion-item>
+        <ion-label floating>CEP: </ion-label>
+        <ion-input
+          (ionBlur)="buscaCep()"
+          type="text"
+          formControlName="cep"
+          [(ngModel)]="usuario.endereco.cep"
+        >
+        </ion-input>
+      </ion-item>
+      <div *ngIf="cep.invalid && (cep.dirty || cep.touched)">
+        <div *ngIf="cep.errors.required">
+          <p>Preenchimento do CEP é obrigatória</p>
+        </div>
+      </div>
+
+      <ion-item>
         <ion-label floating>Rua: </ion-label>
         <ion-input
+          [disabled]="true"
           type="text"
           formControlName="rua"
           [(ngModel)]="usuario.endereco.rua"
@@ -126,10 +145,12 @@
       <ion-item>
         <ion-label floating>Bairro: </ion-label>
         <ion-input
+          [disabled]="true"
           type="text"
           formControlName="bairro"
           [(ngModel)]="usuario.endereco.bairro"
-        ></ion-input>
+        >
+        </ion-input>
       </ion-item>
       <div *ngIf="bairro.invalid && (bairro.dirty || bairro.touched)">
         <div *ngIf="bairro.errors.required">
@@ -140,10 +161,12 @@
       <ion-item>
         <ion-label floating>Cidade: </ion-label>
         <ion-input
+          [disabled]="true"
           type="text"
           formControlName="cidade"
           [(ngModel)]="usuario.endereco.cidade"
-        ></ion-input>
+        >
+        </ion-input>
       </ion-item>
       <div *ngIf="cidade.invalid && (cidade.dirty || cidade.touched)">
         <div *ngIf="cidade.errors.required">
@@ -152,26 +175,14 @@
       </div>
 
       <ion-item>
-        <ion-label floating>CEP: </ion-label>
-        <ion-input
-          type="text"
-          formControlName="cep"
-          [(ngModel)]="usuario.endereco.cep"
-        ></ion-input>
-      </ion-item>
-      <div *ngIf="cep.invalid && (cep.dirty || cep.touched)">
-        <div *ngIf="cep.errors.required">
-          <p>Preenchimento do CEP é obrigatória</p>
-        </div>
-      </div>
-
-      <ion-item>
         <ion-label floating>Estado: </ion-label>
         <ion-input
+          [disabled]="true"
           type="text"
           formControlName="estado"
           [(ngModel)]="usuario.endereco.estado"
-        ></ion-input>
+        >
+        </ion-input>
       </ion-item>
       <div *ngIf="estado.invalid && (estado.dirty || estado.touched)">
         <div *ngIf="estado.errors.required">

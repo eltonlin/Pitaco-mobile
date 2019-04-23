@@ -102,7 +102,8 @@ export class EditarPage {
           .setValue(dadosPorUsuario.data_nascimento);
         this.usuario.data_nascimento = dadosPorUsuario.data_nascimento;
       });
-  }F
+  }
+  F;
 
   createForm() {
     this.form = this.formBuilder.group({
@@ -156,6 +157,24 @@ export class EditarPage {
   }
   get cpf() {
     return this.form.get("cpf");
+  }
+
+  buscaCep() {
+    this.usuario.endereco.cep = this.form.controls["cep"].value;
+    const isValid = this.form.controls["cep"].valid;
+    if (isValid) {
+      this.servidor.buscaCep(this.usuario.endereco.cep).subscribe(
+        data => {
+          console.log(data);
+          this.form.get("rua").setValue(data.logradouro);
+          this.form.get("bairro").setValue(data.bairro);
+          this.form.get("cidade").setValue(data.localidade);
+          this.form.get("estado").setValue(data.uf);
+          return true;
+        },
+        error => {}
+      );
+    }
   }
 
   editarUsuario() {
