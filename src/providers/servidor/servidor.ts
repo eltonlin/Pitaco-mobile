@@ -1,8 +1,6 @@
-import { Http, Response } from "@angular/http";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/Observable";
-import { map } from "rxjs/operators";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import { CredenciaisDTO } from "../../pages/models/credenciais";
@@ -13,6 +11,12 @@ export class ServidorProvider {
 
   constructor(public http: HttpClient) {
     console.log("Hello ServidorProvider Provider");
+  }
+
+  buscaCep(cep): Observable<any> {
+    return this.http
+      .get(`https://viacep.com.br/ws/${cep}/json/`)
+      .map(res => res);
   }
 
   salvarUsuario(obj): Observable<any> {

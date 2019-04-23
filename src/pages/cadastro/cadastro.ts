@@ -1,28 +1,16 @@
-import { Component, ɵConsole } from "@angular/core";
+import { Component } from "@angular/core";
 import {
   NavController,
   NavParams,
   ToastController,
-  AlertController,
-  Item,
-  ModalController
+  AlertController
 } from "ionic-angular";
 import { ServidorProvider } from "../../providers/servidor/servidor";
-import { UsuarioPage } from "../usuario/usuario";
-import {
-  FormBuilder,
-  Validators,
-  FormGroup,
-  AbstractControl
-} from "@angular/forms";
-import { registerModuleFactory } from "@angular/core/src/linker/ng_module_factory_loader";
+import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { PreferenciasPage } from "../preferencias/preferencias";
 import { CredenciaisDTO } from "../models/credenciais";
 import { CadastroDTO } from "../models/dadosUsuario";
-import { Body } from "@angular/http/src/body";
 import "rxjs/add/operator/map";
-import { HttpClient } from "@angular/common/http";
-import { Http } from "@angular/http";
 
 @Component({
   selector: "page-cadastro",
@@ -37,6 +25,8 @@ export class CadastroPage {
     login_usuario: "", //JSON.parse(localStorage.getItem("usuario"));
     senha: ""
   };
+
+  endereco_cep: {};
 
   // usuario  = JSON.parse(localStorage.getItem('usuario'))
   usuario_dados: CadastroDTO = {
@@ -61,8 +51,7 @@ export class CadastroPage {
     public servidor: ServidorProvider,
     public alertCtrl: AlertController,
     public toast: ToastController,
-    public formBuilder: FormBuilder,
-    public http: Http
+    public formBuilder: FormBuilder
   ) {
     //this.usuario_dados = {};
 
@@ -165,15 +154,13 @@ export class CadastroPage {
     const cepValue = this.form.controls["cep"].value;
     const isValid = this.form.controls["cep"].valid;
     if (isValid) {
-      this.http
-        .get(`https://viacep.com.br/ws/${cepValue}/json/`)
-        .map(res => res.json())
-        .subscribe(
-          data => {
-            console.log(data);
-          },
-          error => {}
-        );
+      this.servidor.buscaCep(cepValue).subscribe(
+        data => {
+          this.endereco_cep = data;
+          console.log(this.endereco_cep);
+        },
+        error => {}
+      );
     }
   }
 
