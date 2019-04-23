@@ -3,11 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-<<<<<<< HEAD
-    <ion-title style="text-align: center;"
-=======
     <ion-title style="text-align: center"
->>>>>>> b315695777a73d761ee6fbfc9ae20f5659f4e5e3
       >Bem Vindo, {{ usuario.login_usuario }}!
     </ion-title>
   </ion-navbar>
@@ -18,23 +14,14 @@
     <ion-menu [content]="content">
       <ion-header>
         <ion-toolbar color="primary">
-<<<<<<< HEAD
-          <ion-title>
-            <ion-icon ios="ios-contact" md="md-contact"></ion-icon>
-            {{ usuario.login_usuario }}
-            <p></p>
-            {{ pontuacao | json }}
-          </ion-title>
-=======
           <ion-avatar>
             <img class="circle" [src]="'assets/imgs/blank-avatar.png'" />
           </ion-avatar>
-          <h2 class="login_usuario" text-center>{{ usuario.login_usuario }}</h2>
+          <h4 class="login_usuario" text-center>{{ usuario.login_usuario }}</h4>
           <p class="login_usuario" text-center>
             <ion-icon id="icone" ios="ios-star" md="md-star"></ion-icon>
             {{ pontuacao }}
           </p>
->>>>>>> b315695777a73d761ee6fbfc9ae20f5659f4e5e3
         </ion-toolbar>
       </ion-header>
 
@@ -55,8 +42,4 @@
     </ion-menu>
   </ion-list>
 </ion-content>
-<<<<<<< HEAD
-=======
-
->>>>>>> b315695777a73d761ee6fbfc9ae20f5659f4e5e3
 <ion-nav [root]="rootPage" #content></ion-nav>
