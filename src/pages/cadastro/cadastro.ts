@@ -34,16 +34,16 @@ export class CadastroPage {
   // usuario_dados: any = [];
 
 
-  private endereco:any = {};
+  private endereco: any = {};
   isTextFieldType: boolean;
 
 
- // login: CredenciaisDTO = {
+  // login: CredenciaisDTO = {
   //  login_usuario: JSON.parse(localStorage.getItem("usuario")),
-   // senha: ""
+  // senha: ""
   //};
 
- 
+
   usuario: CadastroDTO = {
     login_usuario: "",
     nome: "",
@@ -79,7 +79,7 @@ export class CadastroPage {
       }*/
   }
 
-  ionViewDidLoad() {}
+  ionViewDidLoad() { }
 
   createForm() {
     this.form = this.formBuilder.group(
@@ -105,8 +105,8 @@ export class CadastroPage {
         senha: ["", [Validators.required, Validators.minLength(5)]],
         confirma_senha: ["", [Validators.required]]
       },
-      { validator: this.validarSenhas("senha", "confirma_senha")}
-    
+      { validator: this.validarSenhas("senha", "confirma_senha") }
+
     );
   }
 
@@ -170,7 +170,7 @@ export class CadastroPage {
   buscaCep() {
     this.usuario.cep = this.form.controls["cep"].value;
     const isValid = this.form.controls["cep"].valid;
-   if (isValid) { 
+    if (isValid) {
       this.servidor.buscaCep(this.usuario.cep)
         .subscribe(
           data => {
@@ -179,17 +179,14 @@ export class CadastroPage {
             this.form.get("bairro").setValue(data.bairro);
             this.form.get("cidade").setValue(data.localidade);
             this.form.get("estado").setValue(data.uf);
-
-    
-     
-           
+            return true;
           },
-          error => {}
-        );  
-  
+          error => { }
+        ) 
       }
-    
   }
+
+
 
   salvarUsuario() {
     this.servidor.salvarUsuario(this.usuario).subscribe(
