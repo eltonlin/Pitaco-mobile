@@ -127,12 +127,17 @@
 
       <ion-item>
         <ion-label floating>Data Nascimento: </ion-label>
-        <ion-datetime
-          displayFormat="MM/DD/YYYY"
-          displayFormat="MM DD YY"
+        <!-- <ion-datetime
+          displayFormat="DD/MMM/YYYY"
+          displayFormat="DD MMM YY"
           formControlName="texto"
           value=""
           [(ngModel)]="usuario.data_nascimento"
+        ></ion-datetime>-->
+        <ion-datetime
+          [dayShortNames]="customDayShortNames"
+          displayFormat="DD MMM YY"
+          monthShortNames="jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez"
         ></ion-datetime>
       </ion-item>
       <div
