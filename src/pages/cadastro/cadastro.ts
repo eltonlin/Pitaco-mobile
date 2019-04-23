@@ -1,4 +1,4 @@
-import { Component, ɵConsole } from "@angular/core";
+import { Component, ɵConsole, TestabilityRegistry } from "@angular/core";
 import {
   NavController,
   NavParams,
@@ -23,6 +23,7 @@ import { Body } from "@angular/http/src/body";
 import "rxjs/add/operator/map";
 import { HttpClient } from "@angular/common/http";
 import { Http } from "@angular/http";
+import { INVALID } from "@angular/forms/src/model";
 
 @Component({
   selector: "page-cadastro",
@@ -31,15 +32,19 @@ import { Http } from "@angular/http";
 export class CadastroPage {
   form: FormGroup;
   // usuario_dados: any = [];
+
+
+  private endereco:any = {};
   isTextFieldType: boolean;
 
-  usuario: CredenciaisDTO = {
-    login_usuario: "", //JSON.parse(localStorage.getItem("usuario"));
-    senha: ""
-  };
 
-  // usuario  = JSON.parse(localStorage.getItem('usuario'))
-  usuario_dados: CadastroDTO = {
+ // login: CredenciaisDTO = {
+  //  login_usuario: JSON.parse(localStorage.getItem("usuario")),
+   // senha: ""
+  //};
+
+ 
+  usuario: CadastroDTO = {
     login_usuario: "",
     nome: "",
     senha: "",
@@ -100,7 +105,8 @@ export class CadastroPage {
         senha: ["", [Validators.required, Validators.minLength(5)]],
         confirma_senha: ["", [Validators.required]]
       },
-      { validator: this.validarSenhas("senha", "confirma_senha") }
+      { validator: this.validarSenhas("senha", "confirma_senha")}
+    
     );
   }
 
@@ -144,6 +150,10 @@ export class CadastroPage {
     return this.form.get("cpf");
   }
 
+  togglePasswordFieldType() {
+    this.isTextFieldType = !this.isTextFieldType;
+  }
+
   validarSenhas(senhaKey: string, confirma_senhaKey: string) {
     return (group: FormGroup): { [key: string]: any } => {
       let senha = group.controls[senhaKey];
@@ -157,24 +167,28 @@ export class CadastroPage {
     };
   }
 
-  togglePasswordFieldType() {
-    this.isTextFieldType = !this.isTextFieldType;
-  }
-
   buscaCep() {
-    const cepValue = this.form.controls["cep"].value;
+    this.usuario.cep = this.form.controls["cep"].value;
     const isValid = this.form.controls["cep"].valid;
-    if (isValid) {
-      this.http
-        .get(`https://viacep.com.br/ws/${cepValue}/json/`)
-        .map(res => res.json())
+   if (isValid) { 
+      this.servidor.buscaCep(this.usuario.cep)
         .subscribe(
           data => {
             console.log(data);
+            this.form.get("rua").setValue(data.logradouro);
+            this.form.get("bairro").setValue(data.bairro);
+            this.form.get("cidade").setValue(data.localidade);
+            this.form.get("estado").setValue(data.uf);
+
+    
+     
+           
           },
           error => {}
-        );
-    }
+        );  
+  
+      }
+    
   }
 
   salvarUsuario() {

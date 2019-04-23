@@ -20,6 +20,11 @@ export class ServidorProvider {
       .post(this.url + "/usuario_final/cadastrar_login", obj)
       .map(res => res);
   }
+  buscaCep(cep: String): Observable<any>{
+    return this.http
+    .get(`https://viacep.com.br/ws/${cep}/json/`)
+    .map(res => res)
+  }
 
   atualizarUsuario(obj): Observable<any> {
     return this.http

@@ -73,10 +73,11 @@
           formControlName="data_nascimento"
           [(ngModel)]="usuario.data_nascimento"
         ></ion-datetime>-->
-        <ion-datetime
+        <ion-datetime formControlName="data_nascimento"
           [dayShortNames]="customDayShortNames"
           displayFormat="DD MMM YY"
           monthShortNames="jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez"
+          [(ngModel)]="usuario.data_nascimento"
         ></ion-datetime>
       </ion-item>
       <div

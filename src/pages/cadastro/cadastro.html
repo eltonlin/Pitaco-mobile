@@ -134,12 +134,13 @@
           value=""
           [(ngModel)]="usuario.data_nascimento"
         ></ion-datetime>-->
-        <ion-datetime
+         <ion-datetime  formControlName="texto"
           [dayShortNames]="customDayShortNames"
-          displayFormat="DD MMM YY"
+          displayFormat="DD MM YY"
           monthShortNames="jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez"
-        ></ion-datetime>
-      </ion-item>
+          [(ngModel)]="usuario.data_nascimento"
+        ></ion-datetime>  
+      </ion-item> 
       <div
         *ngIf="texto.invalid && (texto.dirty || texto.touched)"
         color="danger"
@@ -148,6 +149,22 @@
           <p>Informação é obrigatória</p>
         </div>
       </div>
+
+      <ion-item>
+          <ion-label floating>CEP: </ion-label>
+          <ion-input
+            type="text"
+            formControlName="cep"
+            (ionBlur)="buscaCep()"
+            [(ngModel)]="usuario.cep"
+          ></ion-input>
+        </ion-item>
+        <div *ngIf="cep.invalid && (cep.dirty || cep.touched)">
+          <div *ngIf="cep.errors.required">
+            <p>Preenchimento do CEP é obrigatória</p>
+          </div>
+        </div>
+  
 
       <ion-item>
         <ion-label floating>Rua: </ion-label>
@@ -172,10 +189,7 @@
         ></ion-input>
       </ion-item>
       <div
-        *ngIf="
-          complemento.invalid && (complemento.dirty || complemento.touched)
-        "
-      >
+        *ngIf="complemento.invalid && (complemento.dirty || complemento.touched)">
         <div *ngIf="complemento.errors.required">
           <p>Preenchimento do Complemento é obrigatório</p>
         </div>
@@ -209,21 +223,7 @@
         </div>
       </div>
 
-      <ion-item>
-        <ion-label floating>CEP: </ion-label>
-        <ion-input
-          type="text"
-          formControlName="cep"
-          (ionBlur)="buscaCep()"
-          [(ngModel)]="usuario.cep"
-        ></ion-input>
-      </ion-item>
-      <div *ngIf="cep.invalid && (cep.dirty || cep.touched)">
-        <div *ngIf="cep.errors.required">
-          <p>Preenchimento do CEP é obrigatória</p>
-        </div>
-      </div>
-
+     
       <ion-item>
         <ion-label floating>Estado: </ion-label>
         <ion-input
