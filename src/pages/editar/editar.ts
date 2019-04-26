@@ -106,13 +106,13 @@ export class EditarPage {
 
   createForm() {
     this.form = this.formBuilder.group({
-      rua: [, Validators.required],
-      nome: ["", [Validators.required]],
-      complemento: ["", [Validators.required]],
+      rua: ["", Validators.required],
+      nome: ["", [Validators.required, Validators.maxLength(100)]],
+      complemento: ["", [Validators.required, Validators.maxLength(50)]],
       bairro: ["", [Validators.required]],
       cidade: ["", [Validators.required]],
       estado: ["", [Validators.required]],
-      cep: ["", [Validators.required]],
+      cep: ["", [Validators.required, Validators.maxLength(8),  Validators.minLength(8)]],
       opcao: ["", [Validators.required]],
       faixa_salarial: ["", [Validators.required]],
       data_nascimento: ["", [Validators.required]],

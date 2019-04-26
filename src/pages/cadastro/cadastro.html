@@ -16,6 +16,9 @@
         <div *ngIf="email.errors.email">
           <p>Informe um email válido.</p>
         </div>
+        <div *ngIf="email.errors.maxlength">
+          <p>Informe um email que possua no máximo 30 caracteres</p>
+        </div>
       </div>
 
       <ion-item>
@@ -25,6 +28,9 @@
       <div *ngIf="nome.invalid && (texto.dirty || nome.touched)">
         <div *ngIf="nome.errors.required">
           <p>Nome é obrigatório.</p>
+        </div>
+        <div *ngIf="nome.errors.maxlength">
+          <p>Nome ultrapassa o limite permitido.</p>
         </div>
       </div>
 
@@ -43,6 +49,9 @@
         <div *ngIf="senha.errors.minlength">
           <p>Senha deve ser maior que 5 caracteres</p>
         </div>
+        <div *ngIf="senha.errors.maxlength">
+          <p>Senha deve possuir até 30 caracteres</p>
+        </div> 
       </div>
 
       <ion-item>
@@ -121,6 +130,12 @@
         <div *ngIf="cep.errors.required">
           <p>Preenchimento do CEP é obrigatória</p>
         </div>
+        <div *ngIf="cep.errors.maxlength">
+          <p>Informe um CEP válido</p>
+        </div>
+        <div *ngIf="cep.errors.minlength">
+          <p>CEP deve possuir 8 caracteres</p>
+        </div>
       </div>
 
 
@@ -141,6 +156,9 @@
       <div *ngIf="complemento.invalid && (complemento.dirty || complemento.touched)">
         <div *ngIf="complemento.errors.required">
           <p>Preenchimento do Complemento é obrigatório</p>
+        </div>
+        <div *ngIf="complemento.errors.maxlength">
+          <p>Informação sobre complemento ultrapassa o limite permitido</p>
         </div>
       </div>
 
