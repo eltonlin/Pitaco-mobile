@@ -14,6 +14,16 @@ import { EditarPage } from "../editar/editar";
   templateUrl: "usuario.html"
 })
 export class UsuarioPage {
+  questionarios: any = [
+    "questionario01",
+    "questionario02",
+    "questionario03",
+    "questionario04",
+    "questionario05",
+    "questionario06",
+    "questionario07"
+  ];
+
   usuario: CredenciaisDTO = {
     login_usuario: JSON.parse(localStorage.getItem("usuario")),
     senha: ""

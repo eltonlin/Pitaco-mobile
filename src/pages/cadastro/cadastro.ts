@@ -70,15 +70,22 @@ export class CadastroPage {
   createForm() {
     this.form = this.formBuilder.group(
       {
-        email: ["", [Validators.email]],
+        email: ["", [Validators.email, Validators.maxLength(30)]],
         rua: [, Validators.required],
-        nome: ["", [Validators.required]],
+        nome: ["", [Validators.required, Validators.maxLength(100)]],
         texto: ["", [Validators.required]],
-        complemento: ["", [Validators.required]],
+        complemento: ["", [Validators.required, Validators.maxLength(50)]],
         bairro: ["", [Validators.required]],
         cidade: ["", [Validators.required]],
         estado: ["", [Validators.required]],
-        cep: ["", [Validators.required]],
+        cep: [
+          "",
+          [
+            Validators.required,
+            Validators.maxLength(8),
+            Validators.minLength(8)
+          ]
+        ],
         opcao: ["", [Validators.required]],
         cpf: [
           "",
@@ -88,7 +95,14 @@ export class CadastroPage {
             Validators.minLength(11)
           ]
         ],
-        senha: ["", [Validators.required, Validators.minLength(5)]],
+        senha: [
+          "",
+          [
+            Validators.required,
+            Validators.minLength(5),
+            Validators.maxLength(30)
+          ]
+        ],
         confirma_senha: ["", [Validators.required]]
       },
       { validator: this.validarSenhas("senha", "confirma_senha") }

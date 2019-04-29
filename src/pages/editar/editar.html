@@ -19,6 +19,9 @@
         <div *ngIf="nome.errors.required">
           <p>Nome é obrigatório.</p>
         </div>
+        <div *ngIf="nome.errors.maxlength">
+          <p>Nome ultrapassa o limite permitido.</p>
+        </div>
       </div>
 
       <ion-item>
@@ -107,6 +110,12 @@
         <div *ngIf="cep.errors.required">
           <p>Preenchimento do CEP é obrigatória</p>
         </div>
+        <div *ngIf="cep.errors.maxlength">
+          <p>Informe um CEP válido</p>
+        </div>
+        <div *ngIf="cep.errors.minlength">
+          <p>CEP deve possuir 8 caracteres</p>
+        </div>
       </div>
 
       <ion-item>
@@ -139,6 +148,9 @@
       >
         <div *ngIf="complemento.errors.required">
           <p>Preenchimento do Complemento é obrigatório</p>
+        </div>
+        <div *ngIf="complemento.errors.maxlength">
+          <p>Informação sobre complemento ultrapassa o limite permitido</p>
         </div>
       </div>
 

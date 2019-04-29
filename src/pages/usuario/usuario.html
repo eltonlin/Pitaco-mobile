@@ -9,37 +9,51 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-list>
-    <ion-menu [content]="content">
-      <ion-header>
-        <ion-toolbar color="primary">
-          <ion-avatar>
-            <img class="circle" [src]="'assets/imgs/blank-avatar.png'" />
-          </ion-avatar>
-          <h4 class="login_usuario" text-center>{{ usuario.login_usuario }}</h4>
-          <p class="login_usuario" text-center>
-            <ion-icon id="icone" ios="ios-star" md="md-star"></ion-icon>
-            {{ pontuacao }}
-          </p>
-        </ion-toolbar>
-      </ion-header>
+<ion-content>
+  <ion-menu [content]="content">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-avatar>
+          <img class="circle" [src]="'assets/imgs/blank-avatar.png'" />
+        </ion-avatar>
+        <h4 class="login_usuario" text-center>{{ usuario.login_usuario }}</h4>
+        <p class="login_usuario" text-center>
+          <ion-icon id="icone" ios="ios-star" md="md-star"></ion-icon>
+          {{ pontuacao }}
+        </p>
+      </ion-toolbar>
+    </ion-header>
 
-      <ion-content padding>
-        <ion-list>
-          <button ion-item (click)="editar()">
-            <ion-icon ios="ios-create" md="md-create"></ion-icon> Editar perfil
-          </button>
+    <ion-content>
+      <ion-list>
+        <button ion-item (click)="editar()">
+          <ion-icon ios="ios-create" md="md-create"></ion-icon> Editar perfil
+        </button>
 
-          <button ion-item (click)="preferencias()">
-            <ion-icon ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon> Definir
-            preferencias
-          </button>
+        <button ion-item (click)="preferencias()">
+          <ion-icon ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon> Definir
+          preferencias
+        </button>
 
-          <button ion-item (click)="sair()">Sair</button>
-        </ion-list>
-      </ion-content>
-    </ion-menu>
-  </ion-list>
+        <button ion-item (click)="sair()">Sair</button>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-content>
+    <ion-card *ngFor="let questionario of questionarios">
+      <button ion-item>
+        <ion-avatar item-start>
+          <img src="assets/imgs/pontos.png" />
+        </ion-avatar>
+        <h1>{{ questionario }}</h1>
+
+        <ion-card-content>
+          qtd perguntas
+        </ion-card-content>
+      </button>
+    </ion-card>
+  </ion-content>
 </ion-content>
+
 <ion-nav [root]="rootPage" #content></ion-nav>
