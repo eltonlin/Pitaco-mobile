@@ -33,16 +33,13 @@ export class CadastroPage {
   form: FormGroup;
   // usuario_dados: any = [];
 
-
   private endereco: any = {};
   isTextFieldType: boolean;
-
 
   // login: CredenciaisDTO = {
   //  login_usuario: JSON.parse(localStorage.getItem("usuario")),
   // senha: ""
   //};
-
 
   usuario: CadastroDTO = {
     login_usuario: "",
@@ -79,7 +76,7 @@ export class CadastroPage {
       }*/
   }
 
-  ionViewDidLoad() { }
+  ionViewDidLoad() {}
 
   createForm() {
     this.form = this.formBuilder.group(
@@ -92,7 +89,14 @@ export class CadastroPage {
         bairro: ["", [Validators.required]],
         cidade: ["", [Validators.required]],
         estado: ["", [Validators.required]],
-        cep: ["", [Validators.required, Validators.maxLength(8), Validators.minLength(8)]],
+        cep: [
+          "",
+          [
+            Validators.required,
+            Validators.maxLength(8),
+            Validators.minLength(8)
+          ]
+        ],
         opcao: ["", [Validators.required]],
         cpf: [
           "",
@@ -102,11 +106,17 @@ export class CadastroPage {
             Validators.minLength(11)
           ]
         ],
-        senha: ["", [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
+        senha: [
+          "",
+          [
+            Validators.required,
+            Validators.minLength(5),
+            Validators.maxLength(30)
+          ]
+        ],
         confirma_senha: ["", [Validators.required]]
       },
       { validator: this.validarSenhas("senha", "confirma_senha") }
-
     );
   }
 
@@ -171,22 +181,19 @@ export class CadastroPage {
     this.usuario.cep = this.form.controls["cep"].value;
     const isValid = this.form.controls["cep"].valid;
     if (isValid) {
-      this.servidor.buscaCep(this.usuario.cep)
-        .subscribe(
-          data => {
-            console.log(data);
-            this.form.get("rua").setValue(data.logradouro);
-            this.form.get("bairro").setValue(data.bairro);
-            this.form.get("cidade").setValue(data.localidade);
-            this.form.get("estado").setValue(data.uf);
-            return true;
-          },
-          error => { }
-        )
+      this.servidor.buscaCep(this.usuario.cep).subscribe(
+        data => {
+          console.log(data);
+          this.form.get("rua").setValue(data.logradouro);
+          this.form.get("bairro").setValue(data.bairro);
+          this.form.get("cidade").setValue(data.localidade);
+          this.form.get("estado").setValue(data.uf);
+          return true;
+        },
+        error => {}
+      );
     }
   }
-
-
 
   salvarUsuario() {
     this.servidor.salvarUsuario(this.usuario).subscribe(
