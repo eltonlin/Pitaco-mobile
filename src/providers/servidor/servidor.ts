@@ -20,10 +20,10 @@ export class ServidorProvider {
       .post(this.url + "/usuario_final/cadastrar_login", obj)
       .map(res => res);
   }
-  buscaCep(cep: String): Observable<any>{
+  buscaCep(cep: String): Observable<any> {
     return this.http
-    .get(`https://viacep.com.br/ws/${cep}/json/`)
-    .map(res => res)
+      .get(`https://viacep.com.br/ws/${cep}/json/`)
+      .map(res => res)
   }
 
   atualizarUsuario(obj): Observable<any> {
@@ -41,6 +41,11 @@ export class ServidorProvider {
   obterPreferencias(): Observable<any> {
     return this.http.get(this.url + "/interesses").map(res => res);
   }
+
+  buscarQuestionarios(usuario: String): Observable<any> {
+    return this.http.get(this.url + `/questionario/usuario/${usuario}`).map(res => res);
+  }
+
   obterDadosUsuario(usuario: String): Observable<any> {
     return this.http
       .get(this.url + `/usuario_final/${usuario}`)
