@@ -9,6 +9,7 @@ import { CadastroPage } from "../cadastro/cadastro";
 import { PontuacaoDTO } from "../models/pontos";
 import { EditarPage } from "../editar/editar";
 import { QuestionarioDTO } from "../models/questionario";
+import { QuestionarioPage } from "../questionario/questionario";
 
 @Component({
   selector: "page-usuario",
@@ -17,12 +18,12 @@ import { QuestionarioDTO } from "../models/questionario";
 export class UsuarioPage {
   questionarios: any;
 
-  /*questionario: QuestionarioDTO = {
-    // id_questionario: 0,
-    descricao_questionario: "",
-    pontuacao_questionario: 0
- 
-  };*/
+  /* questionarios: QuestionarioDTO = {
+     id_questionario: 0,
+     descricao_questionario: "",
+     pontuacao_questionario: 0
+  
+   };*/
 
 
   usuario: CredenciaisDTO = {
@@ -77,15 +78,23 @@ export class UsuarioPage {
     });
 
   }
-  questionarioClick(questionarioDescricaoquestionario: string) {
+  questionarioClick(questionarioDescricaoquestionario: string, questionarioIdquestionario: string) {
     let alert = this.alertCtrl.create({
       title: "Atenção",
-      subTitle: "Você vai iniciar o questionário " + questionarioDescricaoquestionario, 
+      subTitle: "Você vai iniciar o questionário " + questionarioDescricaoquestionario,
       message: "Responda com atenção, pois ele não poderá ser respondido novamente.",
       buttons: ["OK"]
     });
     alert.present();
+
+    localStorage.setItem( "questionario", questionarioIdquestionario);
+    console.log("aqui", localStorage.setItem( "questionario", questionarioIdquestionario));
+    // localStorage.setItem( "questionario",JSON.stringify(this.questionarios.id_questionario))
+    // console.log("aqui",  localStorage.setItem( "questionario",JSON.stringify(this.questionarios.id_questionario)))
+    this.navCtrl.setRoot(QuestionarioPage);
   }
+
+
 
   sair() {
     window.localStorage.removeItem("usuario");

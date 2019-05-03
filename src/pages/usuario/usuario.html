@@ -41,12 +41,12 @@
   </ion-menu>
 
   <ion-content>
-    <ion-card *ngFor="let questionario of questionarios" (click)="questionarioClick(questionario.descricao_questionario)"> <!--</ion-card>*ngFor="let questionario of questionario"-->
+    <ion-card *ngFor="let questionario of questionarios" (click)="questionarioClick(questionario.descricao_questionario, questionario.id_questionario)"> <!--</ion-card>*ngFor="let questionario of questionario"-->
       <button ion-item>
         <ion-avatar item-start>
-          <img src="assets/imgs/pontos.png" />
+          <img src="assets/imgs/pontos.png"/> 
         </ion-avatar>
-        <h1>{{ questionario.descricao_questionario }}</h1>
+        <h1>{{ questionario.descricao_questionario }} </h1>
 
         <ion-card-content>
           Pontuação do questionário: {{ questionario.pontuacao_questionario }}
