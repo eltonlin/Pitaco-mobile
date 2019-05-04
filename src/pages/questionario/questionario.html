@@ -6,9 +6,12 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-toolbar color="primary">
     <ion-title>Questionario</ion-title>
-  </ion-navbar>
+    <button color="primary" ion-item (click)="voltarQuestionarios()">
+        <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+  </ion-toolbar>
 
 </ion-header>
 
@@ -18,11 +21,25 @@
 
     <ion-card *ngFor="let questionario of questionarios">
       <ion-label>{{questionario.descricao_pergunta}}</ion-label>
+
       <ion-card-content>
-        <ion-item>
-          <ion-checkbox value="questionario.opcoes" [(ngModel)]="questionario.checked"></ion-checkbox>
-          <ion-label>{{questionario.opcoes[0].descricao_opcao}}</ion-label>
-        </ion-item>
+        <ion-list *ngIf="questionario.tipo_pergunta == 'C' ">
+          <ion-item *ngFor="let opcao of questionario.opcoes">
+            <ion-checkbox value="opcao.id_opcao" [(ngModel)]="opcao.checked">
+            </ion-checkbox>
+            <ion-label>{{opcao.descricao_opcao}} </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+
+      <ion-card-content>
+        <ion-list radio-group *ngIf="questionario.tipo_pergunta == 'M' ">
+          <ion-item *ngFor="let opcao of questionario.opcoes, let i = index">
+            <ion-label>{{opcao.descricao_opcao}} </ion-label>
+            <ion-radio checked="{{i == 0}}" value="{{opcao.id_opcao}}" [(ngModel)]="opcao.checked" ngDefaultControl>
+            </ion-radio>
+          </ion-item>
+        </ion-list>
       </ion-card-content>
     </ion-card>
 

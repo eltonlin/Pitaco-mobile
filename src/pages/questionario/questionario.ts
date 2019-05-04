@@ -4,6 +4,7 @@ import { ServidorProvider } from '../../providers/servidor/servidor';
 import { QuestionarioDTO } from '../models/questionario';
 import { CredenciaisDTO } from '../models/credenciais';
 import { UsuarioPage } from '../usuario/usuario';
+import { RespostasDTO } from '../models/respostas';
 
 /**
  * Generated class for the QuestionarioPage page.
@@ -22,17 +23,22 @@ export class QuestionarioPage {
 
   idQuestionario: QuestionarioDTO = {
     id_questionario: JSON.parse(localStorage.getItem("questionario")),
-    login_usuario:  JSON.parse(localStorage.getItem("usuario")),
+    login_usuario: JSON.parse(localStorage.getItem("usuario")),
     descricao_questionario: "",
     pontuacao_questionario: 0,
     tipo_pergunta: "",
     opcoes: new Array()
+    /*opcoes: {
+      descricao_opcao: "",
+      id_opcao: "",
+      id_pergunta: ""
+    }*/
   };
 
-  /*usuario: CredenciaisDTO = {
-    login_usuario: JSON.parse(localStorage.getItem("usuario")),
-    senha: ""
-  };*/
+  respostas: RespostasDTO = {
+    usuario_final: JSON.parse(localStorage.getItem("usuario")), //localStorage.getItem('usuario'),
+    respostas: new Array() //""
+  };
 
   constructor(public navCtrl: NavController, public toast: ToastController, public alertCtrl: AlertController, public navParams: NavParams, public servidor: ServidorProvider) {
   }
@@ -44,36 +50,58 @@ export class QuestionarioPage {
       console.log('obs', questionarioPorId);
       this.questionarios = questionarioPorId;
 
+      for (let i = 0; i < this.questionarios.length; i++) {
+        for (let x = 0; x < this.questionarios[i].opcoes; x++) {
+          this.questionarios[i].opcoes[x].checked = false;
+        }
+      }
+      console.log('olhar ', this.questionarios)
     });
 
+  }
+  voltarQuestionarios(){
+    this.navCtrl.setRoot(UsuarioPage);
   }
 
   salvarQuestionario() {
     this.idQuestionario.opcoes = new Array();
-    console.log(this.idQuestionario.opcoes)
     for (let i = 0; i < this.questionarios.length; i++) {
-        console.log('olhar for', this.idQuestionario.opcoes);
-    
-      if (this.questionarios[i].checked) {
-        this.idQuestionario.opcoes.push(this.questionarios[i].opcoes[0].id_opcao);
+      console.log('olhar for1', this.questionarios);
+      for (let x = 0; x < this.questionarios[i].opcoes.length; x++) {
+        console.log('olhar for2', this.questionarios);
+        if (this.questionarios[i].opcoes[x].checked) {
+          this.idQuestionario.opcoes.push(this.questionarios[i].opcoes[x].id_opcao);
+          console.log('if', this.questionarios[i].opcoes[x].checked)
+        } 
+        if(this.questionarios[i].opcoes[x].id_opcao == null ){
+          return this.toast
+          .create({
+            message: "É necessário ter ao menos uma opção marcada para cada pergunta ",
+            position: "botton",
+            duration: 3000
+          })
+          .present();
+        }
       }
     }
-    if (this.idQuestionario.opcoes.length == 0) {
+   
+    if (this.idQuestionario.opcoes.length == 0  ) {
       return this.toast
         .create({
-          message: "É necessário ter ao menos uma opção marcada ",
+          message: "Atenção: responda todas as perguntas ",
           position: "botton",
           duration: 3000
         })
         .present();
     }
+  
 
     this.servidor.salvarQuestionario(this.idQuestionario).subscribe(
       data => {
         this.navCtrl.setRoot(UsuarioPage);
         this.toast
           .create({
-            message: "Obrigado,por responder este questionário. ",
+            message: "Obrigado, por responder este questionário. ",
             position: "botton",
             duration: 3000
           })

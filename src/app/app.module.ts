@@ -16,6 +16,7 @@ import { EditarPage } from "../pages/editar/editar";
 import { QuestionarioPage } from "../pages/questionario/questionario";
 
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -48,6 +49,7 @@ import { QuestionarioPage } from "../pages/questionario/questionario";
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ServidorProvider
+
   ]
 })
-export class AppModule {}
+export class AppModule { }
