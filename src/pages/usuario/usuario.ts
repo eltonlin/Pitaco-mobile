@@ -94,8 +94,6 @@ export class UsuarioPage {
     this.navCtrl.setRoot(QuestionarioPage);
   }
 
-
-
   sair() {
     window.localStorage.removeItem("usuario");
     this.navCtrl.setRoot(HomePage);
