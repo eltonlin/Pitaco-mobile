@@ -5,6 +5,7 @@ import { QuestionarioDTO } from '../models/questionario';
 import { CredenciaisDTO } from '../models/credenciais';
 import { UsuarioPage } from '../usuario/usuario';
 import { RespostasDTO } from '../models/respostas';
+import { HttpClientModule } from "@angular/common/http";
 
 /**
  * Generated class for the QuestionarioPage page.
@@ -51,7 +52,7 @@ export class QuestionarioPage {
       this.questionarios = questionarioPorId;
 
       for (let i = 0; i < this.questionarios.length; i++) {
-        for (let x = 0; x < this.questionarios[i].opcoes; x++) {
+        for (let x = 0; x < this.questionarios[i].opcoes.length; x++) {
           this.questionarios[i].opcoes[x].checked = false;
         }
       }
@@ -73,7 +74,7 @@ export class QuestionarioPage {
           this.pergunta.opcoes.push(this.questionarios[i].opcoes[x].id_opcao);
           console.log('if', this.questionarios[i].opcoes[x].checked)
         } 
-        if(this.questionarios[i].opcoes[x].id_opcao == null ){
+        if(this.questionarios[i].opcoes[x].checked == false ){
           return this.toast
           .create({
             message: "É necessário ter ao menos uma opção marcada para cada pergunta ",
