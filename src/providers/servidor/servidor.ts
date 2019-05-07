@@ -23,7 +23,7 @@ export class ServidorProvider {
   buscaCep(cep: String): Observable<any> {
     return this.http
       .get(`https://viacep.com.br/ws/${cep}/json/`)
-      .map(res => res)
+      .map(res => res);
   }
 
   atualizarUsuario(obj): Observable<any> {
@@ -43,18 +43,19 @@ export class ServidorProvider {
   }
 
   buscarQuestionarios(usuario: String): Observable<any> {
-    return this.http.get(this.url + `/questionario/usuario/${usuario}`).map(res => res);
+    return this.http
+      .get(this.url + `/questionario/usuario/${usuario}`)
+      .map(res => res);
   }
 
   exibirQuestionarios(id_questionario: String): Observable<any> {
-    return this.http.get(this.url + `/pergunta/${id_questionario}`).map(res => res);
+    return this.http
+      .get(this.url + `/pergunta/${id_questionario}`)
+      .map(res => res);
   }
 
-
   salvarQuestionario(obj): Observable<any> {
-    return this.http
-      .post(this.url + "/resposta", obj)
-      .map(res => res);
+    return this.http.post(this.url + "/resposta", obj).map(res => res);
   }
 
   obterDadosUsuario(usuario: String): Observable<any> {
