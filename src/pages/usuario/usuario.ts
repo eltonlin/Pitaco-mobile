@@ -88,13 +88,16 @@ export class UsuarioPage {
     alert.present();
 
     localStorage.setItem( "questionario", questionarioIdquestionario);
+   // localStorage.setItem( "descricao", questionarioDescricaoquestionario);
+    localStorage.setItem(
+      "descricao",
+      JSON.stringify(questionarioDescricaoquestionario)
+    );
     console.log("aqui", localStorage.setItem( "questionario", questionarioIdquestionario));
     // localStorage.setItem( "questionario",JSON.stringify(this.questionarios.id_questionario))
     // console.log("aqui",  localStorage.setItem( "questionario",JSON.stringify(this.questionarios.id_questionario)))
     this.navCtrl.setRoot(QuestionarioPage);
   }
-
-
 
   sair() {
     window.localStorage.removeItem("usuario");

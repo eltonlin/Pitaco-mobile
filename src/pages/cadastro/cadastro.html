@@ -100,6 +100,7 @@
           type="text"
           formControlName="cpf"
           [(ngModel)]="usuario.cpf"
+          [brmasker]="{ len: 11, type: 'num' }"
         ></ion-input>
       </ion-item>
       <div *ngIf="cpf.invalid && (cpf.dirty || cpf.touched)">
@@ -144,7 +145,7 @@
           [(ngModel)]="usuario.data_nascimento"
         ></ion-datetime>-->
         <ion-datetime
-        formControlName="texto"
+          formControlName="texto"
           [dayShortNames]="customDayShortNames"
           displayFormat="DD MMM YY"
           monthShortNames="jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez"

@@ -21,10 +21,10 @@ import { RespostasDTO } from '../models/respostas';
 export class QuestionarioPage {
   questionarios: any;
 
-  idQuestionario: QuestionarioDTO = {
+  pergunta: QuestionarioDTO = {
     id_questionario: JSON.parse(localStorage.getItem("questionario")),
     login_usuario: JSON.parse(localStorage.getItem("usuario")),
-    descricao_questionario: "",
+    descricao_questionario: JSON.parse(localStorage.getItem("descricao")),
     pontuacao_questionario: 0,
     tipo_pergunta: "",
     opcoes: new Array()
@@ -46,7 +46,7 @@ export class QuestionarioPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad QuestionarioPage');
 
-    this.servidor.exibirQuestionarios(this.idQuestionario.id_questionario).subscribe(questionarioPorId => {
+    this.servidor.exibirQuestionarios(this.pergunta.id_questionario).subscribe(questionarioPorId => {
       console.log('obs', questionarioPorId);
       this.questionarios = questionarioPorId;
 
@@ -64,13 +64,13 @@ export class QuestionarioPage {
   }
 
   salvarQuestionario() {
-    this.idQuestionario.opcoes = new Array();
+    this.pergunta.opcoes = new Array();
     for (let i = 0; i < this.questionarios.length; i++) {
       console.log('olhar for1', this.questionarios);
       for (let x = 0; x < this.questionarios[i].opcoes.length; x++) {
         console.log('olhar for2', this.questionarios);
         if (this.questionarios[i].opcoes[x].checked) {
-          this.idQuestionario.opcoes.push(this.questionarios[i].opcoes[x].id_opcao);
+          this.pergunta.opcoes.push(this.questionarios[i].opcoes[x].id_opcao);
           console.log('if', this.questionarios[i].opcoes[x].checked)
         } 
         if(this.questionarios[i].opcoes[x].id_opcao == null ){
@@ -85,7 +85,7 @@ export class QuestionarioPage {
       }
     }
    
-    if (this.idQuestionario.opcoes.length == 0  ) {
+    if (this.pergunta.opcoes.length == 0  ) {
       return this.toast
         .create({
           message: "Atenção: responda todas as perguntas ",
@@ -96,7 +96,7 @@ export class QuestionarioPage {
     }
   
 
-    this.servidor.salvarQuestionario(this.idQuestionario).subscribe(
+    this.servidor.salvarQuestionario(this.pergunta).subscribe(
       data => {
         this.navCtrl.setRoot(UsuarioPage);
         this.toast
@@ -109,7 +109,7 @@ export class QuestionarioPage {
       },
       error => {
         console.log(error);
-        console.log(this.idQuestionario);
+        console.log(this.pergunta);
         this.toast
           .create({
             message: "Erro ao responder questionário. Erro: " + error.error.message,

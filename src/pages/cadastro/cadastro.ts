@@ -3,23 +3,13 @@ import {
   NavController,
   NavParams,
   ToastController,
-  AlertController,
-  Item,
-  ModalController
+  AlertController
 } from "ionic-angular";
 import { ServidorProvider } from "../../providers/servidor/servidor";
-import { UsuarioPage } from "../usuario/usuario";
-import {
-  FormBuilder,
-  Validators,
-  FormGroup,
-  AbstractControl
-} from "@angular/forms";
-import { registerModuleFactory } from "@angular/core/src/linker/ng_module_factory_loader";
+import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { PreferenciasPage } from "../preferencias/preferencias";
 import { CredenciaisDTO } from "../models/credenciais";
 import { CadastroDTO } from "../models/dadosUsuario";
-import { Body } from "@angular/http/src/body";
 import "rxjs/add/operator/map";
 import { HttpClient } from "@angular/common/http";
 import { Http } from "@angular/http";
@@ -63,8 +53,7 @@ export class CadastroPage {
     public servidor: ServidorProvider,
     public alertCtrl: AlertController,
     public toast: ToastController,
-    public formBuilder: FormBuilder,
-    public http: Http
+    public formBuilder: FormBuilder
   ) {
     //this.usuario_dados = {};
 

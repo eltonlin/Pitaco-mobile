@@ -14,8 +14,7 @@ import { IonicStorageModule } from "@ionic/storage";
 import { PreferenciasPage } from "../pages/preferencias/preferencias";
 import { EditarPage } from "../pages/editar/editar";
 import { QuestionarioPage } from "../pages/questionario/questionario";
-
-
+import { BrMaskerModule } from "brmasker-ionic-3";
 
 @NgModule({
   declarations: [
@@ -32,7 +31,8 @@ import { QuestionarioPage } from "../pages/questionario/questionario";
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    BrMaskerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -49,7 +49,6 @@ import { QuestionarioPage } from "../pages/questionario/questionario";
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ServidorProvider
-
   ]
 })
-export class AppModule { }
+export class AppModule {}
