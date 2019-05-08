@@ -14,7 +14,7 @@ import { IonicStorageModule } from "@ionic/storage";
 import { PreferenciasPage } from "../pages/preferencias/preferencias";
 import { EditarPage } from "../pages/editar/editar";
 import { QuestionarioPage } from "../pages/questionario/questionario";
-
+import { Facebook } from '@ionic-native/facebook';
 
 
 @NgModule({
@@ -46,6 +46,7 @@ import { QuestionarioPage } from "../pages/questionario/questionario";
   ],
   providers: [
     StatusBar,
+    Facebook,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ServidorProvider

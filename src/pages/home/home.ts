@@ -11,6 +11,7 @@ import { ServidorProvider } from "../../providers/servidor/servidor";
 import { UsuarioPage } from "../usuario/usuario";
 import { CredenciaisDTO } from "../models/credenciais";
 import { Storage } from "@ionic/storage";
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
 @Component({
   selector: "page-home",
@@ -18,6 +19,7 @@ import { Storage } from "@ionic/storage";
 })
 export class HomePage {
   //usuario: any;
+  user: any = {};
   isTextFieldType: boolean;
   //login_usuario: string;
   // senha: string;
@@ -34,9 +36,33 @@ export class HomePage {
     public alertCtrl: AlertController,
     public servidor: ServidorProvider,
     public http: Http,
-    public toast: ToastController
+    public toast: ToastController,
+    private fb: Facebook
   ) {
     //this.usuario = {};
+  }
+
+  loginFb() {
+    this.fb.login(['public_profile', 'email'])
+      .then((res: FacebookLoginResponse) => {
+        if (res.status === 'connected') {
+          this.user.img = 'https://graph.facebook.com/' + res.authResponse.userID + '/picture?type=square';
+          this.getData(res.authResponse.accessToken);
+          this.navCtrl.setRoot(UsuarioPage);
+        } else {
+          alert('Login failed');
+        }
+        console.log('Logged into Facebook!', res)
+      })
+      .catch(e => console.log('Error logging into Facebook', e));
+  }
+
+  getData(access_token: string) {
+    let url = 'https://graph.facebook.com/me?fields=id,name,first_name,last_name,email&access_token=' + access_token;
+    this.http.get(url).subscribe(data => {
+        this.usuario.login_usuario = JSON.stringify(data);
+      localStorage.setItem("usuario", JSON.stringify(data));
+    });
   }
 
   togglePasswordFieldType() {

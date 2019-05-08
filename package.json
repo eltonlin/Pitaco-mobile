@@ -48,14 +48,21 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-device": {},
-      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-ionic-webview": {
+        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+      },
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-whitelist": {},
       "ionic-plugin-keyboard": {},
-      "cordova-sqlite-storage": {}
+      "cordova-sqlite-storage": {},
+      "cordova-plugin-facebook4": {
+        "APP_ID": "2355506641392816",
+        "APP_NAME": "ProjetoPitaco"
+      }
     },
     "platforms": [
-      "android"
+      "android",
+      "browser"
     ]
   }
 }
