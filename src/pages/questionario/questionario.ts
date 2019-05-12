@@ -5,6 +5,7 @@ import { QuestionarioDTO } from '../models/questionario';
 import { CredenciaisDTO } from '../models/credenciais';
 import { UsuarioPage } from '../usuario/usuario';
 import { RespostasDTO } from '../models/respostas';
+import { HttpClientModule } from "@angular/common/http";
 
 /**
  * Generated class for the QuestionarioPage page.
@@ -25,7 +26,7 @@ export class QuestionarioPage {
     id_questionario: JSON.parse(localStorage.getItem("questionario")),
     login_usuario: JSON.parse(localStorage.getItem("usuario")),
     descricao_questionario: JSON.parse(localStorage.getItem("descricao")),
-    pontuacao_questionario: 0,
+    pontuacao_questionario: JSON.parse(localStorage.getItem("pontuacao")),
     tipo_pergunta: "",
     opcoes: new Array()
     /*opcoes: {
@@ -51,11 +52,10 @@ export class QuestionarioPage {
       this.questionarios = questionarioPorId;
 
       for (let i = 0; i < this.questionarios.length; i++) {
-        for (let x = 0; x < this.questionarios[i].opcoes; x++) {
+        for (let x = 0; x < this.questionarios[i].opcoes.length; x++) {
           this.questionarios[i].opcoes[x].checked = false;
         }
       }
-      console.log('olhar ', this.questionarios)
     });
 
   }
@@ -63,49 +63,83 @@ export class QuestionarioPage {
     this.navCtrl.setRoot(UsuarioPage);
   }
 
-  salvarQuestionario() {
-    this.pergunta.opcoes = new Array();
-    for (let i = 0; i < this.questionarios.length; i++) {
-      console.log('olhar for1', this.questionarios);
-      for (let x = 0; x < this.questionarios[i].opcoes.length; x++) {
-        console.log('olhar for2', this.questionarios);
-        if (this.questionarios[i].opcoes[x].checked) {
-          this.pergunta.opcoes.push(this.questionarios[i].opcoes[x].id_opcao);
-          console.log('if', this.questionarios[i].opcoes[x].checked)
-        } 
-        if(this.questionarios[i].opcoes[x].id_opcao == null ){
-          return this.toast
-          .create({
-            message: "É necessário ter ao menos uma opção marcada para cada pergunta ",
-            position: "botton",
-            duration: 3000
-          })
-          .present();
-        }
+  radioChecked(opcoes, id) {
+    for(let opcao of opcoes){
+      if(opcao.id_opcao == id){
+        opcao.checked = true;
+      }
+      else{
+        opcao.checked = false;
       }
     }
-   
-    if (this.pergunta.opcoes.length == 0  ) {
-      return this.toast
+  }
+
+  salvarQuestionario() {
+    this.pergunta.opcoes = new Array();
+
+    let existeOpcaoMarcada = true;
+    let foiMarcado = false;
+
+    for (let i = 0; i < this.questionarios.length; i++) {
+      if(existeOpcaoMarcada == false) {
+        return this.toast
         .create({
           message: "Atenção: responda todas as perguntas ",
           position: "botton",
           duration: 3000
         })
         .present();
+      }
+      for (let x = 0; x < this.questionarios[i].opcoes.length; x++) {
+        if (this.questionarios[i].opcoes[x].checked) {
+          existeOpcaoMarcada = true;
+          foiMarcado = true
+          this.pergunta.opcoes.push(this.questionarios[i].opcoes[x].id_opcao);
+        }
+        else if(foiMarcado == false){
+          existeOpcaoMarcada = false;
+        }
+      }
+      foiMarcado = false;
     }
-  
+
+    if(existeOpcaoMarcada == false) {
+      return this.toast
+      .create({
+        message: "Atenção: responda todas as perguntas ",
+        position: "botton",
+        duration: 3000
+      })
+      .present();
+    }
 
     this.servidor.salvarQuestionario(this.pergunta).subscribe(
       data => {
-        this.navCtrl.setRoot(UsuarioPage);
-        this.toast
-          .create({
-            message: "Obrigado, por responder este questionário. ",
-            position: "botton",
-            duration: 3000
-          })
-          .present();
+        this.servidor.obterPontuacaoPorUsuario(this.pergunta.login_usuario).subscribe(
+          pontuacao => {
+            let usuario = {
+              pontuacao : '',
+              login_usuario: ''
+            }
+            console.log(pontuacao[0].PONTUACAO);
+            usuario.pontuacao = pontuacao[0].PONTUACAO + this.pergunta.pontuacao_questionario;
+            usuario.login_usuario = this.pergunta.login_usuario;
+            console.log(usuario);
+            this.servidor.atualizarPontuacao(usuario).subscribe(
+              () => {
+                this.navCtrl.setRoot(UsuarioPage);
+                this.toast
+                  .create({
+                    message: "Obrigado, por responder este questionário. ",
+                    position: "botton",
+                    duration: 3000
+                  })
+                  .present();
+              }
+            )
+          }
+        )
+
       },
       error => {
         console.log(error);

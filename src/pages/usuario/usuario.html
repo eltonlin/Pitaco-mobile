@@ -43,7 +43,8 @@
     <ion-card *ngFor="let questionario of questionarios" (click)="
         questionarioClick(
           questionario.descricao_questionario,
-          questionario.id_questionario
+          questionario.id_questionario,
+          questionario.pontuacao_questionario
         )
       ">
       <!--</ion-card>*ngFor="let questionario of questionario"-->

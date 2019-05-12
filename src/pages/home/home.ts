@@ -18,6 +18,7 @@ import { Storage } from "@ionic/storage";
 })
 export class HomePage {
   //usuario: any;
+  user: any = {};
   isTextFieldType: boolean;
   //login_usuario: string;
   // senha: string;
@@ -34,9 +35,19 @@ export class HomePage {
     public alertCtrl: AlertController,
     public servidor: ServidorProvider,
     public http: Http,
-    public toast: ToastController
+    public toast: ToastController,
   ) {
     //this.usuario = {};
+  }
+
+
+
+  getData(access_token: string) {
+    let url = 'https://graph.facebook.com/me?fields=id,name,first_name,last_name,email&access_token=' + access_token;
+    this.http.get(url).subscribe(data => {
+        this.usuario.login_usuario = JSON.stringify(data);
+      localStorage.setItem("usuario", JSON.stringify(data));
+    });
   }
 
   togglePasswordFieldType() {

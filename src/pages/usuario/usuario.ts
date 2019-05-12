@@ -22,7 +22,7 @@ export class UsuarioPage {
      id_questionario: 0,
      descricao_questionario: "",
      pontuacao_questionario: 0
-  
+
    };*/
 
 
@@ -54,15 +54,15 @@ export class UsuarioPage {
     try {
       if (localData) {
         this.usuario = JSON.parse(localData);
-        console.log('Data loaded', localData); 
-       
+        console.log('Data loaded', localData);
+
       }
     } catch (error) { } */
 
     this.servidor
       .obterPontuacaoPorUsuario(this.usuario.login_usuario)
       .subscribe(pontuacaoPorUsuario => {
-        console.log(pontuacaoPorUsuario);
+
 
         this.pontuacao = JSON.stringify(pontuacaoPorUsuario);
         this.pontuacao = this.pontuacao.replace(/[\[\]PONTUACAO":{}]/g, "");// {["PONTUACAO": 5]}
@@ -78,7 +78,7 @@ export class UsuarioPage {
     });
 
   }
-  questionarioClick(questionarioDescricaoquestionario: string, questionarioIdquestionario: string) {
+  questionarioClick(questionarioDescricaoquestionario: string, questionarioIdquestionario: string, pontuacao_questionario: string) {
     let alert = this.alertCtrl.create({
       title: "Atenção",
       subTitle: "Você vai iniciar o questionário " + questionarioDescricaoquestionario,
@@ -93,6 +93,8 @@ export class UsuarioPage {
       "descricao",
       JSON.stringify(questionarioDescricaoquestionario)
     );
+    localStorage.setItem('pontuacao', pontuacao_questionario);
+
     console.log("aqui", localStorage.setItem( "questionario", questionarioIdquestionario));
     // localStorage.setItem( "questionario",JSON.stringify(this.questionarios.id_questionario))
     // console.log("aqui",  localStorage.setItem( "questionario",JSON.stringify(this.questionarios.id_questionario)))
