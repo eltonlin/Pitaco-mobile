@@ -68,6 +68,10 @@ export class ServidorProvider {
     );
   }
 
+  atualizarPontuacao(obj): Observable<any> {
+    return this.http.put(this.url + `/usuario_final/atualizar_pontuacao`, obj)
+  }
+
   obterPreferenciasPorUsuario(usuario: String): Observable<any> {
     return this.http.get(this.url + `/usuario_final_interesses/${usuario}`);
   }

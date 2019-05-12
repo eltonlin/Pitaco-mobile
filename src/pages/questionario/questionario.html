@@ -13,20 +13,20 @@
 
       <ion-list *ngIf="questionario.tipo_pergunta == 'M'">
         <span *ngFor="let opcao of questionario.opcoes">
-          <ion-checkbox value="opcao.id_opcao" [(ngModel)]="opcao.checked">
-          </ion-checkbox>
+          <ion-checkbox value="opcao.id_opcao" [(ngModel)]="opcao.checked"></ion-checkbox>
           {{ opcao.descricao_opcao }}
         </span>
       </ion-list>
 
       <ion-list radio-group *ngIf="questionario.tipo_pergunta == 'C'">
-        <span *ngFor="let opcao of questionario.opcoes; let i = index">
-          <ion-radio checked="{{ i == 0 }}" value="{{ opcao.id_opcao }}" [(ngModel)]="opcao.checked" ngDefaultControl>
-          </ion-radio>
-          {{ opcao.descricao_opcao }}
-        </span>
+          <span *ngFor="let opcao of questionario.opcoes">
+              <ion-radio (ionSelect)="radioChecked(questionario.opcoes, opcao.id_opcao)" ></ion-radio>
+              {{ opcao.descricao_opcao }}
+          </span>
       </ion-list>
+
     </ion-list>
+
   <button class="botao" ion-button full (click)="salvarQuestionario()">
     Salvar
   </button>
