@@ -1,3 +1,4 @@
+import { ResgataPontuacaoPage } from "./../pages/resgata-pontuacao/resgata-pontuacao";
 import { BrowserModule } from "@angular/platform-browser";
 import { ErrorHandler, NgModule } from "@angular/core";
 import { IonicApp, IonicErrorHandler, IonicModule } from "ionic-angular";
@@ -14,11 +15,7 @@ import { IonicStorageModule } from "@ionic/storage";
 import { PreferenciasPage } from "../pages/preferencias/preferencias";
 import { EditarPage } from "../pages/editar/editar";
 import { QuestionarioPage } from "../pages/questionario/questionario";
-<<<<<<< HEAD
 import { BrMaskerModule } from "brmasker-ionic-3";
-=======
-
->>>>>>> a3d612f739bda9b72b995f7ede933f4567fc0175
 
 @NgModule({
   declarations: [
@@ -28,7 +25,8 @@ import { BrMaskerModule } from "brmasker-ionic-3";
     CadastroPage,
     PreferenciasPage,
     EditarPage,
-    QuestionarioPage
+    QuestionarioPage,
+    ResgataPontuacaoPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +44,8 @@ import { BrMaskerModule } from "brmasker-ionic-3";
     CadastroPage,
     PreferenciasPage,
     EditarPage,
-    QuestionarioPage
+    QuestionarioPage,
+    ResgataPontuacaoPage
   ],
   providers: [
     StatusBar,

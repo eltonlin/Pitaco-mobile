@@ -1,6 +1,11 @@
 import { HomePage } from "./../home/home";
 import { Component, OnInit } from "@angular/core";
-import { NavController, NavParams, ModalController, AlertController } from "ionic-angular";
+import {
+  NavController,
+  NavParams,
+  ModalController,
+  AlertController
+} from "ionic-angular";
 import { ServidorProvider } from "../../providers/servidor/servidor";
 import { Storage } from "@ionic/storage";
 import { PreferenciasPage } from "../preferencias/preferencias";
@@ -10,6 +15,7 @@ import { PontuacaoDTO } from "../models/pontos";
 import { EditarPage } from "../editar/editar";
 import { QuestionarioDTO } from "../models/questionario";
 import { QuestionarioPage } from "../questionario/questionario";
+import { ResgataPontuacaoPage } from "../resgata-pontuacao/resgata-pontuacao";
 
 @Component({
   selector: "page-usuario",
@@ -25,7 +31,6 @@ export class UsuarioPage {
 
    };*/
 
-
   usuario: CredenciaisDTO = {
     login_usuario: JSON.parse(localStorage.getItem("usuario")),
     senha: ""
@@ -39,7 +44,7 @@ export class UsuarioPage {
     public navParams: NavParams,
     public storage: Storage,
     public servidor: ServidorProvider
-  ) { }
+  ) {}
 
   preferencias() {
     this.navCtrl.setRoot(PreferenciasPage);
@@ -47,6 +52,10 @@ export class UsuarioPage {
 
   editar() {
     this.navCtrl.push(EditarPage);
+  }
+
+  resgataPontuacao() {
+    this.navCtrl.push(ResgataPontuacaoPage);
   }
 
   ionViewDidLoad() {
@@ -62,40 +71,48 @@ export class UsuarioPage {
     this.servidor
       .obterPontuacaoPorUsuario(this.usuario.login_usuario)
       .subscribe(pontuacaoPorUsuario => {
-
-
         this.pontuacao = JSON.stringify(pontuacaoPorUsuario);
-        this.pontuacao = this.pontuacao.replace(/[\[\]PONTUACAO":{}]/g, "");// {["PONTUACAO": 5]}
+        this.pontuacao = this.pontuacao.replace(/[\[\]PONTUACAO":{}]/g, ""); // {["PONTUACAO": 5]}
 
         //this.pontuacao = JSON.parse(localStorage.getItem('pontuacao'))
         console.log("Data loo", this.usuario.login_usuario);
         console.log("Data loo", this.pontuacao);
       });
 
-    this.servidor.buscarQuestionarios(this.usuario.login_usuario).subscribe(questionarioPorUsuario => {
-      console.log('obs', questionarioPorUsuario);
-      this.questionarios = questionarioPorUsuario;
-    });
-
+    this.servidor
+      .buscarQuestionarios(this.usuario.login_usuario)
+      .subscribe(questionarioPorUsuario => {
+        console.log("obs", questionarioPorUsuario);
+        this.questionarios = questionarioPorUsuario;
+      });
   }
-  questionarioClick(questionarioDescricaoquestionario: string, questionarioIdquestionario: string, pontuacao_questionario: string) {
+  questionarioClick(
+    questionarioDescricaoquestionario: string,
+    questionarioIdquestionario: string,
+    pontuacao_questionario: string
+  ) {
     let alert = this.alertCtrl.create({
       title: "Atenção",
-      subTitle: "Você vai iniciar o questionário " + questionarioDescricaoquestionario,
-      message: "Responda com atenção, pois ele não poderá ser respondido novamente.",
+      subTitle:
+        "Você vai iniciar o questionário " + questionarioDescricaoquestionario,
+      message:
+        "Responda com atenção, pois ele não poderá ser respondido novamente.",
       buttons: ["OK"]
     });
     alert.present();
 
-    localStorage.setItem( "questionario", questionarioIdquestionario);
-   // localStorage.setItem( "descricao", questionarioDescricaoquestionario);
+    localStorage.setItem("questionario", questionarioIdquestionario);
+    // localStorage.setItem( "descricao", questionarioDescricaoquestionario);
     localStorage.setItem(
       "descricao",
       JSON.stringify(questionarioDescricaoquestionario)
     );
-    localStorage.setItem('pontuacao', pontuacao_questionario);
+    localStorage.setItem("pontuacao", pontuacao_questionario);
 
-    console.log("aqui", localStorage.setItem( "questionario", questionarioIdquestionario));
+    console.log(
+      "aqui",
+      localStorage.setItem("questionario", questionarioIdquestionario)
+    );
     // localStorage.setItem( "questionario",JSON.stringify(this.questionarios.id_questionario))
     // console.log("aqui",  localStorage.setItem( "questionario",JSON.stringify(this.questionarios.id_questionario)))
     this.navCtrl.setRoot(QuestionarioPage);

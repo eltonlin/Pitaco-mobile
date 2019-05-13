@@ -3,7 +3,8 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title style="text-align: center">Bem Vindo, {{ usuario.login_usuario }}!
+    <ion-title style="text-align: center"
+      >Bem Vindo, {{ usuario.login_usuario }}!
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -30,8 +31,11 @@
         </button>
 
         <button ion-item (click)="preferencias()">
-          <ion-icon ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon> Definir
-          preferencias
+          <ion-icon ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon> Definir preferencias
+        </button>
+
+        <button ion-item (click)="resgataPontuacao()">
+          <ion-icon ios="ios-create" md="md-create"></ion-icon> Resgatar Pontuacao
         </button>
 
         <button ion-item (click)="sair()">Sair</button>
@@ -40,13 +44,16 @@
   </ion-menu>
 
   <ion-content>
-    <ion-card *ngFor="let questionario of questionarios" (click)="
+    <ion-card
+      *ngFor="let questionario of questionarios"
+      (click)="
         questionarioClick(
           questionario.descricao_questionario,
           questionario.id_questionario,
           questionario.pontuacao_questionario
         )
-      ">
+      "
+    >
       <!--</ion-card>*ngFor="let questionario of questionario"-->
       <button ion-item>
         <ion-avatar item-start>
