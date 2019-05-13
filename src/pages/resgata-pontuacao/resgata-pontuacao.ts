@@ -14,11 +14,11 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
   templateUrl: "resgata-pontuacao.html"
 })
 export class ResgataPontuacaoPage {
-  podeTrocar: boolean = true;
+  pontuacao: any = parseInt(localStorage.getItem("pontuacao"));
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
-    console.log("ionViewDidLoad ResgataPontuacaoPage");
+    console.log("pontuacao", this.pontuacao);
   }
 }
