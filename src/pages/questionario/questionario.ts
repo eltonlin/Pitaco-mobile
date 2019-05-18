@@ -6,6 +6,7 @@ import { CredenciaisDTO } from '../models/credenciais';
 import { UsuarioPage } from '../usuario/usuario';
 import { RespostasDTO } from '../models/respostas';
 import { HttpClientModule } from "@angular/common/http";
+import { UsuarioPontosDTO } from '../models/dadosPontuacao';
 
 /**
  * Generated class for the QuestionarioPage page.
@@ -26,7 +27,7 @@ export class QuestionarioPage {
     id_questionario: JSON.parse(localStorage.getItem("questionario")),
     login_usuario: JSON.parse(localStorage.getItem("usuario")),
     descricao_questionario: JSON.parse(localStorage.getItem("descricao")),
-    pontuacao_questionario: JSON.parse(localStorage.getItem("pontuacao")),
+    pontuacao_questionario: JSON.parse(localStorage.getItem("pontuacaoQuestionario")),
     tipo_pergunta: "",
     opcoes: new Array()
     /*opcoes: {
@@ -40,6 +41,12 @@ export class QuestionarioPage {
     usuario_final: JSON.parse(localStorage.getItem("usuario")), //localStorage.getItem('usuario'),
     respostas: new Array() //""
   };
+
+  usuarioPontos: UsuarioPontosDTO = {
+    login_usuario: JSON.parse(localStorage.getItem("usuario")),
+    pontuacao: JSON.parse(localStorage.getItem("pontuacaoFinal"))
+  };
+
 
   constructor(public navCtrl: NavController, public toast: ToastController, public alertCtrl: AlertController, public navParams: NavParams, public servidor: ServidorProvider) {
   }
@@ -125,6 +132,14 @@ export class QuestionarioPage {
             usuario.pontuacao = pontuacao[0].PONTUACAO + this.pergunta.pontuacao_questionario;
             usuario.login_usuario = this.pergunta.login_usuario;
             console.log(usuario);
+
+            //this.usuarioPontos.pontuacao = this.usuarioPontos.pontuacao + this.pergunta.pontuacao_questionario;
+              
+           
+            console.log('aqui', this.usuarioPontos.pontuacao);
+            console.log('aqui2', this.pergunta.pontuacao_questionario);
+    
+    
             this.servidor.atualizarPontuacao(usuario).subscribe(
               () => {
                 this.navCtrl.setRoot(UsuarioPage);
@@ -136,7 +151,7 @@ export class QuestionarioPage {
                   })
                   .present();
               }
-            )
+           )
           }
         )
 
@@ -155,5 +170,4 @@ export class QuestionarioPage {
     );
   }
 }
-
 
