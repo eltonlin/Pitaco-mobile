@@ -4,37 +4,65 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
   <ion-grid>
-    <ion-item>
-      <ion-label floating>Banco: </ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
+    <ion-row>
+      <ion-item col-6>
+        <ion-label floating>Nome do Banco: </ion-label>
+        <ion-select [(ngModel)]="usuario.banco">
+          <ion-option> Caixa Econômica</ion-option>
+          <ion-option> Santander</ion-option>
+          <ion-option> Banco do Brasil</ion-option>
+          <ion-option> Bradesco</ion-option>
+          <ion-option> Itaú</ion-option>
+          <ion-option> Nu Pagamentos S.A.</ion-option>
+        </ion-select>
+      </ion-item>
 
-    <ion-item>
-      <ion-label floating>Tipo da conta: </ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
+      <ion-item col-6>
+        <ion-label floating>Tipo da conta: </ion-label>
+        <ion-select [(ngModel)]="usuario.tipo_conta">
+          <ion-option value="CC"> Conta Corrente</ion-option>
+          <ion-option value="CP"> Conta Poupança</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-row>
 
     <ion-row>
       <ion-item col-4>
         <ion-label floating>N° Agência: </ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input
+          type="text"
+          [(ngModel)]="usuario.agencia"
+          [brmasker]="{ len: 4, type: 'num' }"
+        ></ion-input>
       </ion-item>
       <ion-item col-8>
         <ion-label floating>N° Conta: </ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input
+          type="text"
+          [(ngModel)]="usuario.conta"
+          [brmasker]="{ mask: '00000000-0', len: 10, type: 'num' }"
+        ></ion-input>
       </ion-item>
     </ion-row>
 
     <ion-row>
       <ion-item col-5>
         <ion-label stacked>Escolher:</ion-label>
-        <ion-select>
-          <ion-option *ngIf="pontuacao == 500" value="0"> 500 PT por 20,00$</ion-option>
-          <ion-option *ngIf="pontuacao == 400" value="1"> 400 PT por 10,00$ </ion-option>
+        <ion-select [ngClass]="getValorRetirada()" [(ngModel)]="usuario.valor">
+          <ion-option *ngIf="valorPt == 1" value="10">
+            500 PT por 10,00$</ion-option
+          >
+          <ion-option *ngIf="valorPt == 1 && valorDuplo == 1" value="20">
+            1000 PT por 20,00$</ion-option
+          >
         </ion-select>
       </ion-item>
     </ion-row>
+
+    <button ion-item full (click)="resgatarPontos()">
+      Enviar Solicitação
+    </button>
   </ion-grid>
 </ion-content>

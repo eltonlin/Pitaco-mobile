@@ -7,7 +7,8 @@ import { CredenciaisDTO } from "../../pages/models/credenciais";
 
 @Injectable()
 export class ServidorProvider {
-  url = "https://fast-ocean-23649.herokuapp.com";
+  //url = "http://localhost:3000";
+  url = "http://fast-ocean-23649.herokuapp.com";
 
   constructor(public http: HttpClient) {
     console.log("Hello ServidorProvider Provider");
@@ -72,6 +73,10 @@ export class ServidorProvider {
     return this.http.put(this.url + `/usuario_final/atualizar_pontuacao`, obj)
   }
 
+  resgatarPontos(obj): Observable<any> {
+    return this.http.post(this.url + "/solicita_pagamento/cadastrar", obj);
+  }
+  
   obterPreferenciasPorUsuario(usuario: String): Observable<any> {
     return this.http.get(this.url + `/usuario_final_interesses/${usuario}`);
   }

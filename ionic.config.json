@@ -8,7 +8,7 @@
   "proxies": [
     {
       "path": "/",
-      "proxyUrl": "https://fast-ocean-23649.herokuapp.com/"
+      "proxyUrl": "http://fast-ocean-23649.herokuapp.com"
     }
   ]
 }

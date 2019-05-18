@@ -11,9 +11,7 @@ import { Storage } from "@ionic/storage";
 import { PreferenciasPage } from "../preferencias/preferencias";
 import { CredenciaisDTO } from "../models/credenciais";
 import { CadastroPage } from "../cadastro/cadastro";
-import { PontuacaoDTO } from "../models/pontos";
 import { EditarPage } from "../editar/editar";
-import { QuestionarioDTO } from "../models/questionario";
 import { QuestionarioPage } from "../questionario/questionario";
 import { ResgataPontuacaoPage } from "../resgata-pontuacao/resgata-pontuacao";
 
@@ -72,8 +70,8 @@ export class UsuarioPage {
       .obterPontuacaoPorUsuario(this.usuario.login_usuario)
       .subscribe(pontuacaoPorUsuario => {
         this.pontuacao = JSON.stringify(pontuacaoPorUsuario);
-        this.pontuacao = this.pontuacao.replace(/[\[\]PONTUACAO":{}]/g, ""); // {["PONTUACAO": 5]}
-
+        this.pontuacao = this.pontuacao.replace(/[\[\]PONTUACAO":{}]/g, ""); 
+        localStorage.setItem("pontuacaoFinal", JSON.stringify(this.pontuacao));
         //this.pontuacao = JSON.parse(localStorage.getItem('pontuacao'))
         console.log("Data loo", this.usuario.login_usuario);
         console.log("Data loo", this.pontuacao);
@@ -107,7 +105,7 @@ export class UsuarioPage {
       "descricao",
       JSON.stringify(questionarioDescricaoquestionario)
     );
-    localStorage.setItem("pontuacao", pontuacao_questionario);
+    localStorage.setItem("pontuacaoQuestionario", pontuacao_questionario);
 
     console.log(
       "aqui",
@@ -120,6 +118,10 @@ export class UsuarioPage {
 
   sair() {
     window.localStorage.removeItem("usuario");
+    window.localStorage.removeItem("pontuacao");
+    window.localStorage.removeItem("pontuacaoFinal");
+    window.localStorage.removeItem("questionario");
+    window.localStorage.removeItem("descricao");
     this.navCtrl.setRoot(HomePage);
   }
 }
