@@ -3,8 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title style="text-align: center"
-      >Bem Vindo, {{ usuario.login_usuario }}!
+    <ion-title style="text-align: center">Bem Vindo, {{ usuario.login_usuario }}!
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -35,7 +34,27 @@
         </button>
 
         <button ion-item (click)="resgataPontuacao()">
-            <ion-icon ios="ios-trophy" md="md-trophy"></ion-icon> Resgatar Pontuacao
+          <ion-icon ios="ios-trophy" md="md-trophy"></ion-icon> Resgatar Pontuacao
+        </button>
+  
+        <button ion-item>
+          <ion-icon name="logo-twitter" ></ion-icon> Compartilhe no
+          Twitter
+        </button>
+
+        <button ion-item>
+          <ion-icon name="logo-facebook" ></ion-icon> Compartilhe no
+          Facebook
+        </button>
+
+        <button ion-item>
+          <ion-icon name="logo-whatsapp" ></ion-icon> Compartilhe no
+          WhatsApp
+        </button>
+
+        <button ion-item>
+          <ion-icon name="mail" ></ion-icon> Compartilhe por
+          Email
         </button>
 
         <button ion-item (click)="sair()">Sair</button>
@@ -44,16 +63,13 @@
   </ion-menu>
 
   <ion-content>
-    <ion-card
-      *ngFor="let questionario of questionarios"
-      (click)="
+    <ion-card *ngFor="let questionario of questionarios" (click)="
         questionarioClick(
           questionario.descricao_questionario,
           questionario.id_questionario,
           questionario.pontuacao_questionario
         )
-      "
-    >
+      ">
       <!--</ion-card>*ngFor="let questionario of questionario"-->
       <button ion-item>
         <ion-avatar item-start>
