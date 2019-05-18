@@ -7,7 +7,7 @@ import { CredenciaisDTO } from "../../pages/models/credenciais";
 
 @Injectable()
 export class ServidorProvider {
-  url = "http://localhost:3000";
+  url = "https://fast-ocean-23649.herokuapp.com";
 
   constructor(public http: HttpClient) {
     console.log("Hello ServidorProvider Provider");
