@@ -11,7 +11,9 @@ import { Storage } from "@ionic/storage";
 import { PreferenciasPage } from "../preferencias/preferencias";
 import { CredenciaisDTO } from "../models/credenciais";
 import { CadastroPage } from "../cadastro/cadastro";
+import { PontuacaoDTO } from "../models/pontos";
 import { EditarPage } from "../editar/editar";
+import { QuestionarioDTO } from "../models/questionario";
 import { QuestionarioPage } from "../questionario/questionario";
 import { ResgataPontuacaoPage } from "../resgata-pontuacao/resgata-pontuacao";
 
