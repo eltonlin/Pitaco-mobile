@@ -14,6 +14,7 @@ import { CadastroPage } from "../cadastro/cadastro";
 import { EditarPage } from "../editar/editar";
 import { QuestionarioPage } from "../questionario/questionario";
 import { ResgataPontuacaoPage } from "../resgata-pontuacao/resgata-pontuacao";
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: "page-usuario",
@@ -21,6 +22,10 @@ import { ResgataPontuacaoPage } from "../resgata-pontuacao/resgata-pontuacao";
 })
 export class UsuarioPage {
   questionarios: any;
+
+    //Informações que serão compatilhadas
+    text: 'Responda algumas perguntas e ganhe recompensa';
+    url: 'https://www.google.com.br';
 
   /* questionarios: QuestionarioDTO = {
      id_questionario: 0,
@@ -41,9 +46,53 @@ export class UsuarioPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public storage: Storage,
-    public servidor: ServidorProvider
+    public servidor: ServidorProvider,
+    private socialSharing: SocialSharing ,
+    
   ) {}
 
+  
+   //Sharing method in whatsapp
+   shareWhatsapp(){
+  
+    this.socialSharing.shareViaWhatsApp(this.text, null, this.url).then(() => {
+ 
+    }).catch(e => {
+ 
+    });
+  }
+ 
+   //Sharing method in Twitter
+  shareTwitter(){
+   
+     this.socialSharing.shareViaWhatsApp(this.text, null, this.url).then(() => {
+      
+    }).catch(e => {
+ 
+    });
+  }
+ 
+  //Sharing method in Facebook
+ shareFacebook(){
+   
+   this.socialSharing.shareViaWhatsApp(this.text, null, this.url).then(() => {
+      
+   }).catch(e => {
+ 
+   });
+ }
+ 
+  //Sharing method in Email
+  shareEmail(){
+   
+   this.socialSharing.shareViaEmail('This is my message', 'my subject',['developercmatos@gmail.com'], null, null, this.url).then(() => {
+      
+   }).catch(e => {
+ 
+   });
+ }
+
+ 
   preferencias() {
     this.navCtrl.setRoot(PreferenciasPage);
   }

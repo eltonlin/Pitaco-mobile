@@ -1,14 +1,14 @@
 {
   "name": "ProjetoPitaco",
-  "app_id": "7bd1a72f",
-  "type": "ionic-angular",
   "integrations": {
     "cordova": {}
   },
+  "type": "ionic-angular",
   "proxies": [
     {
       "path": "/",
       "proxyUrl": "http://fast-ocean-23649.herokuapp.com"
     }
-  ]
+  ],
+  "id": "7bd1a72f"
 }

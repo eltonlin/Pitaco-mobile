@@ -40,20 +40,24 @@
           Pontuacao
         </button>
 
-        <button ion-item>
-          <ion-icon name="logo-twitter"></ion-icon> Compartilhe no Twitter
+        <button ion-item (click) = "shareTwitter()">
+          <ion-icon name="logo-twitter" ></ion-icon> Compartilhe no
+          Twitter
         </button>
 
-        <button ion-item>
-          <ion-icon name="logo-facebook"></ion-icon> Compartilhe no Facebook
+        <button ion-item (click) = "shareFacebook()">
+          <ion-icon name="logo-facebook" ></ion-icon> Compartilhe no
+          Facebook
         </button>
 
-        <button ion-item>
-          <ion-icon name="logo-whatsapp"></ion-icon> Compartilhe no WhatsApp
+        <button ion-item (click) = "shareWhatsapp()">
+          <ion-icon name ="logo-whatsapp"  ></ion-icon> Compartilhe no
+          WhatsApp
         </button>
 
-        <button ion-item>
-          <ion-icon name="mail"></ion-icon> Compartilhe por Email
+        <button ion-item (click) = "shareEmail()">
+          <ion-icon name="mail"  ></ion-icon> Compartilhe por
+          Email
         </button>
 
         <button ion-item (click)="sair()">Sair</button>
