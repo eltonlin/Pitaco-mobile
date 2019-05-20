@@ -1,4 +1,3 @@
-import { SocialSharing } from "@ionic-native/social-sharing/ngx";
 import { BrMaskerModule } from "brmasker-ionic-3";
 import { ResgataPontuacaoPage } from "./../pages/resgata-pontuacao/resgata-pontuacao";
 import { BrowserModule } from "@angular/platform-browser";
@@ -17,6 +16,8 @@ import { IonicStorageModule } from "@ionic/storage";
 import { PreferenciasPage } from "../pages/preferencias/preferencias";
 import { EditarPage } from "../pages/editar/editar";
 import { QuestionarioPage } from "../pages/questionario/questionario";
+import { SocialSharing } from "@ionic-native/social-sharing/ngx";
+
 @NgModule({
   declarations: [
     MyApp,
