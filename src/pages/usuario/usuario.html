@@ -23,97 +23,69 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-menu [content]="content">
-    <ion-header>
-      <ion-toolbar color="primary">
-        <ion-avatar>
-          <img class="circle" [src]="'assets/imgs/blank-avatar.png'" />
-        </ion-avatar>
-        <h4 class="login_usuario" text-center>{{ usuario.login_usuario }}</h4>
-        <p class="login_usuario" text-center>
-          <ion-icon id="icone" ios="ios-star" md="md-star"></ion-icon>
-          {{ pontuacao }}
-        </p>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content padding>
-      <ion-list>
-        <button ion-item (click)="editar()">
-          <ion-icon ios="ios-create" md="md-create"></ion-icon> Editar perfil
-        </button>
-
-        <button ion-item (click)="preferencias()">
-          <ion-icon ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon> Definir
-          preferencias
-        </button>
-
-        <button ion-item (click)="resgataPontuacao()">
-          <ion-icon ios="ios-trophy" md="md-trophy"></ion-icon> Resgatar
-          Pontuacao
-        </button>
-
-        <button ion-item (click)="shareTwitter()">
-          <ion-icon name="logo-twitter"></ion-icon> Compartilhe no Twitter
-        </button>
-
-        <button ion-item (click)="shareFacebook()">
-          <ion-icon name="logo-facebook"></ion-icon> Compartilhe no Facebook
-        </button>
-
-        <button ion-item (click)="shareWhatsapp()">
-          <ion-icon name="logo-whatsapp"></ion-icon> Compartilhe no WhatsApp
-        </button>
-
-        <button ion-item (click)="shareEmail()">
-          <ion-icon name="mail"></ion-icon> Compartilhe por Email
-        </button>
-
-        <button ion-item>
-          <ion-icon name="logo-facebook"></ion-icon> Compartilhe no Facebook
-        </button>
-
-        <button ion-item>
-          <ion-icon name="logo-whatsapp"></ion-icon> Compartilhe no WhatsApp
-        </button>
-
-        <button ion-item>
-          <ion-icon name="mail"></ion-icon> Compartilhe por Email
-        </button>
-
-        <button ion-item (click)="sair()">Sair</button>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
-  <ion-nav #content [root]="rootPage"></ion-nav>
-
-  <ion-content padding>
-    <ion-card
-      *ngFor="let questionario of questionarios"
-      (click)="
-        questionarioClick(
-          questionario.descricao_questionario,
-          questionario.id_questionario,
-          questionario.pontuacao_questionario
-        )
-      "
-    >
-      <!--</ion-card>*ngFor="let questionario of questionario"-->
-      <button ion-item>
-        <ion-avatar item-start>
-          <img src="assets/imgs/pontos.png" />
-        </ion-avatar>
-        <span style="font-weight: bold;font-size: 18px; text-align: center">{{
-          questionario.descricao_questionario
-        }}</span>
-
-        <ion-card-content>
-          <span style="text-align: center"
-            >Pontuação do questionário:
-            {{ questionario.pontuacao_questionario }}</span
-          >
-        </ion-card-content>
+  <ion-content>
+    <ion-list>
+      <button ion-item (click)="editar()">
+        <ion-icon ios="ios-create" md="md-create"></ion-icon> Editar perfil
       </button>
-    </ion-card>
+
+      <button ion-item (click)="preferencias()">
+        <ion-icon ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon> Definir
+        preferencias
+      </button>
+
+      <button ion-item (click)="resgataPontuacao()">
+        <ion-icon ios="ios-trophy" md="md-trophy"></ion-icon> Resgatar Pontuacao
+      </button>
+
+      <button ion-item (click)="shareTwitter()">
+        <ion-icon name="logo-twitter"></ion-icon> Compartilhe no Twitter
+      </button>
+
+      <button ion-item (click)="shareFacebook()">
+        <ion-icon name="logo-facebook"></ion-icon> Compartilhe no Facebook
+      </button>
+
+      <button ion-item (click)="shareWhatsapp()">
+        <ion-icon name="logo-whatsapp"></ion-icon> Compartilhe no WhatsApp
+      </button>
+
+      <button ion-item (click)="shareEmail()">
+        <ion-icon name="mail"></ion-icon> Compartilhe por Email
+      </button>
+
+      <button ion-item (click)="sair()">Sair</button>
+    </ion-list>
   </ion-content>
 </ion-menu>
+<ion-nav #content [root]="rootPage"></ion-nav>
+
+<ion-content padding>
+  <ion-card
+    *ngFor="let questionario of questionarios"
+    (click)="
+      questionarioClick(
+        questionario.descricao_questionario,
+        questionario.id_questionario,
+        questionario.pontuacao_questionario
+      )
+    "
+  >
+    <!--</ion-card>*ngFor="let questionario of questionario"-->
+    <button ion-item>
+      <ion-avatar item-start>
+        <img src="assets/imgs/pontos.png" />
+      </ion-avatar>
+      <span style="font-weight: bold;font-size: 18px; text-align: center">{{
+        questionario.descricao_questionario
+      }}</span>
+
+      <ion-card-content>
+        <span style="text-align: center"
+          >Pontuação do questionário:
+          {{ questionario.pontuacao_questionario }}</span
+        >
+      </ion-card-content>
+    </button>
+  </ion-card>
+</ion-content>
