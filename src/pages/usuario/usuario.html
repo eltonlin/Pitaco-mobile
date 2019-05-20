@@ -9,7 +9,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+
   <ion-menu [content]="content">
     <ion-header>
       <ion-toolbar color="primary">
@@ -64,6 +64,7 @@
       </ion-list>
     </ion-content>
   </ion-menu>
+  <ion-nav #content [root]="rootPage" ></ion-nav>
 
   <ion-content>
     <ion-card
@@ -89,6 +90,5 @@
       </button>
     </ion-card>
   </ion-content>
-</ion-content>
 
-<ion-nav [root]="rootPage" #content></ion-nav>
+
