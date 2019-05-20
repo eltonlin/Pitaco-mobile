@@ -58,29 +58,29 @@ export class UsuarioPage {
    shareWhatsapp(){
   
     this.socialSharing.shareViaWhatsApp(this.text, null, this.url).then(() => {
- 
+      console.log("shareViaWhatsApp: Success");
     }).catch(e => {
- 
+      console.error("shareViaWhatsApp: failed");
     });
   }
  
    //Sharing method in Twitter
   shareTwitter(){
    
-     this.socialSharing.shareViaWhatsApp(this.text, null, this.url).then(() => {
-      
+     this.socialSharing.shareViaTwitter(this.text, null, this.url).then(() => {
+      console.log("shareViaTwitter: Success");
     }).catch(e => {
- 
+      console.error("shareViaTwitter: failed");
     });
   }
  
   //Sharing method in Facebook
  shareFacebook(){
    
-   this.socialSharing.shareViaWhatsApp(this.text, null, this.url).then(() => {
-      
+   this.socialSharing.shareViaFacebook(this.text, null, this.url).then(() => {
+    console.log("shareViaFacebook: Success");
    }).catch(e => {
- 
+    console.error("shareViaFacebook: failed"); 
    });
  }
  
@@ -88,9 +88,9 @@ export class UsuarioPage {
   shareEmail(){
    
    this.socialSharing.shareViaEmail('This is my message', 'my subject',['developercmatos@gmail.com'], null, null, this.url).then(() => {
-      
+    console.log("shareViaEmail: Success");
    }).catch(e => {
- 
+    console.error("shareViaEmail: failed"); 
    });
  }
 
