@@ -1,3 +1,4 @@
+import { SocialSharing } from "@ionic-native/social-sharing/ngx";
 import { HomePage } from "./../home/home";
 import { Component, OnInit } from "@angular/core";
 import {
@@ -43,7 +44,8 @@ export class UsuarioPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public storage: Storage,
-    public servidor: ServidorProvider
+    public servidor: ServidorProvider,
+    private socialSharing: SocialSharing
   ) {}
 
   preferencias() {
@@ -72,7 +74,7 @@ export class UsuarioPage {
       .obterPontuacaoPorUsuario(this.usuario.login_usuario)
       .subscribe(pontuacaoPorUsuario => {
         this.pontuacao = JSON.stringify(pontuacaoPorUsuario);
-        this.pontuacao = this.pontuacao.replace(/[\[\]PONTUACAO":{}]/g, ""); 
+        this.pontuacao = this.pontuacao.replace(/[\[\]PONTUACAO":{}]/g, "");
         localStorage.setItem("pontuacaoFinal", JSON.stringify(this.pontuacao));
         //this.pontuacao = JSON.parse(localStorage.getItem('pontuacao'))
         console.log("Data loo", this.usuario.login_usuario);

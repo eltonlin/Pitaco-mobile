@@ -1,4 +1,5 @@
-import { BrMaskerModule } from 'brmasker-ionic-3';
+import { SocialSharing } from "@ionic-native/social-sharing/ngx";
+import { BrMaskerModule } from "brmasker-ionic-3";
 import { ResgataPontuacaoPage } from "./../pages/resgata-pontuacao/resgata-pontuacao";
 import { BrowserModule } from "@angular/platform-browser";
 import { ErrorHandler, NgModule } from "@angular/core";
@@ -16,7 +17,6 @@ import { IonicStorageModule } from "@ionic/storage";
 import { PreferenciasPage } from "../pages/preferencias/preferencias";
 import { EditarPage } from "../pages/editar/editar";
 import { QuestionarioPage } from "../pages/questionario/questionario";
-
 @NgModule({
   declarations: [
     MyApp,
@@ -50,6 +50,7 @@ import { QuestionarioPage } from "../pages/questionario/questionario";
   providers: [
     StatusBar,
     SplashScreen,
+    SocialSharing,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ServidorProvider
   ]
