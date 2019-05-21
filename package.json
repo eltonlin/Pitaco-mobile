@@ -20,8 +20,8 @@
     "@angular/http": "5.0.0",
     "@angular/platform-browser": "5.0.0",
     "@angular/platform-browser-dynamic": "5.0.0",
-    "@ionic-native/core": "4.3.2",
-    "@ionic-native/social-sharing": "^5.6.0",
+    "@ionic-native/core": "4.18.0",
+    "@ionic-native/social-sharing": "^4.12.0",
     "@ionic-native/splash-screen": "4.3.2",
     "@ionic-native/status-bar": "4.3.2",
     "@ionic/storage": "^2.2.0",
@@ -65,6 +65,9 @@
         "APP_NAME": "ProjetoPitaco",
         "FACEBOOK_HYBRID_APP_EVENTS": "false",
         "FACEBOOK_ANDROID_SDK_VERSION": "4.40.0"
+      },
+      "cordova-plugin-x-socialsharing": {
+        "ANDROID_SUPPORT_V4_VERSION": "24.1.1+"
       }
     },
     "platforms": [
