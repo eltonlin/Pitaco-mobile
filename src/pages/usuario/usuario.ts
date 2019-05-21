@@ -4,7 +4,8 @@ import {
   NavController,
   NavParams,
   ModalController,
-  AlertController
+  AlertController,
+  ToastController
 } from "ionic-angular";
 import { ServidorProvider } from "../../providers/servidor/servidor";
 import { Storage } from "@ionic/storage";
@@ -16,7 +17,8 @@ import { EditarPage } from "../editar/editar";
 import { QuestionarioDTO } from "../models/questionario";
 import { QuestionarioPage } from "../questionario/questionario";
 import { ResgataPontuacaoPage } from "../resgata-pontuacao/resgata-pontuacao";
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { UsuarioPontosDTO } from "../models/dadosPontuacao";
 
 @Component({
   selector: "page-usuario",
@@ -25,9 +27,9 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 export class UsuarioPage {
   questionarios: any;
 
-    //Informações que serão compatilhadas
-    text: 'Responda algumas perguntas e ganhe recompensa';
-    url: 'https://www.google.com.br';
+  //Informações que serão compatilhadas
+  text: string = 'Pitaco: Responda algumas perguntas e ganhe recompensa';
+  url: string = 'https://www.pitaco.com.br';
 
   /* questionarios: QuestionarioDTO = {
      id_questionario: 0,
@@ -43,58 +45,58 @@ export class UsuarioPage {
 
   pontuacao: string;
 
+  usuarioPontos: UsuarioPontosDTO = {
+    login_usuario: JSON.parse(localStorage.getItem("usuario")),
+    pontuacao: JSON.parse(localStorage.getItem("pontuacaoFinal"))
+  };
+
   constructor(
     public alertCtrl: AlertController,
     public navCtrl: NavController,
     public navParams: NavParams,
     public storage: Storage,
     public servidor: ServidorProvider,
-    private socialSharing: SocialSharing ,
-    
-  ) {}
+    private socialSharing: SocialSharing,
+    public toast: ToastController
 
-  
-   //Sharing method in whatsapp
-   shareWhatsapp(){
-  
+  ) { }
+
+
+  //Sharing method in whatsapp
+  shareWhatsapp() {
+
     this.socialSharing.shareViaWhatsApp(this.text, null, this.url).then(() => {
       console.log("shareViaWhatsApp: Success");
+      this.navCtrl.push(UsuarioPage);
     }).catch(e => {
       console.error("shareViaWhatsApp: failed");
     });
   }
- 
-   //Sharing method in Twitter
-  shareTwitter(){
-   
-     this.socialSharing.shareViaTwitter(this.text, null, this.url).then(() => {
-      console.log("shareViaTwitter: Success");
+
+  //Sharing method in Facebook
+  shareFacebook() {
+
+    this.socialSharing.shareViaFacebook(this.text, null, this.url).then(() => {
+      console.log("shareViaFacebook: Success");
+
+      this.navCtrl.push(UsuarioPage);
     }).catch(e => {
-      console.error("shareViaTwitter: failed");
+      console.error("shareViaFacebook: failed");
     });
   }
- 
-  //Sharing method in Facebook
- shareFacebook(){
-   
-   this.socialSharing.shareViaFacebook(this.text, null, this.url).then(() => {
-    console.log("shareViaFacebook: Success");
-   }).catch(e => {
-    console.error("shareViaFacebook: failed"); 
-   });
- }
- 
-  //Sharing method in Email
-  shareEmail(){
-   
-   this.socialSharing.shareViaEmail('This is my message', 'my subject',['developercmatos@gmail.com'], null, null, this.url).then(() => {
-    console.log("shareViaEmail: Success");
-   }).catch(e => {
-    console.error("shareViaEmail: failed"); 
-   });
- }
 
- 
+  //Sharing method in Email
+  shareEmail() {
+
+    this.socialSharing.shareViaEmail('Pitaco é o novo aplicativo para responder pesquisas do seu interesse e ainda obter prêmios. Junte-se a nós!', 'Pitaco: Compartilhe sua opnião e ganhe recompensa', [''], null, null, this.url).then(() => {
+      console.log("shareViaEmail: Success");
+      this.navCtrl.push(UsuarioPage);
+    }).catch(e => {
+      console.error("shareViaEmail: failed");
+    });
+  }
+
+
   preferencias() {
     this.navCtrl.setRoot(PreferenciasPage);
   }
@@ -121,7 +123,7 @@ export class UsuarioPage {
       .obterPontuacaoPorUsuario(this.usuario.login_usuario)
       .subscribe(pontuacaoPorUsuario => {
         this.pontuacao = JSON.stringify(pontuacaoPorUsuario);
-        this.pontuacao = this.pontuacao.replace(/[\[\]PONTUACAO":{}]/g, ""); 
+        this.pontuacao = this.pontuacao.replace(/[\[\]PONTUACAO":{}]/g, "");
         localStorage.setItem("pontuacaoFinal", JSON.stringify(this.pontuacao));
         //this.pontuacao = JSON.parse(localStorage.getItem('pontuacao'))
         console.log("Data loo", this.usuario.login_usuario);

@@ -16,7 +16,7 @@ import { IonicStorageModule } from "@ionic/storage";
 import { PreferenciasPage } from "../pages/preferencias/preferencias";
 import { EditarPage } from "../pages/editar/editar";
 import { QuestionarioPage } from "../pages/questionario/questionario";
-import { SocialSharing } from "@ionic-native/social-sharing/ngx";
+import { SocialSharing } from "@ionic-native/social-sharing";
 
 @NgModule({
   declarations: [
