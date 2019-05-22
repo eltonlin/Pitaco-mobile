@@ -110,7 +110,7 @@ export class UsuarioPage {
     if (this.usuarioPontos.pontuacao < 500) {
       this.toast
         .create({
-          message: "Você não possui pontuação suficiente para realziar esta ação ",
+          message: "Você não possui pontuação suficiente para realizar esta ação ",
           position: "botton",
           duration: 3000
         })
