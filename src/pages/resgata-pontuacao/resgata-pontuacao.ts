@@ -57,40 +57,40 @@ export class ResgataPontuacaoPage {
     }
   }
   resgatarPontos() {
-    this.servidor.resgatarPontos(this.usuario).subscribe(
-      data => {
+      this.servidor.resgatarPontos(this.usuario).subscribe(
+        data => {
 
-        if (this.usuario.valor == 10) {
-          this.usuarioPontos.pontuacao = this.usuarioPontos.pontuacao - 500;
-        } else if (this.usuario.valor == 20) {
-          this.usuarioPontos.pontuacao = this.usuarioPontos.pontuacao - 1000;
-        }
-        console.log('aqui', this.usuario.valor);
-        console.log('aqui2', this.usuarioPontos.pontuacao);
-
-
-        this.servidor.atualizarPontuacao(this.usuarioPontos).subscribe(
-          () => {
-            this.navCtrl.setRoot(UsuarioPage);
-            this.toast
-              .create({
-                message: "Solicitação Realizada com Sucesso ",
-                position: "botton",
-                duration: 3000
-              })
-              .present();
-          },
-          error => {
-            console.log(error);
-            this.toast
-              .create({
-                message: "Erro ao realizar solicitação. Erro: " + error.error.message,
-                position: "botton",
-                duration: 3000
-              })
-              .present();
+          if (this.usuario.valor == 10) {
+            this.usuarioPontos.pontuacao = this.usuarioPontos.pontuacao - 500;
+          } else if (this.usuario.valor == 20) {
+            this.usuarioPontos.pontuacao = this.usuarioPontos.pontuacao - 1000;
           }
-        );
-      })
-  }
+          console.log('aqui', this.usuario.valor);
+          console.log('aqui2', this.usuarioPontos.pontuacao);
+
+
+          this.servidor.atualizarPontuacao(this.usuarioPontos).subscribe(
+            () => {
+              this.navCtrl.setRoot(UsuarioPage);
+              this.toast
+                .create({
+                  message: "Solicitação Realizada com Sucesso ",
+                  position: "botton",
+                  duration: 3000
+                })
+                .present();
+            },
+            error => {
+              console.log(error);
+              this.toast
+                .create({
+                  message: "Erro ao realizar solicitação. Erro: " + error.error.message,
+                  position: "botton",
+                  duration: 3000
+                })
+                .present();
+            }
+          );
+        })
+    }
 }

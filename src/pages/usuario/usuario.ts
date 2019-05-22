@@ -106,7 +106,18 @@ export class UsuarioPage {
   }
 
   resgataPontuacao() {
-    this.navCtrl.push(ResgataPontuacaoPage);
+    console.log('pt',this.usuarioPontos.pontuacao );
+    if (this.usuarioPontos.pontuacao < 500) {
+      this.toast
+        .create({
+          message: "Você não possui pontuação suficiente para realziar esta ação ",
+          position: "botton",
+          duration: 3000
+        })
+        .present();
+    } else {
+      this.navCtrl.push(ResgataPontuacaoPage);
+    }
   }
 
   ionViewDidLoad() {
@@ -124,7 +135,7 @@ export class UsuarioPage {
       .subscribe(pontuacaoPorUsuario => {
         this.pontuacao = JSON.stringify(pontuacaoPorUsuario);
         this.pontuacao = this.pontuacao.replace(/[\[\]PONTUACAO":{}]/g, "");
-        localStorage.setItem("pontuacaoFinal", JSON.stringify(this.pontuacao));
+        localStorage.setItem("pontuacaoFinal", this.pontuacao);
         //this.pontuacao = JSON.parse(localStorage.getItem('pontuacao'))
         console.log("Data loo", this.usuario.login_usuario);
         console.log("Data loo", this.pontuacao);
