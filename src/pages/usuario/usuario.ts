@@ -19,6 +19,7 @@ import { QuestionarioPage } from "../questionario/questionario";
 import { ResgataPontuacaoPage } from "../resgata-pontuacao/resgata-pontuacao";
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { UsuarioPontosDTO } from "../models/dadosPontuacao";
+import { HistoricoPedidosPage } from "../historico-pedidos/historico-pedidos";
 
 @Component({
   selector: "page-usuario",
@@ -90,7 +91,7 @@ export class UsuarioPage {
 
     this.socialSharing.shareViaEmail('Pitaco é o novo aplicativo para responder pesquisas do seu interesse e ainda obter prêmios. Junte-se a nós!', 'Pitaco: Compartilhe sua opnião e ganhe recompensa', [''], null, null, this.url).then(() => {
       console.log("shareViaEmail: Success");
-      this.navCtrl.push(UsuarioPage);
+      //this.navCtrl.push(UsuarioPage);
     }).catch(e => {
       console.error("shareViaEmail: failed");
     });
@@ -104,8 +105,11 @@ export class UsuarioPage {
     this.navCtrl.push(EditarPage);
   }
 
+  historicoPedidos() {
+    this.navCtrl.push(HistoricoPedidosPage);
+  }
   resgataPontuacao() {
-    console.log('pt',this.usuarioPontos.pontuacao );
+    console.log('pt', this.usuarioPontos.pontuacao);
     if (this.usuarioPontos.pontuacao < 500) {
       this.toast
         .create({

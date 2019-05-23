@@ -56,7 +56,11 @@ export class ServidorProvider {
   salvarQuestionario(obj): Observable<any> {
     return this.http.post(this.url + "/resposta", obj).map(res => res);
   }
-
+  exibirHistoricoPedidos(usuario: String): Observable<any> {
+    return this.http
+    .get(this.url + `/solicita_pagamento/${usuario}`)
+    .map(res => res);
+  }
   obterDadosUsuario(usuario: String): Observable<any> {
     return this.http
       .get(this.url + `/usuario_final/${usuario}`)

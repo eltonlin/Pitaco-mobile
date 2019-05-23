@@ -17,6 +17,7 @@ import { PreferenciasPage } from "../pages/preferencias/preferencias";
 import { EditarPage } from "../pages/editar/editar";
 import { QuestionarioPage } from "../pages/questionario/questionario";
 import { SocialSharing } from "@ionic-native/social-sharing";
+import { HistoricoPedidosPage } from "../pages/historico-pedidos/historico-pedidos";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SocialSharing } from "@ionic-native/social-sharing";
     PreferenciasPage,
     EditarPage,
     QuestionarioPage,
-    ResgataPontuacaoPage
+    ResgataPontuacaoPage,
+    HistoricoPedidosPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ import { SocialSharing } from "@ionic-native/social-sharing";
     PreferenciasPage,
     EditarPage,
     QuestionarioPage,
-    ResgataPontuacaoPage
+    ResgataPontuacaoPage,
+    HistoricoPedidosPage
   ],
   providers: [
     StatusBar,
