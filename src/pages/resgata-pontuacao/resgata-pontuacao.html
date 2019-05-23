@@ -1,6 +1,8 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title style="text-align: center">Resgatar Pontos</ion-title>
+    <ion-title style="text-align: center">
+      <ion-label text-wrap>Resgatar Pontos</ion-label>
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -8,7 +10,7 @@
   <ion-grid>
     <ion-row>
       <ion-item col-6>
-        <ion-label floating>Nome do Banco: </ion-label>
+        <ion-label text-wrap floating>Nome do Banco: </ion-label>
         <ion-select [(ngModel)]="usuario.banco">
           <ion-option> Caixa Econômica</ion-option>
           <ion-option> Santander</ion-option>
@@ -20,7 +22,7 @@
       </ion-item>
 
       <ion-item col-6>
-        <ion-label floating>Tipo da conta: </ion-label>
+        <ion-label text-wrap floating>Tipo da conta: </ion-label>
         <ion-select [(ngModel)]="usuario.tipo_conta">
           <ion-option value="CC"> Conta Corrente</ion-option>
           <ion-option value="CP"> Conta Poupança</ion-option>
@@ -30,33 +32,24 @@
 
     <ion-row>
       <ion-item col-4>
-        <ion-label floating>N° Agência: </ion-label>
-        <ion-input
-          type="text"
-          [(ngModel)]="usuario.agencia"
-          [brmasker]="{ len: 4, type: 'num' }"
-        ></ion-input>
+        <ion-label text-wrap floating>N° Agência: </ion-label>
+        <ion-input type="text" [(ngModel)]="usuario.agencia" [brmasker]="{ len: 4, type: 'num' }"></ion-input>
       </ion-item>
       <ion-item col-8>
-        <ion-label floating>N° Conta: </ion-label>
-        <ion-input
-          type="text"
-          [(ngModel)]="usuario.conta"
-          [brmasker]="{ mask: '00000000-0', len: 10, type: 'num' }"
-        ></ion-input>
+        <ion-label text-wrap floating>N° Conta: </ion-label>
+        <ion-input type="text" [(ngModel)]="usuario.conta" [brmasker]="{ mask: '00000000-0', len: 10, type: 'num' }">
+        </ion-input>
       </ion-item>
     </ion-row>
 
     <ion-row>
       <ion-item col-5>
-        <ion-label stacked>Escolher:</ion-label>
+        <ion-label text-wrap stacked>Escolher:</ion-label>
         <ion-select [ngClass]="getValorRetirada()" [(ngModel)]="usuario.valor">
           <ion-option *ngIf="valorPt == 1" value="10">
-            500 PT por 10,00$</ion-option
-          >
+            500 PT por 10,00$</ion-option>
           <ion-option *ngIf="valorPt == 1 && valorDuplo == 1" value="20">
-            1000 PT por 20,00$</ion-option
-          >
+            1000 PT por 20,00$</ion-option>
         </ion-select>
       </ion-item>
     </ion-row>

@@ -3,8 +3,10 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title style="text-align: center"
-      >Bem Vindo, {{ usuario.login_usuario }}!
+    <ion-title text-wrap style="text-align: center">
+      <ion-label text-wrap>
+        Bem Vindo, {{ usuario.login_usuario }}!
+      </ion-label>
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -40,7 +42,7 @@
         <ion-icon ios="ios-trophy" md="md-trophy"></ion-icon> Resgatar Pontuacao
       </button>
 
-    
+
 
       <button ion-item (click)="shareFacebook()">
         <ion-icon name="logo-facebook"></ion-icon> Compartilhe no Facebook
@@ -55,37 +57,35 @@
         <ion-icon name="mail"></ion-icon> Compartilhe por Email
       </button>
 
-      <button ion-item (click)="sair()">Sair</button>
+      <button ion-item (click)="sair()">
+        <ion-icon ios="ios-exit" md="md-exit"></ion-icon> Sair
+      </button>
+
     </ion-list>
   </ion-content>
 </ion-menu>
 <ion-nav #content [root]="rootPage"></ion-nav>
 
-<ion-content padding>
-  <ion-card
-    *ngFor="let questionario of questionarios"
-    (click)="
+<ion-content>
+  <ion-card *ngFor="let questionario of questionarios" (click)="
       questionarioClick(
         questionario.descricao_questionario,
         questionario.id_questionario,
         questionario.pontuacao_questionario
       )
-    "
-  >
+    ">
     <!--</ion-card>*ngFor="let questionario of questionario"-->
     <button ion-item>
       <ion-avatar item-start>
         <img src="assets/imgs/pontos.png" />
       </ion-avatar>
-      <span style="font-weight: bold;font-size: 18px; text-align: center">{{
+      <span text-wrap style="font-weight: bold;font-size: 18px; text-align: center">{{
         questionario.descricao_questionario
       }}</span>
 
       <ion-card-content>
-        <span style="text-align: center"
-          >Pontuação do questionário:
-          {{ questionario.pontuacao_questionario }}</span
-        >
+        <span style="text-align: center">
+          {{ questionario.pontuacao_questionario }} PT</span>
       </ion-card-content>
     </button>
   </ion-card>
