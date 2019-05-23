@@ -6,16 +6,15 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Histórico Pedidos</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
   <ion-grid no-padding>
-    <ion-row>
+    <ion-row col-12>
       <ion-col>Banco</ion-col>
       <ion-col>Agência</ion-col>
       <ion-col>Conta</ion-col>
@@ -23,7 +22,7 @@
       <ion-col>Status</ion-col>
     </ion-row>
     <div *ngFor="let item of pedidos">
-      <ion-row>
+      <ion-row col-12>
         <ion-col>{{item.banco}}</ion-col>
         <ion-col>{{item.agencia}}</ion-col>
         <ion-col>{{item.conta}}</ion-col>
