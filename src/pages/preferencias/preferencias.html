@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title style="text-align: center">
-      Preferências de Questionário
+      <ion-label text-wrap>Preferências de Questionário</ion-label>
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -9,12 +9,9 @@
 <ion-content padding>
   <ion-list>
     <ion-list>
-      <ion-item *ngFor="let interesse of interesses">
-        <ion-label>{{ interesse.descricao }}</ion-label>
-        <ion-checkbox
-          value="interesse.id_interesse"
-          [(ngModel)]="interesse.checked"
-        ></ion-checkbox>
+      <ion-item no-lines *ngFor="let interesse of interesses">
+        <ion-label text-wrap>{{ interesse.descricao }}</ion-label>
+        <ion-checkbox value="interesse.id_interesse" [(ngModel)]="interesse.checked"></ion-checkbox>
       </ion-item>
     </ion-list>
   </ion-list>

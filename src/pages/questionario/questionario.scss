@@ -5,4 +5,7 @@ page-questionario {
   .botao {
     border-radius: 30px !important;
   }
+  label {
+    overflow-wrap: break-word;
+  }
 }

@@ -1,6 +1,8 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Cadastre-se</ion-title>
+    <ion-title>
+      <ion-label text-wrap>Cadastre-se</ion-label>
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -9,11 +11,7 @@
     <ion-list>
       <ion-item>
         <ion-label floating>Email: </ion-label>
-        <ion-input
-          type="email"
-          formControlName="email"
-          [(ngModel)]="usuario.login_usuario"
-        >
+        <ion-input type="email" formControlName="email" [(ngModel)]="usuario.login_usuario">
         </ion-input>
       </ion-item>
       <div *ngIf="email.invalid && (email.dirty || email.touched)">
@@ -27,11 +25,7 @@
 
       <ion-item>
         <ion-label floating>Nome: </ion-label>
-        <ion-input
-          type="text"
-          formControlName="nome"
-          [(ngModel)]="usuario.nome"
-        ></ion-input>
+        <ion-input type="text" formControlName="nome" [(ngModel)]="usuario.nome"></ion-input>
       </ion-item>
       <div *ngIf="nome.invalid && (texto.dirty || nome.touched)">
         <div *ngIf="nome.errors.required">
@@ -44,17 +38,10 @@
 
       <ion-item>
         <ion-label floating>Senha: </ion-label>
-        <ion-input
-          [type]="isTextFieldType ? 'text' : 'password'"
-          formControlName="senha"
-          [(ngModel)]="usuario.senha"
-        >
+        <ion-input [type]="isTextFieldType ? 'text' : 'password'" formControlName="senha" [(ngModel)]="usuario.senha">
         </ion-input>
       </ion-item>
-      <button
-        style="background: none; margin-left: 10px;float: right;"
-        (click)="togglePasswordFieldType()"
-      >
+      <button style="background: none; margin-left: 10px;float: right;" (click)="togglePasswordFieldType()">
         <ion-icon [name]="isTextFieldType ? 'eye-off' : 'eye'"></ion-icon>
       </button>
       <div *ngIf="senha.invalid && (senha.dirty || senha.touched)">
@@ -71,37 +58,24 @@
 
       <ion-item>
         <ion-label floating>Confirma Senha: </ion-label>
-        <ion-input
-          [type]="isTextFieldType ? 'text' : 'password'"
-          formControlName="confirma_senha"
-          [(ngModel)]="usuario.confirma_senha"
-        ></ion-input>
+        <ion-input [type]="isTextFieldType ? 'text' : 'password'" formControlName="confirma_senha"
+          [(ngModel)]="usuario.confirma_senha"></ion-input>
       </ion-item>
-      <button
-        style="background: none; margin-left: 10px; float: right;"
-        (click)="togglePasswordFieldType()"
-      >
+      <button style="background: none; margin-left: 10px; float: right;" (click)="togglePasswordFieldType()">
         <ion-icon [name]="isTextFieldType ? 'eye-off' : 'eye'"></ion-icon>
       </button>
-      <div
-        class="form-text error"
-        *ngIf="
+      <div class="form-text error" *ngIf="
           senha.valid &&
           form.hasError('validarSenhas') &&
           (confirma_senha.dirty || confirma_senha.touched)
-        "
-      >
+        ">
         <p>Senha e confirma senha devem ser iguais</p>
       </div>
 
       <ion-item>
         <ion-label floating>CPF: </ion-label>
-        <ion-input
-          type="text"
-          formControlName="cpf"
-          [(ngModel)]="usuario.cpf"
-          [brmasker]="{ len: 11, type: 'num' }"
-        ></ion-input>
+        <ion-input type="text" formControlName="cpf" [(ngModel)]="usuario.cpf" [brmasker]="{ len: 11, type: 'num' }">
+        </ion-input>
       </ion-item>
       <div *ngIf="cpf.invalid && (cpf.dirty || cpf.touched)">
         <div *ngIf="cpf.errors.required">
@@ -117,10 +91,7 @@
 
       <ion-item>
         <ion-label stacked>Faixa Salarial: </ion-label>
-        <ion-select
-          formControlName="opcao"
-          [(ngModel)]="usuario.faixa_salarial"
-        >
+        <ion-select formControlName="opcao" [(ngModel)]="usuario.faixa_salarial">
           <ion-option value=""> - Escolha - </ion-option>>
           <ion-option value="1">0 - 1000</ion-option>>
           <ion-option value="2">1000 - 3000</ion-option>
@@ -144,18 +115,11 @@
           value=""
           [(ngModel)]="usuario.data_nascimento"
         ></ion-datetime>-->
-        <ion-datetime
-          formControlName="texto"
-          [dayShortNames]="customDayShortNames"
-          displayFormat="DD MMM YY"
+        <ion-datetime formControlName="texto" [dayShortNames]="customDayShortNames" displayFormat="DD MMM YY"
           monthShortNames="jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez"
-          [(ngModel)]="usuario.data_nascimento"
-        ></ion-datetime>
+          [(ngModel)]="usuario.data_nascimento"></ion-datetime>
       </ion-item>
-      <div
-        *ngIf="texto.invalid && (texto.dirty || texto.touched)"
-        color="danger"
-      >
+      <div *ngIf="texto.invalid && (texto.dirty || texto.touched)" color="danger">
         <div *ngIf="texto.errors.required">
           <p>Informação é obrigatória</p>
         </div>
@@ -163,12 +127,7 @@
 
       <ion-item>
         <ion-label floating>CEP: </ion-label>
-        <ion-input
-          type="text"
-          formControlName="cep"
-          (ionBlur)="buscaCep()"
-          [(ngModel)]="usuario.cep"
-        ></ion-input>
+        <ion-input type="text" formControlName="cep" (ionBlur)="buscaCep()" [(ngModel)]="usuario.cep"></ion-input>
       </ion-item>
       <div *ngIf="cep.invalid && (cep.dirty || cep.touched)">
         <div *ngIf="cep.errors.required">
@@ -184,12 +143,7 @@
 
       <ion-item>
         <ion-label floating>Rua: </ion-label>
-        <ion-input
-          [disabled]="true"
-          type="text"
-          formControlName="rua"
-          [(ngModel)]="usuario.rua"
-        ></ion-input>
+        <ion-input [disabled]="true" type="text" formControlName="rua" [(ngModel)]="usuario.rua"></ion-input>
       </ion-item>
       <div *ngIf="rua.invalid && (rua.dirty || rua.touched)">
         <div *ngIf="rua.errors.required">
@@ -199,17 +153,11 @@
 
       <ion-item>
         <ion-label floating>Complemento: </ion-label>
-        <ion-input
-          type="text"
-          formControlName="complemento"
-          [(ngModel)]="usuario.complemento"
-        ></ion-input>
+        <ion-input type="text" formControlName="complemento" [(ngModel)]="usuario.complemento"></ion-input>
       </ion-item>
-      <div
-        *ngIf="
+      <div *ngIf="
           complemento.invalid && (complemento.dirty || complemento.touched)
-        "
-      >
+        ">
         <div *ngIf="complemento.errors.required">
           <p>Preenchimento do Complemento é obrigatório</p>
         </div>
@@ -220,12 +168,7 @@
 
       <ion-item>
         <ion-label floating>Bairro: </ion-label>
-        <ion-input
-          [disabled]="true"
-          type="text"
-          formControlName="bairro"
-          [(ngModel)]="usuario.bairro"
-        ></ion-input>
+        <ion-input [disabled]="true" type="text" formControlName="bairro" [(ngModel)]="usuario.bairro"></ion-input>
       </ion-item>
       <div *ngIf="bairro.invalid && (bairro.dirty || bairro.touched)">
         <div *ngIf="bairro.errors.required">
@@ -235,12 +178,7 @@
 
       <ion-item>
         <ion-label floating>Cidade: </ion-label>
-        <ion-input
-          [disabled]="true"
-          type="text"
-          formControlName="cidade"
-          [(ngModel)]="usuario.cidade"
-        ></ion-input>
+        <ion-input [disabled]="true" type="text" formControlName="cidade" [(ngModel)]="usuario.cidade"></ion-input>
       </ion-item>
       <div *ngIf="cidade.invalid && (cidade.dirty || cidade.touched)">
         <div *ngIf="cidade.errors.required">
@@ -250,12 +188,7 @@
 
       <ion-item>
         <ion-label floating>Estado: </ion-label>
-        <ion-input
-          [disabled]="true"
-          type="text"
-          formControlName="estado"
-          [(ngModel)]="usuario.estado"
-        ></ion-input>
+        <ion-input [disabled]="true" type="text" formControlName="estado" [(ngModel)]="usuario.estado"></ion-input>
       </ion-item>
       <div *ngIf="estado.invalid && (estado.dirty || estado.touched)">
         <div *ngIf="estado.errors.required">
@@ -264,14 +197,7 @@
       </div>
     </ion-list>
   </form>
-  <button
-    ion-button
-    full
-    [disabled]="!form.valid"
-    class="botao"
-    (click)="salvarUsuario()"
-    class="botao"
-  >
+  <button ion-button full [disabled]="!form.valid" class="botao" (click)="salvarUsuario()" class="botao">
     Confirmar Cadastro
   </button>
 </ion-content>

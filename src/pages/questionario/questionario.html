@@ -1,6 +1,10 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title style="text-align: center;">{{pergunta.descricao_questionario}}</ion-title>
+    <ion-title style="text-align: center;">
+      <ion-label text-wrap>
+        {{ pergunta.descricao_questionario }}
+      </ion-label>
+    </ion-title>
     <button color="primary" style="background: none;" (click)="voltarQuestionarios()">
       <ion-icon style="color: white;" ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
     </button>
@@ -8,24 +12,25 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-list *ngFor="let questionario of questionarios">
-      <ion-label>{{ questionario.descricao_pergunta }}</ion-label>
+  <ion-list *ngFor="let questionario of questionarios">
+    <ion-label text-wrap style="font-weight: bold;">{{
+      questionario.descricao_pergunta
+    }}</ion-label>
 
-      <ion-list *ngIf="questionario.tipo_pergunta == 'M'">
-        <span *ngFor="let opcao of questionario.opcoes">
-          <ion-checkbox value="opcao.id_opcao" [(ngModel)]="opcao.checked"></ion-checkbox>
-          {{ opcao.descricao_opcao }}
-        </span>
-      </ion-list>
-
-      <ion-list radio-group *ngIf="questionario.tipo_pergunta == 'C'">
-          <span *ngFor="let opcao of questionario.opcoes">
-              <ion-radio (ionSelect)="radioChecked(questionario.opcoes, opcao.id_opcao)" ></ion-radio>
-              {{ opcao.descricao_opcao }}
-          </span>
-      </ion-list>
-
+    <ion-list *ngIf="questionario.tipo_pergunta == 'M'">
+      <ion-item no-lines *ngFor="let opcao of questionario.opcoes">
+        <ion-label text-wrap>{{ opcao.descricao_opcao }}</ion-label>
+        <ion-checkbox value="opcao.id_opcao" [(ngModel)]="opcao.checked"></ion-checkbox>
+      </ion-item>
     </ion-list>
+
+    <ion-list radio-group *ngIf="questionario.tipo_pergunta == 'C'">
+      <ion-item no-lines *ngFor="let opcao of questionario.opcoes">
+        <ion-radio item-left (ionSelect)="radioChecked(questionario.opcoes, opcao.id_opcao)"></ion-radio>
+        <ion-label text-wrap>{{ opcao.descricao_opcao }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-list>
 
   <button class="botao" ion-button full (click)="salvarQuestionario()">
     Salvar
