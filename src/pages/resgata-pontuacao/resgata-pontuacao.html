@@ -43,15 +43,15 @@
 
   <ion-row>
     <ion-item col-7>
-      <ion-label floating>Trocar por dinheiro</ion-label>
+      <ion-label floating>Valor do Resgate</ion-label>
       <ion-select [ngClass]="getValorRetirada()" [(ngModel)]="usuario.valor">
         <ion-option *ngIf="valorPt == 1" value="10">
           500 PT por 10,00$</ion-option>
         <ion-option *ngIf="valorPt == 1 && valorDuplo == 1" value="20">
           1000 PT por 20,00$</ion-option>
-        <ion-option *ngIf="valorPt != 1">
+        <!--<ion-option *ngIf="valorPt != 1">
           Pontuação insuficiente
-        </ion-option>
+        </ion-option>-->
       </ion-select>
     </ion-item>
   </ion-row>
