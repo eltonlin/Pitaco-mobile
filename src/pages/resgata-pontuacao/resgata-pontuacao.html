@@ -23,6 +23,7 @@
         </ion-select>
       </ion-item>
 
+<<<<<<< HEAD
       <ion-item col-6>
         <ion-label floating>Tipo da conta </ion-label>
         <ion-select [(ngModel)]="usuario.tipo_conta">
@@ -31,6 +32,22 @@
         </ion-select>
       </ion-item>
     </ion-row>
+=======
+  <ion-row>
+    <ion-item col-7>
+      <ion-label floating>Valor do Resgate</ion-label>
+      <ion-select [ngClass]="getValorRetirada()" [(ngModel)]="usuario.valor">
+        <ion-option *ngIf="valorPt == 1" value="10">
+          500 PT por 10,00$</ion-option>
+        <ion-option *ngIf="valorPt == 1 && valorDuplo == 1" value="20">
+          1000 PT por 20,00$</ion-option>
+        <!--<ion-option *ngIf="valorPt != 1">
+          Pontuação insuficiente
+        </ion-option>-->
+      </ion-select>
+    </ion-item>
+  </ion-row>
+>>>>>>> ed9045414c34188a3d7b1482976953c08b158b8a
 
     <ion-row>
       <ion-item col-5>

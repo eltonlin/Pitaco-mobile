@@ -5,12 +5,12 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar color="primary">
-    <ion-title>Histórico Pedidos</ion-title>
-  </ion-navbar>
-
-</ion-header>
+    <ion-navbar color="primary">
+      <ion-title style="text-align: center">
+        <ion-label text-wrap>Histórico de Pedidos</ion-label>
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
 
 <ion-content padding>
   <ion-grid no-padding>
@@ -19,7 +19,7 @@
       <ion-col>Agência</ion-col>
       <ion-col>Conta</ion-col>
       <ion-col>Valor</ion-col>
-      <ion-col>Status</ion-col>
+      <ion-col>Status do Pagamento</ion-col>
     </ion-row>
     <div *ngFor="let item of pedidos">
       <ion-row col-12>

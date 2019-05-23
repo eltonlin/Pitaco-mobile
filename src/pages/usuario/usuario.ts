@@ -46,6 +46,7 @@ export class UsuarioPage {
 
   pontuacao: string;
 
+
   usuarioPontos: UsuarioPontosDTO = {
     login_usuario: JSON.parse(localStorage.getItem("usuario")),
     pontuacao: JSON.parse(localStorage.getItem("pontuacaoFinal"))
@@ -88,15 +89,19 @@ export class UsuarioPage {
 
   //Sharing method in Email
   shareEmail() {
-
     this.socialSharing.shareViaEmail('Pitaco é o novo aplicativo para responder pesquisas do seu interesse e ainda obter prêmios. Junte-se a nós!', 'Pitaco: Compartilhe sua opnião e ganhe recompensa', [''], null, null, this.url).then(() => {
       console.log("shareViaEmail: Success");
-      //this.navCtrl.push(UsuarioPage);
+      this.navCtrl.push(UsuarioPage);
     }).catch(e => {
       console.error("shareViaEmail: failed");
     });
   }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> ed9045414c34188a3d7b1482976953c08b158b8a
   preferencias() {
     this.navCtrl.push(PreferenciasPage);
   }
@@ -108,9 +113,11 @@ export class UsuarioPage {
   historicoPedidos() {
     this.navCtrl.push(HistoricoPedidosPage);
   }
+
   resgataPontuacao() {
-    console.log('pt', this.usuarioPontos.pontuacao);
-    if (this.usuarioPontos.pontuacao < 500) {
+    var pts = parseInt(this.pontuacao, 10);
+    console.log('pt2', pts);
+    if (pts < 500) {
       this.toast
         .create({
           message: "Você não possui pontuação suficiente para realizar esta ação ",
@@ -150,6 +157,8 @@ export class UsuarioPage {
         console.log("obs", questionarioPorUsuario);
         this.questionarios = questionarioPorUsuario;
       });
+
+
   }
   questionarioClick(
     questionarioDescricaoquestionario: string,
