@@ -96,9 +96,8 @@ export class UsuarioPage {
     });
   }
 
-
   preferencias() {
-    this.navCtrl.setRoot(PreferenciasPage);
+    this.navCtrl.push(PreferenciasPage);
   }
 
   editar() {

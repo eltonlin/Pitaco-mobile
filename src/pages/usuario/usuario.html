@@ -1,14 +1,14 @@
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-toolbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title text-wrap style="text-align: center">
+    <ion-title text-wrap style="text-align: left;">
       <ion-label text-wrap>
-        Bem Vindo, {{ usuario.login_usuario }}!
+        Bem Vindo, {{ usuario.login_usuario }}
       </ion-label>
     </ion-title>
-  </ion-navbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-menu [content]="content">

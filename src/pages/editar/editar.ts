@@ -103,7 +103,7 @@ export class EditarPage {
         this.usuario.data_nascimento = dadosPorUsuario.data_nascimento;
       });
   }
-  F;
+  
 
   createForm() {
     this.form = this.formBuilder.group({
