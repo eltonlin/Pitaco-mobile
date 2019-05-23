@@ -97,11 +97,6 @@ export class UsuarioPage {
     });
   }
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> ed9045414c34188a3d7b1482976953c08b158b8a
   preferencias() {
     this.navCtrl.push(PreferenciasPage);
   }
