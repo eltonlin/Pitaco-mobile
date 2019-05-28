@@ -20,6 +20,7 @@ import { ResgataPontuacaoPage } from "../resgata-pontuacao/resgata-pontuacao";
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { UsuarioPontosDTO } from "../models/dadosPontuacao";
 import { HistoricoPedidosPage } from "../historico-pedidos/historico-pedidos";
+import { EditarDTO } from "../models/editar";
 
 @Component({
   selector: "page-usuario",
@@ -41,7 +42,8 @@ export class UsuarioPage {
 
   usuario: CredenciaisDTO = {
     login_usuario: JSON.parse(localStorage.getItem("usuario")),
-    senha: ""
+    senha: "",
+    nome: ""
   };
 
   pontuacao: string;
@@ -89,7 +91,7 @@ export class UsuarioPage {
 
   //Sharing method in Email
   shareEmail() {
-    this.socialSharing.shareViaEmail('Pitaco é o novo aplicativo para responder pesquisas do seu interesse e ainda obter prêmios. Junte-se a nós!', 'Pitaco: Compartilhe sua opnião e ganhe recompensa', [''], null, null, this.url).then(() => {
+    this.socialSharing.shareViaEmail('Pitaco é o novo aplicativo para responder pesquisas do seu interesse e ainda obter prêmios. Junte-se a nós!', 'Pitaco: Compartilhe sua opnião e ganhe recompensa', ['']).then(() => {
       console.log("shareViaEmail: Success");
       this.navCtrl.push(UsuarioPage);
     }).catch(e => {
@@ -138,6 +140,16 @@ export class UsuarioPage {
     } catch (error) { } */
 
     this.servidor
+      .obterDadosUsuario(this.usuario.login_usuario)
+      .subscribe(dadosPorUsuario => {
+        this.usuario = dadosPorUsuario;
+        console.log('dados',dadosPorUsuario);
+        console.log('dados2',this.usuario.nome);
+        localStorage.setItem("nome", JSON.stringify(dadosPorUsuario));
+        
+      });
+
+    this.servidor
       .obterPontuacaoPorUsuario(this.usuario.login_usuario)
       .subscribe(pontuacaoPorUsuario => {
         this.pontuacao = JSON.stringify(pontuacaoPorUsuario);
@@ -153,6 +165,10 @@ export class UsuarioPage {
       .subscribe(questionarioPorUsuario => {
         console.log("obs", questionarioPorUsuario);
         this.questionarios = questionarioPorUsuario;
+
+        if(questionarioPorUsuario.length == null || questionarioPorUsuario==0 ){
+          
+        }
       });
 
 

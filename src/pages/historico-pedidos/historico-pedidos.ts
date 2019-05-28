@@ -25,7 +25,9 @@ export class HistoricoPedidosPage {
     agencia: "",
     conta: "",
     valor: 0,
-    pago: ""
+    pago: "",
+    data_pagamento: "",
+    data_solicitacao: ""
   };
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public servidor: ServidorProvider,

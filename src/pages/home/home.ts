@@ -11,6 +11,7 @@ import { ServidorProvider } from "../../providers/servidor/servidor";
 import { UsuarioPage } from "../usuario/usuario";
 import { CredenciaisDTO } from "../models/credenciais";
 import { Storage } from "@ionic/storage";
+import { EditarDTO } from "../models/editar";
 
 @Component({
   selector: "page-home",
@@ -25,7 +26,8 @@ export class HomePage {
 
   usuario: CredenciaisDTO = {
     login_usuario: "",
-    senha: ""
+    senha: "",
+    nome: ""
   };
 
   constructor(

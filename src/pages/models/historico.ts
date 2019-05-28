@@ -5,5 +5,7 @@ export interface HistoricoPedidosDTO {
     conta: string;
     valor: number;
     pago: string;
+    data_pagamento: string;
+    data_solicitacao: string;
 
 }

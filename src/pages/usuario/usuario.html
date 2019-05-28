@@ -5,7 +5,7 @@
     </button>
     <ion-title text-wrap style="text-align: center">
       <ion-label text-wrap>
-        Bem Vindo, {{ usuario.login_usuario }}!
+        Bem Vindo, {{ usuario.nome }}!
       </ion-label>
     </ion-title>
   </ion-navbar>
@@ -15,9 +15,9 @@
   <ion-header>
     <ion-toolbar color="primary">
       <ion-avatar>
-        <img class="circle" [src]="'assets/imgs/blank-avatar.png'" />
+        <img class="circle" [src]="'assets/imgs/pitaco-logo.png'" />
       </ion-avatar>
-      <h4 class="login_usuario" text-center>{{ usuario.login_usuario }}</h4>
+      <h4 class="login_usuario" text-center>{{ usuario.nome }}</h4>
       <p class="login_usuario" text-center>
         <ion-icon id="icone" ios="ios-star" md="md-star"></ion-icon>
         {{ pontuacao }}
@@ -70,6 +70,16 @@
 <ion-nav #content [root]="rootPage"></ion-nav>
 
 <ion-content>
+ 
+  <div class="row">
+      <div class="col" class="ion-float-left">
+          <div class="text-center">
+              <h6 style="text-align: center;"  *ngIf="questionarios?.length == 0">Você não possui questionário a ser respondido neste momento.</h6>
+          </div>
+        </div>
+  </div>
+
+
   <ion-card *ngFor="let questionario of questionarios" (click)="
       questionarioClick(
         questionario.descricao_questionario,
@@ -78,6 +88,7 @@
       )
     ">
     <!--</ion-card>*ngFor="let questionario of questionario"-->
+
     <button ion-item>
       <ion-avatar item-start>
         <img src="assets/imgs/pontos.png" />
