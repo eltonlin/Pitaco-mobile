@@ -5,16 +5,16 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-    <ion-navbar color="primary">
-      <ion-title style="text-align: center">
-        <ion-label text-wrap>Histórico de Pedidos</ion-label>
-      </ion-title>
-    </ion-navbar>
-  </ion-header>
+  <ion-navbar color="primary">
+    <ion-title style="text-align: center">
+      <ion-label text-wrap>Histórico de Pedidos</ion-label>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
 
 
 <ion-content padding>
-  <ion-grid no-padding>
+  <!-- <ion-grid no-padding>
     <ion-row>
       <ion-col>Banco</ion-col>
       <ion-col>Agência</ion-col>
@@ -22,7 +22,11 @@
       <ion-col>Valor</ion-col>
       <ion-col>Pagamento</ion-col>
       <ion-col>Data Solicitação</ion-col>
-      <ion-col>Data Pagamento</ion-col> 
+      <ion-col>Data Pagamento</ion-col>
+      <ion-col>Data Solicitação</ion-col>
+      <ion-col>Pagamento</ion-col>
+      <ion-col>Data Pagamento</ion-col>
+
     </ion-row>
     <div *ngFor="let item of pedidos">
       <ion-row>
@@ -33,7 +37,54 @@
         <ion-col>{{item.pago}}</ion-col>
         <ion-col>{{item.data_solicitacao}}</ion-col>
         <ion-col>{{item.data_pagamento}}</ion-col>
-      </ion-row>
+
+        <ion-col>{{item.data_solicitacao}}</ion-col>
+        <ion-col>{{item.pago}}</ion-col>
+        <ion-col>{{item.data_pagamento}}</ion-col>
+     
+    
+      </ion-row>  
     </div>
-  </ion-grid>
+  </ion-grid>-->
+
+
+  <ion-card *ngFor="let item of pedidos">
+    <ion-card-content>
+
+      <span text-wrap style="font-weight: bold;font-size: 16px; text-align: center;">
+        Data da Solicitação: {{item.data_solicitacao}}
+      </span>
+      <ion-row>
+        <span style="text-align: center;">
+          Pago? {{ item.pago }}
+        </span>
+      </ion-row>
+      <ion-row>
+        <span style="text-align: center;">
+          Banco: {{item.banco}}
+        </span>
+      </ion-row>
+      <ion-row>
+        <span style="text-align: center;">
+          Agência: {{item.agencia}}
+        </span>
+      </ion-row>
+      <ion-row>
+        <span style="text-align: center;">
+          Conta: {{item.conta}}
+        </span>
+      </ion-row>
+      <ion-row>
+        <span style="text-align: center;">
+          Valor: R$ {{item.valor}},00
+        </span>
+      </ion-row>
+      <ion-row>
+        <span style="text-align: center;">
+          Data Pagamento: {{item.data_pagamento}}
+        </span>
+      </ion-row>
+    </ion-card-content>
+
+  </ion-card>
 </ion-content>

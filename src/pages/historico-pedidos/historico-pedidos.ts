@@ -26,8 +26,8 @@ export class HistoricoPedidosPage {
     conta: "",
     valor: 0,
     pago: "",
-    data_pagamento: "",
-    data_solicitacao: ""
+    data_solicitacao: "",
+    data_pagamento: "" 
   };
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public servidor: ServidorProvider,
@@ -42,7 +42,29 @@ export class HistoricoPedidosPage {
       console.log('history', historicoPedido);
       this.pedidos = historicoPedido;
       console.log('dados', this.historico.agencia)
+      localStorage.setItem("data",JSON.stringify(historicoPedido));
     });
   }
 
+  /*dadosPagamento( banco: string,
+    agencia: string,
+    conta: string,
+    valor: string
+   ){
+   
+    let alert = this.alertCtrl.create({
+      title: "Dados do Pagamento",
+      subTitle:
+        "Agência: " + agencia + "\n\n\n"  + 
+        " Banco: " + banco + "\n\n\n"  + 
+        " Conta: " + conta + "\n\n\n"  + 
+        " Valor: "  + valor ,
+      message:
+        "Responda com atenção, pois ele não poderá ser respondido novamente.",
+      buttons: ["OK"]
+    });
+    alert.present();
+
+   
+  }*/
 }
